@@ -73,12 +73,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
-            <Label layoutX="137.0" layoutY="485.0" text="New User?" textFill="#a3a3a3">
-               <font>
-                  <Font name="Arial" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="goToRegistration" layoutX="215.0" layoutY="485.0" styleClass="sginupBtn" text="Sign up" textFill="#6747cd">
+            <Label layoutX="130.0" layoutY="484.0" text="New User?" textFill="#a3a3a3">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -88,6 +83,11 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
+            <JFXButton fx:id="goToRegistration" buttonType="RAISED" layoutX="205.0" layoutY="479.0" styleClass="sginupBtn" text="Sign up" textFill="#6747cd">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
    </children>

@@ -4,6 +4,7 @@ import client.core.ViewHandler;
 import client.core.ViewModelFactory;
 import client.view.ViewController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -15,6 +16,10 @@ public class LoginController implements ViewController
   private TextField loginPassword;
   @FXML
   private Label loginLabel;
+  @FXML
+  private Button loginButton;
+  @FXML
+  private Button goToRegistration;
 
   private ViewHandler vh;
   private LoginVM vm;
