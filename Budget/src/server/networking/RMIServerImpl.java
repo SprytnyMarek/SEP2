@@ -9,11 +9,16 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RMIServerImpl implements RMIServer
 {
+  private List<ClientCallBack> clientCallbacks;
+
   public RMIServerImpl() throws RemoteException{
     UnicastRemoteObject.exportObject(this, 0);
+    clientCallbacks = new ArrayList<ClientCallBack>();
   }
 
   public void startServer() throws RemoteException, AlreadyBoundException
