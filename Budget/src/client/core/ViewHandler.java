@@ -26,7 +26,7 @@ public class ViewHandler
     openLoginView();
   }
 
-  private void openLoginView()
+  public void openLoginView()
   {
     if(scene == null){
       try{
@@ -38,6 +38,22 @@ public class ViewHandler
       }
     }
     stage.setTitle("Login");
+    stage.setScene(scene);
+    stage.show();
+  }
+
+  public void openRegisterView()
+  {
+    if(scene == null){
+      try{
+        Parent root = loadFXML("../view/register/Register.fxml");
+        scene = new Scene(root);
+      }
+      catch (IOException e){
+        e.printStackTrace();
+      }
+    }
+    stage.setTitle("Register");
     stage.setScene(scene);
     stage.show();
   }

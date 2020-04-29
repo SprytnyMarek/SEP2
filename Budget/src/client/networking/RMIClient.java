@@ -1,8 +1,11 @@
 package client.networking;
 
+
+import shared.datatransfer.User;
 import shared.networking.ClientCallBack;
 import shared.networking.RMIServer;
 
+import java.beans.PropertyChangeSupport;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -12,8 +15,10 @@ import java.rmi.server.UnicastRemoteObject;
 public class RMIClient implements Client, ClientCallBack
 {
   private RMIServer server;
+  private PropertyChangeSupport support;
 
   public RMIClient(){
+    support = new PropertyChangeSupport(this);
     try
     {
       UnicastRemoteObject.exportObject(this, 0);
@@ -24,5 +29,34 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+  }
+
+  @Override public String loginResult(User user)
+  {
+    try
+    {
+      if(server.loginResult(user).equals("OK")){
+        server.registerClient(this);
+      }
+      return server.loginResult(user);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
+  @Override public String registerUser(User user)
+  {
+    try
+    {
+      return server.registerUser(user);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return "";
   }
 }
