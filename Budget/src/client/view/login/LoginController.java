@@ -24,10 +24,6 @@ public class LoginController implements ViewController
   private ViewHandler vh;
   private LoginVM vm;
 
-  public void onLoginButton()
-  {
-
-  }
 
   public void onSignUpButton()
   {
@@ -45,7 +41,7 @@ public class LoginController implements ViewController
   }
 
   @FXML
-  public void loginButton(){
+  public void onLoginButton(){
     String loginResult = vm.loginResult();
     if("OK".equals(loginResult)){
       vm.clear();
