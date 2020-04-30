@@ -68,7 +68,7 @@
                         <Font name="Arial" size="14.0" />
                     </font>
                 </Label>
-                <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="50.0" layoutY="401.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#loginButton" prefHeight="50.0" prefWidth="300.0" ripplerFill="#0777ff" styleClass="loginBtn" text="Login">
+                <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="50.0" layoutY="401.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onLoginButton" prefHeight="50.0" prefWidth="300.0" ripplerFill="#0777ff" styleClass="loginBtn" text="Login">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -83,7 +83,7 @@
                         <Font name="Arial" size="14.0" />
                     </font>
                 </Label>
-            <JFXButton fx:id="goToRegistration" buttonType="RAISED" layoutX="203.0" layoutY="483.0" onAction="#goToRegistration" styleClass="sginupBtn" text="Sign up" textFill="#6747cd">
+            <JFXButton fx:id="goToRegistration" buttonType="RAISED" layoutX="203.0" layoutY="483.0" onAction="#onSignUpButton" styleClass="sginupBtn" text="Sign up" textFill="#6747cd">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>

@@ -23,6 +23,11 @@ public class RegisterController implements ViewController
   private RegisterVM vm;
   private ViewHandler vh;
 
+  public void onBackToLogin()
+  {
+    goToLogin();
+  }
+
   @Override public void init(ViewHandler vh, ViewModelFactory vmf)
   {
     this.vh = vh;

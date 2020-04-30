@@ -12,14 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="../login/stylesheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="client.view.login.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../login/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.register.RegisterController">
    <children>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="../login/corona.png" />
+                  <Image url="@../login/corona.png" />
                </image>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -41,7 +40,7 @@
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="../login/corona.png" />
+                  <Image url="@../login/corona.png" />
                </image>
             </ImageView>
             <Label layoutX="50.0" layoutY="128.0" text="Registration Form" textFill="#545454">
@@ -79,12 +78,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
-            <Label fx:id="goToLogin" layoutX="271.0" layoutY="554.0" styleClass="goBackBtn" text="Sign in" textFill="#6747cd">
-               <font>
-                  <Font name="Arial" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="72.0" layoutY="554.0" text="You already have an account?" textFill="#a3a3a3">
+            <Label layoutX="65.0" layoutY="553.0" text="You already have an account?" textFill="#a3a3a3">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -94,6 +88,11 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
+            <JFXButton fx:id="goToLogin" buttonType="RAISED" layoutX="254.0" layoutY="548.0" onAction="#onBackToLogin" styleClass="sginupBtn" text="Sign up" textFill="#6747cd">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
    </children>

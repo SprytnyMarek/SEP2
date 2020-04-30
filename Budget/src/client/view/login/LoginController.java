@@ -24,6 +24,16 @@ public class LoginController implements ViewController
   private ViewHandler vh;
   private LoginVM vm;
 
+  public void onLoginButton()
+  {
+
+  }
+
+  public void onSignUpButton()
+  {
+    goToRegistration();
+  }
+
 
   @Override public void init(ViewHandler vh, ViewModelFactory vmf)
   {
