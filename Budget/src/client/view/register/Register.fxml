@@ -78,7 +78,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
-            <Label layoutX="65.0" layoutY="553.0" text="You already have an account?" textFill="#a3a3a3">
+            <Label layoutX="69.0" layoutY="554.0" text="You already have an account?" textFill="#a3a3a3">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <JFXButton fx:id="goToLogin" buttonType="RAISED" layoutX="254.0" layoutY="548.0" onAction="#onBackToLogin" styleClass="sginupBtn" text="Sign up" textFill="#6747cd">
+            <JFXButton fx:id="goToLogin" buttonType="RAISED" layoutX="258.0" layoutY="549.0" onAction="#onBackToLogin" styleClass="sginupBtn" text="Log in" textFill="#6747cd">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
