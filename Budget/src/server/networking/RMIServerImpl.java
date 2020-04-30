@@ -21,7 +21,7 @@ public class RMIServerImpl implements RMIServer
   public RMIServerImpl(Model model) throws RemoteException{
     this.model = model;
     UnicastRemoteObject.exportObject(this, 0);
-    clientCallbacks = new ArrayList<ClientCallBack>();
+    clientCallbacks = new ArrayList<>();
   }
 
   public void startServer() throws RemoteException, AlreadyBoundException
@@ -37,7 +37,7 @@ public class RMIServerImpl implements RMIServer
 
   @Override public String registerUser(User user)
   {
-    return null;
+    return model.registerUser(user);
   }
 
   @Override public void registerClient(ClientCallBack client)

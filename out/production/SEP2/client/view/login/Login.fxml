@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="client.view.login.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.login.LoginController">
     <children>
         <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar">
             <children>
@@ -68,7 +68,7 @@
                         <Font name="Arial" size="14.0" />
                     </font>
                 </Label>
-                <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="50.0" layoutY="401.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" ripplerFill="#0777ff" styleClass="loginBtn" text="Login">
+                <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="50.0" layoutY="401.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#loginButton" prefHeight="50.0" prefWidth="300.0" ripplerFill="#0777ff" styleClass="loginBtn" text="Login">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -83,7 +83,7 @@
                         <Font name="Arial" size="14.0" />
                     </font>
                 </Label>
-            <JFXButton fx:id="goToRegistration" buttonType="RAISED" layoutX="203.0" layoutY="483.0" styleClass="sginupBtn" text="Sign up" textFill="#6747cd">
+            <JFXButton fx:id="goToRegistration" buttonType="RAISED" layoutX="203.0" layoutY="483.0" onAction="#goToRegistration" styleClass="sginupBtn" text="Sign up" textFill="#6747cd">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>

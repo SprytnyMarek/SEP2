@@ -6,4 +6,5 @@ import shared.util.PropertyChangeSubject;
 public interface Model extends PropertyChangeSubject
 {
   String loginResult(User user);
+  String registerUser(User user);
 }

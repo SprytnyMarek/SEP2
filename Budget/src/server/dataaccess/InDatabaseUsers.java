@@ -31,4 +31,34 @@ public class InDatabaseUsers implements UserHome
     }
     return result;
   }
+
+  @Override public String registerUser(User user)
+  {
+    String result = "";
+    for(User u:users){
+      if(u.getUsername().equals(user.getUsername())){
+        result = "There is already a user with this name";
+        break;
+      }
+    }
+    if(!(result.equals("There is already a user with this name"))){
+      if(user.getUsername().equals("") || user.getUsername() == null){
+        result = "Username field cannot be empty";
+      }
+      else if(user.getEmail().equals("") || user.getEmail() == null){
+        result = "Email field cannot be empty";
+      }
+      else if(user.getPassword().equals("") || user.getPassword() == null){
+        result = "Password field cannot be empty";
+      }
+      else if(!(user.getPassword().equals(user.getRepeatPassword()))){
+        result = "You did not input the same password";
+      }
+      else {
+        result = "OK";
+        //TODO register person to database
+      }
+    }
+    return result;
+  }
 }

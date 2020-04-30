@@ -14,4 +14,9 @@ public class ModelManager implements Model
   {
     return userHome.loginResult(user);
   }
+
+  @Override public String registerUser(User user)
+  {
+    return userHome.registerUser(user);
+  }
 }
