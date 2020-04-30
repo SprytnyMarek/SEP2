@@ -1,5 +1,6 @@
 package server.networking;
 
+import server.model.Model;
 import shared.datatransfer.User;
 import shared.networking.ClientCallBack;
 import shared.networking.RMIServer;
@@ -15,8 +16,10 @@ import java.util.List;
 public class RMIServerImpl implements RMIServer
 {
   private List<ClientCallBack> clientCallbacks;
+  private Model model;
 
-  public RMIServerImpl() throws RemoteException{
+  public RMIServerImpl(Model model) throws RemoteException{
+    this.model = model;
     UnicastRemoteObject.exportObject(this, 0);
     clientCallbacks = new ArrayList<ClientCallBack>();
   }
@@ -29,7 +32,7 @@ public class RMIServerImpl implements RMIServer
 
   @Override public String loginResult(User user)
   {
-    return null;
+    return model.loginResult(user);
   }
 
   @Override public String registerUser(User user)
@@ -40,12 +43,12 @@ public class RMIServerImpl implements RMIServer
   @Override public void registerClient(ClientCallBack client)
 
   {
-
+    clientCallbacks.add(client);
   }
 
   @Override public void unregisterClient(ClientCallBack client)
 
   {
-
+    clientCallbacks.remove(client);
   }
 }

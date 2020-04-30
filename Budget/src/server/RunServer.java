@@ -1,5 +1,7 @@
 package server;
 
+import server.dataaccess.InDatabaseUsers;
+import server.dataaccess.UserHome;
 import server.model.Model;
 import server.model.ModelManager;
 import server.networking.RMIServerImpl;
@@ -12,7 +14,9 @@ public class RunServer
 {
   public static void main(String[] args) throws RemoteException
   {
-    RMIServerImpl sv = new RMIServerImpl();
+    UserHome userHome = new InDatabaseUsers();
+    Model model = new ModelManager(userHome);
+    RMIServerImpl sv = new RMIServerImpl(model);
     try
     {
       sv.startServer();

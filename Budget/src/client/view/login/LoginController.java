@@ -34,6 +34,7 @@ public class LoginController implements ViewController
     loginLabel.textProperty().bindBidirectional(vm.loginLabelProperty());
   }
 
+  @FXML
   public void loginButton(){
     String loginResult = vm.loginResult();
     if("OK".equals(loginResult)){
@@ -41,6 +42,7 @@ public class LoginController implements ViewController
       //changeToMainView
     }
   }
+  @FXML
   public void goToRegistration(){
     vh.openRegisterView();
   }
