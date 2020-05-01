@@ -1,5 +1,6 @@
 package server.networking;
 
+import server.model.Model;
 import shared.datatransfer.User;
 import shared.networking.ClientCallBack;
 import shared.networking.RMIServer;
@@ -9,11 +10,18 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RMIServerImpl implements RMIServer
 {
-  public RMIServerImpl() throws RemoteException{
+  private List<ClientCallBack> clientCallbacks;
+  private Model model;
+
+  public RMIServerImpl(Model model) throws RemoteException{
+    this.model = model;
     UnicastRemoteObject.exportObject(this, 0);
+    clientCallbacks = new ArrayList<>();
   }
 
   public void startServer() throws RemoteException, AlreadyBoundException
@@ -24,23 +32,23 @@ public class RMIServerImpl implements RMIServer
 
   @Override public String loginResult(User user)
   {
-    return null;
+    return model.loginResult(user);
   }
 
   @Override public String registerUser(User user)
   {
-    return null;
+    return model.registerUser(user);
   }
 
   @Override public void registerClient(ClientCallBack client)
 
   {
-
+    clientCallbacks.add(client);
   }
 
   @Override public void unregisterClient(ClientCallBack client)
 
   {
-
+    clientCallbacks.remove(client);
   }
 }

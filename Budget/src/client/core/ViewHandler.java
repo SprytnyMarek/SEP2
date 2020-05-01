@@ -44,7 +44,7 @@ public class ViewHandler
 
   public void openRegisterView()
   {
-    if(scene == null){
+    if(scene != null){
       try{
         Parent root = loadFXML("../view/register/Register.fxml");
         scene = new Scene(root);
