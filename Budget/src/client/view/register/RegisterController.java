@@ -3,11 +3,12 @@ package client.view.register;
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
 import client.view.ViewController;
+import client.view.login.LoginVM;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class RegisterController implements ViewController
+public class RegisterController
 {
   @FXML
   private TextField registerUsername;
@@ -28,10 +29,10 @@ public class RegisterController implements ViewController
     goToLogin();
   }
 
-  @Override public void init(ViewHandler vh, ViewModelFactory vmf)
+  public void init(RegisterVM registerVM, ViewHandler viewHandler)
   {
-    this.vh = vh;
-    this.vm = vmf.getRegisterVm();
+    this.vm = registerVM;
+    this.vh = viewHandler;
     registerUsername.textProperty().bindBidirectional(vm.usernameProperty());
     emailField.textProperty().bindBidirectional(vm.emailProperty());
     registerPassword.textProperty().bindBidirectional(vm.passwordProperty());

@@ -1,7 +1,8 @@
 package client.core;
 
-import client.view.ViewController;
+
 import client.view.login.LoginController;
+import client.view.register.RegisterController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,52 +19,50 @@ public class ViewHandler
   public ViewHandler(ViewModelFactory vmf)
   {
     this.vmf = vmf;
+    stage = new Stage();
   }
 
   public void start()
   {
-    stage = new Stage();
     openLoginView();
+    stage.show();
   }
 
   public void openLoginView()
   {
-    if(scene == null){
-      try{
-        Parent root = loadFXML("../view/login/Login.fxml");
-        scene = new Scene(root);
-      }
-      catch (IOException e){
-        e.printStackTrace();
-      }
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("../view/login/Login.fxml"));
+    try
+    {
+      Parent root = loader.load();
+      LoginController ctrl = loader.getController();
+      ctrl.init(vmf.getLoginVm(), this);
+      stage.setTitle("Login");
+      Scene loginScene = new Scene(root);
+      stage.setScene(loginScene);
     }
-    stage.setTitle("Login");
-    stage.setScene(scene);
-    stage.show();
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public void openRegisterView()
   {
-    if(scene != null){
-      try{
-        Parent root = loadFXML("../view/register/Register.fxml");
-        scene = new Scene(root);
-      }
-      catch (IOException e){
-        e.printStackTrace();
-      }
-    }
-    stage.setTitle("Register");
-    stage.setScene(scene);
-    stage.show();
-  }
-
-  private Parent loadFXML(String path) throws IOException {
     FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource(path));
-    Parent root = loader.load();
-    ViewController ctrl = loader.getController();
-    ctrl.init(this, vmf);
-    return root;
+    loader.setLocation(getClass().getResource("../view/register/Register.fxml"));
+    try
+    {
+      Parent root = loader.load();
+      RegisterController ctrl = loader.getController();
+      ctrl.init(vmf.getRegisterVm(), this);
+      stage.setTitle("Register");
+      Scene registerScene = new Scene(root);
+      stage.setScene(registerScene);
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
   }
 }

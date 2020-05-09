@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class LoginController implements ViewController
+public class LoginController
 {
   @FXML
   private TextField loginUsername;
@@ -31,10 +31,10 @@ public class LoginController implements ViewController
   }
 
 
-  @Override public void init(ViewHandler vh, ViewModelFactory vmf)
+  public void init(LoginVM loginVm, ViewHandler viewHandler)
   {
-    this.vh = vh;
-    vm = vmf.getLoginVm();
+    this.vm = loginVm;
+    this.vh = viewHandler;
     loginUsername.textProperty().bindBidirectional(vm.usernameProperty());
     loginPassword.textProperty().bindBidirectional(vm.passwordProperty());
     loginLabel.textProperty().bindBidirectional(vm.loginLabelProperty());

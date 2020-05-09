@@ -14,6 +14,8 @@ public class UserDAOImpl implements UserDAO {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
+
+
     public static synchronized UserDAOImpl getInstance() throws SQLException {
         if (instance == null) {
             instance = new UserDAOImpl();
