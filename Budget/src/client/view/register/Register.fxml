@@ -73,7 +73,7 @@
                   <Font size="14.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton fx:id="registerButton" buttonType="RAISED" layoutX="43.0" layoutY="482.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" ripplerFill="#0777ff" styleClass="loginBtn" text="Register">
+            <JFXButton fx:id="registerButton" buttonType="RAISED" layoutX="43.0" layoutY="482.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#registerButton" prefHeight="50.0" prefWidth="300.0" ripplerFill="#0777ff" styleClass="loginBtn" text="Register">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

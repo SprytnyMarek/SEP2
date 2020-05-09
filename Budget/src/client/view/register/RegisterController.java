@@ -40,6 +40,7 @@ public class RegisterController
     registerLabel.textProperty().bindBidirectional(vm.registerLabel());
   }
 
+  @FXML
   public void registerButton(){
     String registerResult = vm.registerUser();
     if(registerResult.equals("OK")){

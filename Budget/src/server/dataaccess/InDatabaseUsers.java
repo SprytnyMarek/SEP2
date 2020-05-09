@@ -42,17 +42,17 @@ public class InDatabaseUsers implements UserHome
       }
     }
     if(!(result.equals("There is already a user with this name"))){
-      if(user.getUsername().equals("") || user.getUsername() == null){
-        result = "Username field cannot be empty";
+      if(user.getUsername() == null || user.getUsername().equals("") || !(user.getUsername().matches("[a-zA-Z]+")) || user.getUsername().length()<3 || user.getUsername().length()>12){
+        result = "Invalid username";
       }
-      else if(user.getEmail().equals("") || user.getEmail() == null){
-        result = "Email field cannot be empty";
+      else if(user.getEmail() == null || user.getEmail().equals("") || user.getEmail().length()<1 || user.getEmail().length()>13 || !(user.getEmail().matches("[a-zA-Z0-9.\\-_]+")) || !(user.getEmail().matches("[a-zA-Z].*"))){
+        result = "Invalid email";
       }
-      else if(user.getPassword().equals("") || user.getPassword() == null){
-        result = "Password field cannot be empty";
+      else if(user.getPassword() == null || user.getPassword().equals("") || user.getPassword().length()<4 || user.getPassword().length()>14){
+        result = "Invalid password";
       }
       else if(!(user.getPassword().equals(user.getRepeatPassword()))){
-        result = "You did not input the same password";
+        result = "Passwords do not match";
       }
       else {
         result = "OK";
