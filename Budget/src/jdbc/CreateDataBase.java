@@ -7,7 +7,7 @@ public class CreateDataBase {
         String driver = "org.postgresql.Driver";
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
-        String password = "dima1234dumi";
+        String password = "Petunia123";
 
         Connection connection = null;
 
@@ -31,11 +31,11 @@ public class CreateDataBase {
             e.printStackTrace();
         }
 
-        sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".User ("
+        sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".users ("
                 + "  username varchar(15) NOT NULL PRIMARY KEY,"
                 + "  email varchar(50) NOT NULL, "
                 + "  password varchar(50) NOT NULL , "
-                + "  reapeatPassword varchar(50) NOT NULL " + ");";
+                + "  reapeatpassword varchar(50) NOT NULL " + ");";
 
         try {
             Statement statement = connection.createStatement();
@@ -43,9 +43,9 @@ public class CreateDataBase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String preparedSql = "INSERT INTO \"SEP2\".User (username, email, password, repeatPassword) "
+        String preparedSql = "INSERT INTO \"SEP2\".users (username, email, password, repeatpassword) "
                 + "SELECT * FROM (SELECT ?, ?, ?, ?) AS tmp "
-                + "WHERE NOT EXISTS (SELECT username FROM \"SEP2\".User "
+                + "WHERE NOT EXISTS (SELECT username FROM \"SEP2\".users "
                 + "WHERE username = ?) LIMIT 1;";
 
 

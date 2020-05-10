@@ -12,10 +12,9 @@ public class InDatabaseUsers implements UserHome
 {
   private List<User> users;
 
-  public InDatabaseUsers(){
+  public InDatabaseUsers()
+  {
     users = new ArrayList<>();
-    users.add(new User("Troels", "troels@gmail.com", "123", "123"));
-
   }
 
   @Override public String loginResult(User user)
@@ -23,9 +22,9 @@ public class InDatabaseUsers implements UserHome
     try {
       UserDAO dao = new UserDAOImpl();
       User result = dao.readByUsername(user.getUsername()).stream()
-              .filter(user1 -> user.getUsername().equals(user1.getUsername()) && user.getPassword().equals(user1.getPassword()))
-              .findAny()
-              .orElse(null);
+          .filter(user1 -> user.getUsername().equals(user1.getUsername()) && user.getPassword().equals(user1.getPassword()))
+          .findAny()
+          .orElse(null);
       if(result != null)
       {
         return  "OK";

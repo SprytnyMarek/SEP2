@@ -24,12 +24,12 @@ public class UserDAOImpl implements UserDAO {
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=SEP2", "postgres", "dima1234dumi");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=\"SEP2\"", "postgres", "Petunia123");
     }
 
     public User create(String username, String email, String password, String repeatPassword) throws SQLException {
         try (Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO User(username, email, password, repeatPassword) VALUES(?, ?, ?, ?) ;");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO users(username, email, password, repeatpassword) VALUES(?, ?, ?, ?) ;");
             statement.setString(1, username );
             statement.setString(2,email);
             statement.setString(3,password);
@@ -41,7 +41,7 @@ public class UserDAOImpl implements UserDAO {
 
     public List<User> readByUsername(String searchString) throws SQLException{
         try (Connection connection = getConnection()){
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM User WHERE username = ? ");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ? ");
             statement.setString(1,searchString );
             ResultSet resultSet = statement.executeQuery();
             ArrayList<User> result = new ArrayList<>();
@@ -49,7 +49,7 @@ public class UserDAOImpl implements UserDAO {
                 String username = resultSet.getString("username");
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                String repeatPassword = resultSet.getString("repeatPassword");
+                String repeatPassword = resultSet.getString("repeatpassword");
                 User user = new User(username,email,password,repeatPassword);
                 result.add(user);
             }
@@ -61,7 +61,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void update(User user) throws SQLException {
         try(Connection connection = getConnection()){
-            PreparedStatement statement = connection.prepareStatement("UPDATE User SET username=?, email =?, passowrd=?, repeatPassword=? WHERE username =?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE users SET username=?, email =?, passowrd=?, repeatpassword=? WHERE username =?");
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPassword());
@@ -74,7 +74,7 @@ public class UserDAOImpl implements UserDAO {
     public void delete(User user) throws SQLException {
         try(Connection connection = getConnection())
         {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM User WHERE username = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE username = ?");
             statement.setString(1,user.getUsername());
             statement.executeUpdate();
         }
