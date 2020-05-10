@@ -56,6 +56,7 @@ public class InDatabaseUsers implements UserHome
       }
       else {
         result = "OK";
+        user.setEmail(user.getEmail() + "@via.dk");
         //TODO register person to database
       }
     }
