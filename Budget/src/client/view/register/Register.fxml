@@ -83,7 +83,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="registerLabel" layoutX="41.0" layoutY="194.0" prefHeight="17.0" prefWidth="300.0">
+            <Label fx:id="registerLabel" layoutX="41.0" layoutY="194.0" prefHeight="17.0" prefWidth="300.0" textFill="#6747cd">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
