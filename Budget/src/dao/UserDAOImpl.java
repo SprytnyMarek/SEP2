@@ -10,7 +10,7 @@ public class UserDAOImpl implements UserDAO {
     private static UserDAOImpl instance;
 
 
-    private UserDAOImpl() throws SQLException {
+    public UserDAOImpl() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
@@ -24,7 +24,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgres://localhost:5432/postgres?currentSchema=jdbc", "postgres", "dima1234dumi");
+        return DriverManager.getConnection("jdbc:postgres://localhost:5432/postgres?currentSchema=SEP2", "postgres", "dima1234dumi");
     }
 
     public User create(String username, String email, String password, String repeatPassword) throws SQLException {
@@ -42,6 +42,7 @@ public class UserDAOImpl implements UserDAO {
     public List<User> readByUsername(String searchString) throws SQLException{
         try (Connection connection = getConnection()){
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM User WHERE username = ? ");
+            statement.setString(1,searchString );
             ResultSet resultSet = statement.executeQuery();
             ArrayList<User> result = new ArrayList<>();
             while(resultSet.next()){

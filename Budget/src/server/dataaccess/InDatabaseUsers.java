@@ -1,7 +1,10 @@
 package server.dataaccess;
 
+import dao.UserDAO;
+import dao.UserDAOImpl;
 import shared.datatransfer.User;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +20,22 @@ public class InDatabaseUsers implements UserHome
 
   @Override public String loginResult(User user)
   {
-    String result = "User not found";
+    try {
+      UserDAO dao = new UserDAOImpl();
+      User result = dao.readByUsername(user.getUsername()).stream()
+              .filter(user1 -> user.getUsername().equals(user1.getUsername()) && user.getPassword().equals(user1.getPassword()))
+              .findAny()
+              .orElse(null);
+      if(result != null)
+      {
+        return  "OK";
+      }
+      return "Password incorrect";
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return "Could not connect to database";
+ /*   String result = "User not found";
     for(User u:users){
       if(u.getUsername().equals(user.getUsername())){
         if(u.getPassword().equals(user.getPassword())){
@@ -29,7 +47,8 @@ public class InDatabaseUsers implements UserHome
         break;
       }
     }
-    return result;
+    return result; */
+
   }
 
   @Override public String registerUser(User user)
