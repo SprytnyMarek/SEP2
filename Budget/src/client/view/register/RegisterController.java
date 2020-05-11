@@ -24,9 +24,10 @@ public class RegisterController
   private RegisterVM vm;
   private ViewHandler vh;
 
+  @FXML
   public void onBackToLogin()
   {
-    goToLogin();
+    vh.openLoginView();
   }
 
   public void init(RegisterVM registerVM, ViewHandler viewHandler)
@@ -46,9 +47,5 @@ public class RegisterController
     if(registerResult.equals("OK")){
       vm.clear();
     }
-  }
-
-  public void goToLogin(){
-    vh.openLoginView();
   }
 }

@@ -10,7 +10,7 @@ public class UserDAOImpl implements UserDAO {
     private static UserDAOImpl instance;
 
 
-    public UserDAOImpl() throws SQLException {
+    private UserDAOImpl() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
@@ -29,31 +29,32 @@ public class UserDAOImpl implements UserDAO {
 
     public User create(String username, String email, String password, String repeatPassword) throws SQLException {
         try (Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO users(username, email, password, repeatpassword) VALUES(?, ?, ?, ?) ;");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO users(username, email, password) VALUES(?, ?, ?) ;");
             statement.setString(1, username );
             statement.setString(2,email);
             statement.setString(3,password);
-            statement.setString(4,repeatPassword);
             statement.executeUpdate();
             return  new User(username, email, password, repeatPassword);
         }
     }
 
-    public List<User> readByUsername(String searchString) throws SQLException{
+    //TODO maybe find a better name
+    public User readByUsername(String searchUsername) throws SQLException{
         try (Connection connection = getConnection()){
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ? ");
-            statement.setString(1,searchString );
+            statement.setString(1,searchUsername );
             ResultSet resultSet = statement.executeQuery();
-            ArrayList<User> result = new ArrayList<>();
-            while(resultSet.next()){
+            if(resultSet.next()){
                 String username = resultSet.getString("username");
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                String repeatPassword = resultSet.getString("repeatpassword");
+                String repeatPassword = resultSet.getString("password");
                 User user = new User(username,email,password,repeatPassword);
-                result.add(user);
+                return user;
             }
-        return result;
+            else {
+                return null;
+            }
         }
     }
 

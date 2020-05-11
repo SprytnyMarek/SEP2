@@ -20,11 +20,8 @@ public class InDatabaseUsers implements UserHome
   @Override public String loginResult(User user)
   {
     try {
-      UserDAO dao = new UserDAOImpl();
-      User result = dao.readByUsername(user.getUsername()).stream()
-          .filter(user1 -> user.getUsername().equals(user1.getUsername()) && user.getPassword().equals(user1.getPassword()))
-          .findAny()
-          .orElse(null);
+      UserDAO dao = UserDAOImpl.getInstance();
+      User result = dao.readByUsername(user.getUsername());
       if(result != null)
       {
         return  "OK";

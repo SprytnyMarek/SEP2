@@ -25,9 +25,10 @@ public class LoginController
   private LoginVM vm;
 
 
+  @FXML
   public void onSignUpButton()
   {
-    goToRegistration();
+    vh.openRegisterView();
   }
 
 
@@ -47,9 +48,5 @@ public class LoginController
       vm.clear();
       //changeToMainView
     }
-  }
-  @FXML
-  public void goToRegistration(){
-    vh.openRegisterView();
   }
 }
