@@ -50,11 +50,18 @@ public class InDatabaseUsers implements UserHome
   @Override public String registerUser(User user)
   {
     String result = "";
-    for(User u:users){
-      if(u.getUsername().equals(user.getUsername())){
+    User alreadyInDatabase = null;
+    try
+    {
+      UserDAO dao = UserDAOImpl.getInstance();
+      alreadyInDatabase = dao.readByUsername(user.getUsername());
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+    if(alreadyInDatabase!=null){
         result = "There is already a user with this name";
-        break;
-      }
     }
     if(!(result.equals("There is already a user with this name"))){
       if(user.getUsername() == null || user.getUsername().equals("") || !(user.getUsername().matches("[a-zA-Z]+")) || user.getUsername().length()<3 || user.getUsername().length()>12){
@@ -72,7 +79,15 @@ public class InDatabaseUsers implements UserHome
       else {
         result = "OK";
         user.setEmail(user.getEmail() + "@via.dk");
-        //TODO register person to database
+        try
+        {
+          UserDAO dao = UserDAOImpl.getInstance();
+          dao.create(user.getUsername(), user.getEmail(), user.getPassword(), user.getRepeatPassword());
+        }
+        catch (SQLException e)
+        {
+          e.printStackTrace();
+        }
       }
     }
     return result;
