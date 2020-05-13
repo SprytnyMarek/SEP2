@@ -30,22 +30,26 @@ public class RMIServerImpl implements RMIServer
     registry.bind("Budget", this);
   }
 
+  //returns login result
   @Override public String loginResult(User user)
   {
     return model.loginResult(user);
   }
 
+  //returns register result
   @Override public String registerUser(User user)
   {
     return model.registerUser(user);
   }
 
+  //adds client listener if he logs in
   @Override public void registerClient(ClientCallBack client)
 
   {
     clientCallbacks.add(client);
   }
 
+  //removes client listener if he logs out
   @Override public void unregisterClient(ClientCallBack client)
 
   {

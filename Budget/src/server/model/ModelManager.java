@@ -10,11 +10,14 @@ public class ModelManager implements Model
   public ModelManager(UserHome userHome){
     this.userHome = userHome;
   }
+
+  //returns login result
   @Override public String loginResult(User user)
   {
     return userHome.loginResult(user);
   }
 
+  //returns register result
   @Override public String registerUser(User user)
   {
     return userHome.registerUser(user);

@@ -26,6 +26,7 @@ public class RegisterVM
   public StringProperty repeatPasswordProperty(){return repeatPassword;}
   public StringProperty registerLabel(){return registerLabel;}
 
+  //sets label "OK" or Invalid email, username, password
   public String registerUser(){
     String registerResult =  model.registerUser(username.get(), email.get(), password.get(), repeatPassword.get());
     Platform.runLater(()-> registerLabel.set(registerResult));

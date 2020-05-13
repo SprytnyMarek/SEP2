@@ -9,13 +9,13 @@ import java.util.List;
 public class UserDAOImpl implements UserDAO {
     private static UserDAOImpl instance;
 
-
+    //make private to prevent creating different DAO classes
     private UserDAOImpl() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
 
-
+    //makes instance so every client access the same file
     public static synchronized UserDAOImpl getInstance() throws SQLException {
         if (instance == null) {
             instance = new UserDAOImpl();
@@ -27,6 +27,8 @@ public class UserDAOImpl implements UserDAO {
         return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=\"SEP2\"", "postgres", "dima1234dumi");
     }
 
+    //registers a user with username, email, password
+    @Override
     public User create(String username, String email, String password, String repeatPassword) throws SQLException {
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO users(username, email, password) VALUES(?, ?, ?) ;");
@@ -38,6 +40,8 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    //get user that has the same username with the argument we provided
+    @Override
     //TODO maybe find a better name
     public User readByUsername(String searchUsername) throws SQLException{
         try (Connection connection = getConnection()){

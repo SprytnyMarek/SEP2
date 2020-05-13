@@ -31,6 +31,7 @@ public class CreateDataBase {
             e.printStackTrace();
         }
 
+        //create users table
         sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".users ("
                 + "  username varchar(15) NOT NULL PRIMARY KEY,"
                 + "  email varchar(50) NOT NULL, "
@@ -43,6 +44,7 @@ public class CreateDataBase {
             e.printStackTrace();
         }
 
+        //populate table users
         sql = "INSERT INTO \"SEP2\".users(username, email, password) VALUES('troels', 'troels@via.dk', '1234') ;";
 
         try {
@@ -52,6 +54,7 @@ public class CreateDataBase {
             e.printStackTrace();
         }
 
+        //I don't know what this one does
         String preparedSql = "INSERT INTO \"SEP2\".users (username, email, password) "
                 + "SELECT * FROM (SELECT ?, ?, ?) AS tmp "
                 + "WHERE NOT EXISTS (SELECT username FROM \"SEP2\".users "

@@ -15,6 +15,7 @@ public class InDatabaseUsers implements UserHome {
         users = new ArrayList<>();
     }
 
+    //gets from database user that has the same username and checks if username and password match
     @Override
     public String loginResult(User user) {
         try {
@@ -39,6 +40,8 @@ public class InDatabaseUsers implements UserHome {
     }
 
 
+    //gets user from database to see if there exist a user with the same username
+    //if the info are valid the user is saved in database
     @Override
     public String registerUser(User user) {
         String result = "";
