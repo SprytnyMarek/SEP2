@@ -41,3 +41,62 @@
     -fx-underline:true;
     -fx-cursor:hand;
 }
+
+.menubar{
+    -fx-background-color: #6747CD;
+}
+
+.menuBtn:hover{
+    -fx-underline:true;
+    -fx-cursor:hand;
+    -fx-font-family:impact;
+}
+
+
+
+/* --------Main view-------- */
+.parentMain{
+    -fx-background-color: #2A2E37;
+}
+
+.sidebarMain{
+    -fx-background-color: #373E48;
+}
+
+.buttons{
+    -fx-background-color: transparent;
+    -fx-fill:grey;
+}
+
+.buttons:hover{
+    -fx-background-color: transparent;
+    -fx-fill:white;
+    -fx-border-color: #6747CD;
+    -fx-border-style: solid;
+    -fx-border-width: 0px 0px 0px 3px;
+    -fx-cursor:hand;
+}
+
+.setting{
+    -fx-fill:grey;
+}
+
+.setting:hover{
+    -fx-fill:white;
+    -fx-cursor:hand;
+}
+
+.eye{
+    -fx-background-color: #6747CD;
+    -fx-fill:white;
+}
+
+.eye:hover{
+    -fx-background-color: #6747CD;
+    -fx-fill:grey;
+    -fx-cursor:hand;
+
+    -fx-border-color: white;
+    -fx-border-style: solid;
+    -fx-border-width: 0px 0px 0px 3px;
+}

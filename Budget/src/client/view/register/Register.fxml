@@ -53,7 +53,7 @@
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="emailField" focusColor="#6747cd" labelFloat="true" layoutX="43.0" layoutY="293.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Email" unFocusColor="#6747cd">
+            <JFXTextField fx:id="emailField" focusColor="#6747cd" labelFloat="true" layoutX="43.0" layoutY="293.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Email" text="\@via.dk" unFocusColor="#6747cd">
                <font>
                   <Font size="14.0" />
                </font>
