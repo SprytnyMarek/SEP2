@@ -1,9 +1,6 @@
 package client.view.register;
 
 import client.core.ViewHandler;
-import client.core.ViewModelFactory;
-import client.view.ViewController;
-import client.view.login.LoginVM;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -24,9 +21,11 @@ public class RegisterController
   private RegisterVM vm;
   private ViewHandler vh;
 
+  //goes to login view
+  @FXML
   public void onBackToLogin()
   {
-    goToLogin();
+    vh.openLoginView();
   }
 
   public void init(RegisterVM registerVM, ViewHandler viewHandler)
@@ -40,15 +39,12 @@ public class RegisterController
     registerLabel.textProperty().bindBidirectional(vm.registerLabel());
   }
 
+  //registers user
   @FXML
   public void registerButton(){
     String registerResult = vm.registerUser();
     if(registerResult.equals("OK")){
       vm.clear();
     }
-  }
-
-  public void goToLogin(){
-    vh.openLoginView();
   }
 }

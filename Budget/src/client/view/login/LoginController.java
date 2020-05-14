@@ -1,8 +1,6 @@
 package client.view.login;
 
 import client.core.ViewHandler;
-import client.core.ViewModelFactory;
-import client.view.ViewController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,9 +23,11 @@ public class LoginController
   private LoginVM vm;
 
 
+  //goes to registration view
+  @FXML
   public void onSignUpButton()
   {
-    goToRegistration();
+    vh.openRegisterView();
   }
 
 
@@ -40,16 +40,13 @@ public class LoginController
     loginLabel.textProperty().bindBidirectional(vm.loginLabelProperty());
   }
 
+  //goes to main page if login info are valid
   @FXML
   public void onLoginButton(){
     String loginResult = vm.loginResult();
     if("OK".equals(loginResult)){
       vm.clear();
-      //changeToMainView
+      //TODO change to main view
     }
-  }
-  @FXML
-  public void goToRegistration(){
-    vh.openRegisterView();
   }
 }

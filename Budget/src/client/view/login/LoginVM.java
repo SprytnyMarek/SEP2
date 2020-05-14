@@ -23,6 +23,7 @@ public class LoginVM
   public StringProperty passwordProperty(){return password;}
   public StringProperty loginLabelProperty(){return loginLabel;}
 
+  //sets the label for login "OK", "Password incorrect", "User not found"
   public String loginResult(){
     String loginResult =  model.loginResult(username.get(), password.get());
     Platform.runLater(()-> loginLabel.set(loginResult));

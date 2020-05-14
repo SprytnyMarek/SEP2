@@ -14,12 +14,14 @@ public class ModelManager implements Model
     this.client = client;
   }
 
+  //gets result if login was successful
   @Override public String loginResult(String username, String password)
   {
     loggedInUser = new User(username, password);
     return client.loginResult(loggedInUser);
   }
 
+  //gets result if register was successful
   @Override public String registerUser(String username, String email,
       String password, String repeatPassword)
   {

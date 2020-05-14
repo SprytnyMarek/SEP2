@@ -31,6 +31,7 @@ public class RMIClient implements Client, ClientCallBack
     }
   }
 
+  //gets login result and if login is successful it registers user to listen to changes that happen in the server
   @Override public String loginResult(User user)
   {
     try
@@ -47,6 +48,7 @@ public class RMIClient implements Client, ClientCallBack
     return "";
   }
 
+  //gets register result
   @Override public String registerUser(User user)
   {
     try

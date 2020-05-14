@@ -31,11 +31,11 @@ public class CreateDataBase {
             e.printStackTrace();
         }
 
-        sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".User ("
+        //create users table
+        sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".users ("
                 + "  username varchar(15) NOT NULL PRIMARY KEY,"
                 + "  email varchar(50) NOT NULL, "
-                + "  password varchar(50) NOT NULL , "
-                + "  reapeatPassword varchar(50) NOT NULL " + ");";
+                + "  password varchar(50) NOT NULL );";
 
         try {
             Statement statement = connection.createStatement();
@@ -43,9 +43,21 @@ public class CreateDataBase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String preparedSql = "INSERT INTO \"SEP2\".User (username, email, password, repeatPassword) "
-                + "SELECT * FROM (SELECT ?, ?, ?, ?) AS tmp "
-                + "WHERE NOT EXISTS (SELECT username FROM \"SEP2\".User "
+
+        //populate table users
+        sql = "INSERT INTO \"SEP2\".users(username, email, password) VALUES('troels', 'troels@via.dk', '1234') ;";
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //I don't know what this one does
+        String preparedSql = "INSERT INTO \"SEP2\".users (username, email, password) "
+                + "SELECT * FROM (SELECT ?, ?, ?) AS tmp "
+                + "WHERE NOT EXISTS (SELECT username FROM \"SEP2\".users "
                 + "WHERE username = ?) LIMIT 1;";
 
 
