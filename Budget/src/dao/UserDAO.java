@@ -10,4 +10,5 @@ public interface UserDAO {
     void update(User user) throws SQLException;
     void delete(User user) throws SQLException;
     User readByUsername(String searchString) throws  SQLException;
+    User readByUsernameAdmin(String searchString) throws SQLException;
 }

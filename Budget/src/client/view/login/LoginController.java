@@ -48,5 +48,10 @@ public class LoginController
       vm.clear();
       //TODO change to main view
     }
+    if ("Open Admin View".equals(loginResult))
+    {
+      vm.clear();
+      //TODO open admin view
+    }
   }
 }

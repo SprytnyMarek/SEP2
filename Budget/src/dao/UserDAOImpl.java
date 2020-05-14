@@ -1,5 +1,6 @@
 package dao;
 
+import shared.datatransfer.Password;
 import shared.datatransfer.User;
 
 import java.sql.*;
@@ -24,7 +25,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=\"SEP2\"", "postgres", "dima1234dumi");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=\"SEP2\"", "postgres",
+            Password.getPassword());
     }
 
     //registers a user with username, email, password
@@ -62,6 +64,25 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    //get admin that has the same username with the argument we provided
+    @Override public User readByUsernameAdmin(String searchID)
+        throws SQLException
+    {
+        try (Connection connection = getConnection()){
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM admin WHERE adminid = ? ");
+            statement.setString(1,searchID );
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                String adminID = resultSet.getString("adminid");
+                String password = resultSet.getString("password");
+                User user = new User(adminID,password);
+                return user;
+            }
+            else {
+                return null;
+            }
+        }
+    }
 
     @Override
     public void update(User user) throws SQLException {
