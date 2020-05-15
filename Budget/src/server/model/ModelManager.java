@@ -26,7 +26,7 @@ public class ModelManager implements Model
     return userHome.registerUser(user);
   }
 
-  @Override public int getBudget(String username)
+  /*@Override public int getBudget(String username)
   {
     return transactionPane.getBudget(username);
   }
@@ -34,5 +34,5 @@ public class ModelManager implements Model
   @Override public String addToBudget(String username, int amount)
   {
     return transactionPane.addToBudget(username,amount);
-  }
+  }*/
 }

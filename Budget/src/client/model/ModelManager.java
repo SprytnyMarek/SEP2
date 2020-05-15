@@ -30,14 +30,15 @@ public class ModelManager implements Model
   }
 
   //TODO connect with gui , get username of person (somewhere store the username for future use)
-  @Override public int getBudget(String username)
+  /*@Override public int getBudget(String username)
   {
     return client.getBudget(username);
-  }
+  }*/
 
   //TODO connect with gui , if return "OK" then clear the field for add money , if return "The amount is invalid" put it in label
-  @Override public String addToBudget(String username, int amount)
+  /*@Override public String addToBudget(String username, int amount)
   {
-    return client.addToBudget(username, amount);
-  }
+    //return client.addToBudget(username, amount);
+    return "";
+  }*/
 }
