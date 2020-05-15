@@ -111,4 +111,24 @@ public class ViewHandler
     }
   }
 
+  public void openAddSpendingsView()
+  {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("../view/main/addSpendings.fxml"));
+    try
+    {
+      Parent root = loader.load();
+      mainViewController ctrl = loader.getController();
+      ctrl.init(vmf.getMainVm(), this);
+      stage.setTitle("Corona");
+      Scene mainScene = new Scene(root);
+      stage.setScene(mainScene);
+      stage.getIcons().add(new Image("file:../view/login/corona.png"));
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
 }

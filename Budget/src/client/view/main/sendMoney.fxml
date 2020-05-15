@@ -43,7 +43,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="230.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
-                  <FontAwesomeIcon iconName="USERS" size="1.5em" styleClass="buttons" />
+                  <FontAwesomeIcon iconName="CART_PLUS" onMouseClicked="#onGoSpendingsButton" size="1.5em" styleClass="buttons" />
                </children>
             </HBox>
             <HBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="300.0" prefHeight="70.0" prefWidth="80.0" VBox.vgrow="ALWAYS">

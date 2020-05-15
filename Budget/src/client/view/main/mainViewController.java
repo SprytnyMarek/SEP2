@@ -53,6 +53,6 @@ public class mainViewController
   }
   public void onGoSpendingsButton(MouseEvent actionEvent)
   {
-
+    vh.openAddSpendingsView();
   }
 }
