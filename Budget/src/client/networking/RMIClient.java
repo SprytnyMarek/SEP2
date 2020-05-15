@@ -61,4 +61,30 @@ public class RMIClient implements Client, ClientCallBack
     }
     return "";
   }
+
+  @Override public int getBudget(String username)
+  {
+    try
+    {
+      return server.getBudget(username);
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    return 0;
+  }
+
+  @Override public String addToBudget(String username, int amount)
+  {
+    try
+    {
+      return server.addToBudget(username, amount);
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    return "";
+  }
 }

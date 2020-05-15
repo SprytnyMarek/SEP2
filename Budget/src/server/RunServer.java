@@ -1,6 +1,8 @@
 package server;
 
+import server.dataaccess.InDatabaseTransaction;
 import server.dataaccess.InDatabaseUsers;
+import server.dataaccess.TransactionPane;
 import server.dataaccess.UserHome;
 import server.model.Model;
 import server.model.ModelManager;
@@ -15,7 +17,8 @@ public class RunServer
   public static void main(String[] args) throws RemoteException
   {
     UserHome userHome = new InDatabaseUsers();
-    Model model = new ModelManager(userHome);
+    TransactionPane transactionPane = new InDatabaseTransaction();
+    Model model = new ModelManager(userHome, transactionPane);
     RMIServerImpl sv = new RMIServerImpl(model);
     try
     {

@@ -9,10 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InDatabaseUsers implements UserHome {
-    private List<User> users;
 
     public InDatabaseUsers() {
-        users = new ArrayList<>();
     }
 
     //gets from database user that has the same username and checks if username and password match
