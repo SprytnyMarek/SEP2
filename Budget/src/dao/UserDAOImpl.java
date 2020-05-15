@@ -24,7 +24,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=\"SEP2\"", "postgres", "dima1234dumi");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=\"SEP2\"", "postgres", "wojtek123");
     }
 
     //registers a user with username, email, password

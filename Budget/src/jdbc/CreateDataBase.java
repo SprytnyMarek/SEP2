@@ -7,7 +7,7 @@ public class CreateDataBase {
         String driver = "org.postgresql.Driver";
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
-        String password = "dima1234dumi";
+        String password = "wojtek123";
 
         Connection connection = null;
 

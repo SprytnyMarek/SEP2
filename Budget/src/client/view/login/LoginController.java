@@ -46,6 +46,7 @@ public class LoginController
     String loginResult = vm.loginResult();
     if("OK".equals(loginResult)){
       vm.clear();
+      vh.openMainView();
       //TODO change to main view
     }
   }

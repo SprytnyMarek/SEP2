@@ -2,6 +2,7 @@ package client.core;
 
 
 import client.view.login.LoginController;
+import client.view.main.mainViewController;
 import client.view.register.RegisterController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -65,4 +66,24 @@ public class ViewHandler
       e.printStackTrace();
     }
   }
+
+  public void openMainView()
+  {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("../view/main/mainView.fxml"));
+    try
+    {
+      Parent root = loader.load();
+      mainViewController ctrl = loader.getController();
+      ctrl.init(vmf.getMainVm(), this);
+      stage.setTitle("Corona");
+      Scene mainScene = new Scene(root);
+      stage.setScene(mainScene);
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
 }
