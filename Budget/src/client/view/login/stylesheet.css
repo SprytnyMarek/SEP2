@@ -93,10 +93,13 @@
 
 .eye:hover{
     -fx-background-color: #6747CD;
-    -fx-fill:grey;
     -fx-cursor:hand;
 
     -fx-border-color: white;
     -fx-border-style: solid;
     -fx-border-width: 0px 0px 0px 3px;
+}
+
+.circle{
+    -fx-color:#6747CD;
 }
