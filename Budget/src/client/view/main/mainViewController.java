@@ -1,13 +1,13 @@
 package client.view.main;
 
 import client.core.ViewHandler;
-import client.view.login.LoginVM;
 import com.gluonhq.charm.glisten.control.ProgressIndicator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class mainViewController
 {
@@ -37,5 +37,22 @@ public class mainViewController
 
   public void onSetButton(ActionEvent actionEvent)
   {
+  }
+
+  public void onGoHomeButton(MouseEvent actionEvent)
+  {
+    vh.openMainView();
+  }
+  public void onGoSendMoneyButton(MouseEvent actionEvent)
+  {
+    vh.openSendMoneyView();
+  }
+  public void onGoChartsButton(MouseEvent actionEvent)
+  {
+
+  }
+  public void onGoSpendingsButton(MouseEvent actionEvent)
+  {
+
   }
 }

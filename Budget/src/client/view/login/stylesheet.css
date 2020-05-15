@@ -77,6 +77,15 @@
     -fx-cursor:hand;
 }
 
+.buttons:active{
+    -fx-background-color: transparent;
+    -fx-fill:#6747CD;
+    -fx-border-color: #6747CD;
+    -fx-border-style: solid;
+    -fx-border-width: 0px 0px 0px 3px;
+    -fx-cursor:hand;
+}
+
 .setting{
     -fx-fill:grey;
 }

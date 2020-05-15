@@ -7,6 +7,7 @@ import client.view.register.RegisterController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class ViewHandler
       stage.setTitle("Login");
       Scene loginScene = new Scene(root);
       stage.setScene(loginScene);
+      stage.getIcons().add(new Image("file:../view/login/corona.png"));
     }
     catch (IOException e)
     {
@@ -60,6 +62,7 @@ public class ViewHandler
       stage.setTitle("Register");
       Scene registerScene = new Scene(root);
       stage.setScene(registerScene);
+      stage.getIcons().add(new Image("file:../view/login/corona.png"));
     }
     catch (IOException e)
     {
@@ -80,6 +83,27 @@ public class ViewHandler
       stage.setTitle("Corona");
       Scene mainScene = new Scene(root);
       stage.setScene(mainScene);
+      stage.getIcons().add(new Image("file:../view/login/corona.png"));
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  public void openSendMoneyView()
+  {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("../view/main/sendMoney.fxml"));
+    try
+    {
+      Parent root = loader.load();
+      mainViewController ctrl = loader.getController();
+      ctrl.init(vmf.getMainVm(), this);
+      stage.setTitle("Corona");
+      Scene mainScene = new Scene(root);
+      stage.setScene(mainScene);
+      stage.getIcons().add(new Image("file:../view/login/corona.png"));
     }
     catch (IOException e)
     {
