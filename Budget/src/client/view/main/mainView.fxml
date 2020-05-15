@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.ProgressIndicator?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../login/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.main.mainViewController">
    <children>
@@ -55,6 +61,40 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="80.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="30.0" />
+      <AnchorPane layoutX="80.0" prefHeight="600.0" prefWidth="720.0">
+         <children>
+            <Pane layoutX="276.0" layoutY="94.0">
+               <children>
+                  <ProgressIndicator fx:id="progressIndicator" progress="1.0" radius="80.0" styleClass="circle1" />
+                  
+                  <Label fx:id="amountLabel" layoutX="51.0" layoutY="62.0" text="1337" textFill="#545454">
+                     <font>
+                        <Font name="Impact" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label fx:id="budgetLabel" layoutX="209.0" layoutY="25.0" text="Your current budget:" textFill="#545454">
+               <font>
+                  <Font name="Impact" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="newBudgetLabel" layoutX="282.0" layoutY="398.0" text="Set new budget:" textFill="#545454">
+               <font>
+                  <Font name="Impact" size="24.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="budgetField" alignment="CENTER" layoutX="288.0" layoutY="455.0" unFocusColor="#545454">
+               <font>
+                  <Font name="Impact" size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="setButton" buttonType="RAISED" layoutX="310.0" layoutY="516.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onSetButton" prefHeight="50.0" prefWidth="100.0" ripplerFill="#0777ff" styleClass="loginBtn" text="Set">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
