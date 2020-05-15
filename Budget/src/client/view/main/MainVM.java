@@ -6,6 +6,7 @@ public class MainVM
 {
   private Model model;
 
+
   public MainVM(Model model)
   {
     this.model = model;

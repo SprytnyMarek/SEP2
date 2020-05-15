@@ -67,6 +67,7 @@ public class ViewHandler
     }
   }
 
+
   public void openMainView()
   {
     FXMLLoader loader = new FXMLLoader();
