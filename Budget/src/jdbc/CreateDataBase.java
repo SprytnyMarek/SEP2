@@ -1,5 +1,7 @@
 package jdbc;
 
+import shared.datatransfer.Password;
+
 import java.sql.*;
 
 public class CreateDataBase {
@@ -7,7 +9,7 @@ public class CreateDataBase {
         String driver = "org.postgresql.Driver";
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
-        String password = "wojtek123";
+        String password = Password.getPassword();
 
         Connection connection = null;
 
@@ -44,8 +46,30 @@ public class CreateDataBase {
             e.printStackTrace();
         }
 
+        //create admin table
+        sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".admin ("
+            + "  adminid varchar(15) NOT NULL PRIMARY KEY,"
+            + "  password varchar(50) NOT NULL );";
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         //populate table users
         sql = "INSERT INTO \"SEP2\".users(username, email, password) VALUES('troels', 'troels@via.dk', '1234') ;";
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //populate table admin
+        sql = "INSERT INTO \"SEP2\".admin(adminid, password) VALUES('supertroels', '1234') ;";
 
         try {
             Statement statement = connection.createStatement();

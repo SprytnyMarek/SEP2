@@ -9,10 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InDatabaseUsers implements UserHome {
-    private List<User> users;
 
     public InDatabaseUsers() {
-        users = new ArrayList<>();
     }
 
     //gets from database user that has the same username and checks if username and password match
@@ -28,15 +26,21 @@ public class InDatabaseUsers implements UserHome {
                     return "Password incorrect";
                 }
             }
-            return "User not found"; // + password
+            result = dao.readByUsernameAdmin(user.getUsername());
+            if (result != null) {
+                if (result.getPassword().equals(user.getPassword())) {
+                    return "Open Admin View";
+                } else {
+                    return "Admin password incorrect";
+                }
+            }
+            return "User not found";
 
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return "Could not connect to database";
-
-
     }
 
 
@@ -46,16 +50,26 @@ public class InDatabaseUsers implements UserHome {
     public String registerUser(User user) {
         String result = "";
         User alreadyInDatabase = null;
+        User isAnAdmin = null;
         try {
             UserDAO dao = UserDAOImpl.getInstance();
             alreadyInDatabase = dao.readByUsername(user.getUsername());
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        try {
+            UserDAO dao = UserDAOImpl.getInstance();
+            isAnAdmin = dao.readByUsernameAdmin(user.getUsername());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         if (alreadyInDatabase != null) {
             result = "There is already a user with this name";
         }
-        if (!(result.equals("There is already a user with this name"))) {
+        if (isAnAdmin != null) {
+            result = "This is an admin ID";
+        }
+        if (!(result.equals("There is already a user with this name") || result.equals("This is an admin ID"))) {
             if (user.getUsername() == null || user.getUsername().equals("") || !(user.getUsername().matches("[a-zA-Z]+")) || user.getUsername().length() < 3 || user.getUsername().length() > 12) {
                 result = "Invalid username";
             } else if (user.getEmail() == null || user.getEmail().equals("") || user.getEmail().length() < 1 || user.getEmail().length() > 13 || !(user.getEmail().matches("[a-zA-Z0-9.\\-_]+")) || !(user.getEmail().matches("[a-zA-Z].*"))) {
