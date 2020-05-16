@@ -1,9 +1,8 @@
-package dao;
+package dao.userDAO;
 
 import shared.datatransfer.User;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public interface UserDAO {
     User create(String username, String email, String password, String repeatPassword) throws SQLException;

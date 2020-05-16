@@ -1,12 +1,10 @@
 package server.dataaccess;
 
-import dao.UserDAO;
-import dao.UserDAOImpl;
+import dao.userDAO.UserDAO;
+import dao.userDAO.UserDAOImpl;
 import shared.datatransfer.User;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class InDatabaseUsers implements UserHome {
 

@@ -18,7 +18,7 @@ class UserHomeTest
   //Validate a user that exists in database and insert correct password
   @Test
   public void validateValidUser(){
-    User user = new User("Troels","1234");
+    User user = new User("troels","1234");
     String result = userHome.loginResult(user);
     assertEquals("OK", result);
   }
@@ -34,7 +34,7 @@ class UserHomeTest
   //validate a user that exists in database but you haven't inserted correct password
   @Test
   public void validateInvalidPassword(){
-    User user = new User("Troels","123456");
+    User user = new User("troels","123456");
     String result = userHome.loginResult(user);
     assertEquals("Password incorrect", result);
   }
