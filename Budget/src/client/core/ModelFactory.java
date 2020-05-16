@@ -18,4 +18,9 @@ public class ModelFactory
     }
     return model;
   }
+
+  public void unregisterUser()
+  {
+    model.unregisterUser();
+  }
 }

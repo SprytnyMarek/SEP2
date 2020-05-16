@@ -62,6 +62,18 @@ public class RMIClient implements Client, ClientCallBack
     return "";
   }
 
+  @Override public void unregisterUser()
+  {
+    try
+    {
+      server.unregisterClient(this);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
   /*@Override public int getBudget(String username)
   {
     try

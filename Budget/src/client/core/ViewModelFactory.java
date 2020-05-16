@@ -35,4 +35,9 @@ public class ViewModelFactory
     }
     return mainVm;
   }
+
+  public void unregisterUser()
+  {
+    mf.unregisterUser();
+  }
 }
