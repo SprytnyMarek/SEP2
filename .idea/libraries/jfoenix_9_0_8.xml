@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="jfoenix-9.0.8">
+    <CLASSES>
+      <root url="jar://C:/Program Files/jfoenix-9.0.8.jar!/" />
+      <root url="jar://C:/Program Files/postgresql-42.2.12.jar!/" />
+      <root url="jar://C:/Program Files/charm-glisten-6.0.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/Budget/Test" />
+      <root url="file://$PROJECT_DIR$/Budget/src" />
+    </SOURCES>
+  </library>
+</component>

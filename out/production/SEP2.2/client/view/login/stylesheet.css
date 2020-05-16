@@ -1,0 +1,114 @@
+.parent
+{
+    -fx-background-color: white;
+}
+
+.sidebar{
+    -fx-background-color: #6747CD;
+}
+
+.forgetBtn{
+    -fx-text-fill: #a3a3a3;
+}
+
+.forgetBtn:hover{
+    -fx-text-fill: #6747CD;
+    -fx-cursor:hand;
+}
+
+.loginBtn{
+    -fx-background-color:#6747cd;
+    -fx-text-fill: #FFF;
+}
+
+.loginBtn:hover{
+    -fx-background-color:transparent;
+    -fx-text-fill: #6747cd;
+    -fx-border-colors: #6747CD;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-radius:2px;
+    -fx-border-color:#6747CD;
+    -fx-cursor:hand;
+}
+
+.sginupBtn:hover{
+    -fx-underline:true;
+    -fx-cursor:hand;
+}
+
+.goBackBtn:hover{
+    -fx-underline:true;
+    -fx-cursor:hand;
+}
+
+.menubar{
+    -fx-background-color: #6747CD;
+}
+
+.menuBtn:hover{
+    -fx-underline:true;
+    -fx-cursor:hand;
+    -fx-font-family:impact;
+}
+
+
+
+/* --------Main view-------- */
+.parentMain{
+    -fx-background-color: #2A2E37;
+}
+
+.sidebarMain{
+    -fx-background-color: #373E48;
+}
+
+.buttons{
+    -fx-background-color: transparent;
+    -fx-fill:grey;
+}
+
+.buttons:hover{
+    -fx-background-color: transparent;
+    -fx-fill:white;
+    -fx-border-color: #6747CD;
+    -fx-border-style: solid;
+    -fx-border-width: 0px 0px 0px 3px;
+    -fx-cursor:hand;
+}
+
+.buttons:active{
+    -fx-background-color: transparent;
+    -fx-fill:#6747CD;
+    -fx-border-color: #6747CD;
+    -fx-border-style: solid;
+    -fx-border-width: 0px 0px 0px 3px;
+    -fx-cursor:hand;
+}
+
+.setting{
+    -fx-fill:grey;
+}
+
+.setting:hover{
+    -fx-fill:white;
+    -fx-cursor:hand;
+}
+
+.eye{
+    -fx-background-color: #6747CD;
+    -fx-fill:white;
+}
+
+.eye:hover{
+    -fx-background-color: #6747CD;
+    -fx-cursor:hand;
+
+    -fx-border-color: white;
+    -fx-border-style: solid;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+.circle1{
+    -fx-color:#6747CD;
+}
