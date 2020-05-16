@@ -1,13 +1,33 @@
 package server.dataaccess;
 
+import dao.accountDAO.AccountDAO;
+import dao.accountDAO.AccountDAOImpl;
+import dao.userDAO.UserDAO;
+import dao.userDAO.UserDAOImpl;
+import shared.datatransfer.Account;
+import shared.datatransfer.User;
+
+import java.sql.SQLException;
+
 public class InDatabaseTransaction implements TransactionPane
 {
- /* @Override public int getBudget(String username)
+  @Override public double getBudget(String username)
   {
     //TODO connection with UserDAO and get budget by searching the username
+    try
+    {
+      AccountDAO dao = AccountDAOImpl.getInstance();
+      Account account = dao.readByUsernameID(username);
+      return account.getBalance();
+    }
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
     return 0;
   }
 
+  /*
   @Override public String addToBudget(String username, int amount)
   {
     if(amount<=0){

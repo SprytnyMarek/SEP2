@@ -56,10 +56,10 @@ public class RMIServerImpl implements RMIServer
     clientCallbacks.remove(client);
   }
 
- /* @Override public int getBudget(String username)
+  @Override public double getBudget(String username)
   {
     return model.getBudget(username);
-  }*/
+  }
 
   /*@Override public String addToBudget(String username, int amount)
   {

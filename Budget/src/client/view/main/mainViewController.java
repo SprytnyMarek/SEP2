@@ -2,6 +2,7 @@ package client.view.main;
 
 import client.core.ViewHandler;
 import com.gluonhq.charm.glisten.control.ProgressIndicator;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,6 +34,21 @@ public class mainViewController
   {
     this.vm = mainVm;
     this.vh = viewHandler;
+    amountLabel.textProperty().bindBidirectional(vm.amountProperty());
+    new Thread(()->{
+      while (true){
+        vm.showAmount(vh.getUsername());
+        try
+        {
+          Thread.sleep(2000);
+        }
+        catch (InterruptedException e)
+        {
+          e.printStackTrace();
+        }
+        System.out.println("Sleeping");
+      }
+    }).start();
   }
 
   public void onSetButton(ActionEvent actionEvent)

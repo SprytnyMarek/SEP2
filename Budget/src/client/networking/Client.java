@@ -7,6 +7,6 @@ public interface Client
   String loginResult(User user);
   String registerUser(User user);
   void unregisterUser();
-  //int getBudget(String username);
+  double getBudget(String username);
   //String addToBudget(String username, int amount);
 }

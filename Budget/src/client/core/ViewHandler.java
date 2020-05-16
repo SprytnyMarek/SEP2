@@ -20,6 +20,7 @@ public class ViewHandler
   private ViewModelFactory vmf;
   private Stage stage;
   private Scene scene;
+  private String username;
 
   public ViewHandler(ViewModelFactory vmf)
   {
@@ -141,6 +142,13 @@ public class ViewHandler
     {
       e.printStackTrace();
     }
+  }
+
+  public void storeUsername(String name){
+    username = name;
+  }
+  public String getUsername(){
+    return username;
   }
 
 }

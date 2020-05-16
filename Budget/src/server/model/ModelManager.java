@@ -65,11 +65,12 @@ public class ModelManager implements Model
     support.removePropertyChangeListener(listener);
   }
 
-  /*@Override public int getBudget(String username)
+  @Override public double getBudget(String username)
   {
     return transactionPane.getBudget(username);
   }
 
+  /*
   @Override public String addToBudget(String username, int amount)
   {
     return transactionPane.addToBudget(username,amount);
