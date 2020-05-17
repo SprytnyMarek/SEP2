@@ -63,7 +63,7 @@
       </VBox>
       <AnchorPane layoutX="80.0" prefHeight="600.0" prefWidth="720.0">
          <children>
-            <JFXComboBox focusColor="#6747cd" layoutX="399.0" layoutY="175.0" prefWidth="200.0" />
+            <JFXComboBox fx:id="chooseUserList" focusColor="#6747cd" layoutX="399.0" layoutY="175.0" prefWidth="200.0" />
             <Label layoutX="100.0" layoutY="174.0" text="Choose the user:" textFill="#545454">
                <font>
                   <Font name="Impact" size="24.0" />
@@ -79,12 +79,12 @@
                   <Font name="Impact" size="24.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="sendMoneyAmountField" alignment="CENTER" focusColor="#6747cd" layoutX="399.0" layoutY="250.0" prefWidth="200.0" unFocusColor="#545454">
+            <JFXTextField fx:id="moneyTransferDescription" alignment="CENTER" focusColor="#6747cd" layoutX="399.0" layoutY="250.0" prefWidth="200.0" unFocusColor="#545454">
                <font>
                   <Font name="Impact" size="16.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="budgetField" alignment="CENTER" focusColor="#6747cd" layoutX="462.0" layoutY="336.0" prefWidth="75.0" unFocusColor="#545454">
+            <JFXTextField fx:id="moneyTransferAmount" alignment="CENTER" focusColor="#6747cd" layoutX="462.0" layoutY="336.0" prefWidth="75.0" unFocusColor="#545454">
                <font>
                   <Font name="Impact" size="16.0" />
                </font>
@@ -94,7 +94,7 @@
                   <Font name="Impact" size="24.0" />
                </font>
             </Label>
-            <JFXButton fx:id="transferButton" buttonType="RAISED" layoutX="310.0" layoutY="516.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" ripplerFill="#373e48" styleClass="loginBtn" text="Transfer!">
+            <JFXButton fx:id="moneyTransferButton" buttonType="RAISED" layoutX="310.0" layoutY="516.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" ripplerFill="#373e48" styleClass="loginBtn" text="Transfer!">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

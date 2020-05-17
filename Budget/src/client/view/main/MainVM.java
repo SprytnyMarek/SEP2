@@ -19,6 +19,7 @@ public class MainVM
   public StringProperty amountProperty(){
     return amountLabel;
   }
+
   public void showAmount(String username){
     double amount = model.getBudget(username);
     String amountValue = Double.toString(amount);
