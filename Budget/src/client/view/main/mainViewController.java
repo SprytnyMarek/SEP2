@@ -2,28 +2,45 @@ package client.view.main;
 
 import client.core.ViewHandler;
 import com.gluonhq.charm.glisten.control.ProgressIndicator;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 public class mainViewController
 {
+  //mainView.fxml
   @FXML
-  private Label budgetLabel;
-  @FXML
-  private Label newBudgetLabel;
-  @FXML
-  private TextField budgetField;
+  private JFXTextField budgetField;
   @FXML
   private Button setButton;
   @FXML
   private Label amountLabel;
+
+  //sendMoney.fxml
   @FXML
-  private ProgressIndicator progressIndicator;
+  private ComboBox chooseUserComboBox;
+  @FXML
+  private TextField moneyTransferDescription;
+  @FXML
+  private TextField moneyTransferAmount;
+  @FXML
+  private Button moneyTransferButton;
+
+  //addSpendings.fxml
+  @FXML
+  private ComboBox spendingsCategory;
+  @FXML
+  private TextField spendingsAmount;
+  @FXML
+  private JFXListView spendingsListView;
+  @FXML
+  private JFXButton spendingsAddButton;
+
 
   private ViewHandler vh;
   private MainVM vm;
@@ -51,6 +68,14 @@ public class mainViewController
   public void onSetButton(ActionEvent actionEvent)
   {
     vm.addBudget();
+  }
+
+  public void onMoneyTransferButton(ActionEvent actionEvent)
+  {
+  }
+
+  public void onSpendingsAddButton(ActionEvent actionEvent)
+  {
   }
 
   public void onGoHomeButton(MouseEvent actionEvent)
