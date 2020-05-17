@@ -78,6 +78,14 @@ public class mainViewController
   {
   }
 
+  public void onMoneyTransferButton(ActionEvent actionEvent)
+  {
+  }
+
+  public void onSpendingsAddButton(ActionEvent actionEvent)
+  {
+  }
+
   public void onGoHomeButton(MouseEvent actionEvent)
   {
     vh.openMainView();
