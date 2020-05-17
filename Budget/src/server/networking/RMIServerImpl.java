@@ -5,6 +5,8 @@ import shared.datatransfer.User;
 import shared.networking.ClientCallBack;
 import shared.networking.RMIServer;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -13,7 +15,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RMIServerImpl implements RMIServer
+public class RMIServerImpl implements RMIServer, PropertyChangeListener
 {
   private List<ClientCallBack> clientCallbacks;
   private Model model;
@@ -22,6 +24,7 @@ public class RMIServerImpl implements RMIServer
     this.model = model;
     UnicastRemoteObject.exportObject(this, 0);
     clientCallbacks = new ArrayList<>();
+    this.model.addPropertyChangeListener(this);
   }
 
   public void startServer() throws RemoteException, AlreadyBoundException
@@ -61,8 +64,26 @@ public class RMIServerImpl implements RMIServer
     return model.getBudget(username);
   }
 
-  @Override public String addToBudget(String username, double amount)
+  @Override public void addToBudget(String username, double amount)
   {
-    return model.addToBudget(username, amount);
+    model.addToBudget(username, amount);
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
+  {
+    if(propertyChangeEvent.getPropertyName().equals("AddBudget")){
+      for(ClientCallBack client: clientCallbacks){
+        try
+        {
+          if(client.getUsername().equals((String)propertyChangeEvent.getOldValue())){
+            client.updateBudget((double)propertyChangeEvent.getNewValue());
+          }
+        }
+        catch (RemoteException e)
+        {
+          e.printStackTrace();
+        }
+      }
+    }
   }
 }

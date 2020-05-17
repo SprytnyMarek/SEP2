@@ -45,7 +45,6 @@ public class LoginController
   public void onLoginButton(){
     String loginResult = vm.loginResult();
     if("OK".equals(loginResult)){
-      vh.storeUsername(vm.usernameProperty().get());
       vm.clear();
       vh.openMainView();
 

@@ -20,7 +20,6 @@ public class ViewHandler
   private ViewModelFactory vmf;
   private Stage stage;
   private Scene scene;
-  private String username;
 
   public ViewHandler(ViewModelFactory vmf)
   {
@@ -32,14 +31,10 @@ public class ViewHandler
   {
     openLoginView();
     stage.show();
-    stage.setOnCloseRequest(new EventHandler<WindowEvent>()
-    {
-      @Override public void handle(WindowEvent windowEvent)
-      {
-        vmf.unregisterUser();
-        Platform.exit();
-        System.exit(0);
-      }
+    stage.setOnCloseRequest(windowEvent -> {
+      vmf.unregisterUser();
+      Platform.exit();
+      System.exit(0);
     });
   }
 
@@ -144,11 +139,5 @@ public class ViewHandler
     }
   }
 
-  public void storeUsername(String name){
-    username = name;
-  }
-  public String getUsername(){
-    return username;
-  }
 
 }

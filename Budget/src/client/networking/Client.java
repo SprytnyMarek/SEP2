@@ -1,12 +1,13 @@
 package client.networking;
 
 import shared.datatransfer.User;
+import shared.util.PropertyChangeSubject;
 
-public interface Client
+public interface Client extends PropertyChangeSubject
 {
   String loginResult(User user);
   String registerUser(User user);
   void unregisterUser();
   double getBudget(String username);
-  String addToBudget(String username, double amount);
+  void addToBudget(String username, double amount);
 }

@@ -17,6 +17,7 @@ public class ModelManager implements Model
     this.userHome = userHome;
     this.transactionPane = transactionPane;
     support = new PropertyChangeSupport(this);
+
   }
 
   //returns login result
@@ -70,8 +71,9 @@ public class ModelManager implements Model
     return transactionPane.getBudget(username);
   }
 
-  @Override public String addToBudget(String username, double amount)
+  @Override public void addToBudget(String username, double amount)
   {
-    return transactionPane.addToBudget(username,amount);
+    support.firePropertyChange("AddBudget", username, amount);
+    transactionPane.addToBudget(username,amount);
   }
 }

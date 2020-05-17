@@ -5,7 +5,10 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class MainVM
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class MainVM implements PropertyChangeListener
 {
   private Model model;
   private StringProperty amountLabel;
@@ -16,6 +19,7 @@ public class MainVM
     this.model = model;
     amountLabel = new SimpleStringProperty();
     budgetField = new SimpleStringProperty();
+    this.model.addPropertyChangeListener(this);
   }
 
   public StringProperty amountProperty(){
@@ -23,22 +27,30 @@ public class MainVM
   }
   public StringProperty budgetProperty(){return budgetField;}
 
-  public void showAmount(String username){
-    double amount = model.getBudget(username);
+  public void showAmount(){
+    double amount = model.getBudget();
     String amountValue = Double.toString(amount);
     Platform.runLater(()->amountLabel.set(amountValue));
   }
 
-  public void addBudget(String username)
+  public void addBudget()
   {
     double budget = Double.parseDouble(budgetField.get());
-    String result  = model.addToBudget(username,budget);
-    if(result.equals("OK")){
-      clear();
+    if(budget>0){
+      model.addToBudget(budget);
     }
+    clear();
   }
 
   public void clear(){
     budgetField.set("");
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
+  {
+    if(propertyChangeEvent.getPropertyName().equals("AddBudget")){
+      double budget = Double.parseDouble(amountLabel.get()) + (double)propertyChangeEvent.getNewValue();
+      Platform.runLater(()->this.amountLabel.setValue(Double.toString(budget)));
+    }
   }
 }

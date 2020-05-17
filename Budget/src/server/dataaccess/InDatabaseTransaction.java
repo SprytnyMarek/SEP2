@@ -26,23 +26,18 @@ public class InDatabaseTransaction implements TransactionPane
     return 0;
   }
 
-  @Override public String addToBudget(String username, double amount)
+  @Override public void addToBudget(String username, double amount)
   {
-    if(amount<=0){
-      return "The amount is invalid";
-    }
     try
     {
       AccountDAO dao = AccountDAOImpl.getInstance();
       Account account = dao.readByUsernameID(username);
       account.setBalance(account.getBalance()+amount);
       dao.update(account);
-      return "OK";
     }
     catch (SQLException throwables)
     {
       throwables.printStackTrace();
     }
-    return "";
   }
 }
