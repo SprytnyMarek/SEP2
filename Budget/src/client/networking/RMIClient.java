@@ -87,7 +87,7 @@ public class RMIClient implements Client, ClientCallBack
     return 0;
   }
 
- /* @Override public String addToBudget(String username, int amount)
+  @Override public String addToBudget(String username, double amount)
   {
     try
     {
@@ -98,5 +98,5 @@ public class RMIClient implements Client, ClientCallBack
       e.printStackTrace();
     }
     return "";
-  }*/
+  }
 }

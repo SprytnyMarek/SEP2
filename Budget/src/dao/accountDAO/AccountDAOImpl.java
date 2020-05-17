@@ -67,6 +67,7 @@ public class AccountDAOImpl implements AccountDAO
       statement.setDouble(4, account.getFixedIncome());
       statement.setDouble(5, account.getTotalPayments());
       statement.setDouble(6, account.getTotalIncome());
+      statement.setString(7, account.getUsername());
       statement.executeUpdate();
     }
   }

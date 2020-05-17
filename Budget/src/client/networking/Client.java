@@ -8,5 +8,5 @@ public interface Client
   String registerUser(User user);
   void unregisterUser();
   double getBudget(String username);
-  //String addToBudget(String username, int amount);
+  String addToBudget(String username, double amount);
 }

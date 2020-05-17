@@ -12,5 +12,5 @@ public interface RMIServer extends Remote
   void registerClient(ClientCallBack client) throws RemoteException;
   void unregisterClient(ClientCallBack client) throws RemoteException;
   double getBudget(String username) throws RemoteException;
-  //String addToBudget(String username, int amount);
+  String addToBudget(String username, double amount) throws RemoteException;
 }
