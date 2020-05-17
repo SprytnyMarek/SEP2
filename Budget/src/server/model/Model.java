@@ -8,5 +8,5 @@ public interface Model extends PropertyChangeSubject
   String loginResult(User user);
   String registerUser(User user);
   double getBudget(String username);
-  //String addToBudget(String username, int amount);
+  String addToBudget(String username, double amount);
 }

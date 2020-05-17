@@ -44,16 +44,18 @@ public class mainViewController
 
   private ViewHandler vh;
   private MainVM vm;
-
+  private boolean running = false;
 
 
   public void init(MainVM mainVm, ViewHandler viewHandler)
   {
+    running = true;
     this.vm = mainVm;
     this.vh = viewHandler;
     amountLabel.textProperty().bindBidirectional(vm.amountProperty());
+    budgetField.textProperty().bindBidirectional(vm.budgetProperty());
     new Thread(()->{
-      while (true){
+      while (running){
         vm.showAmount(vh.getUsername());
         try
         {
@@ -63,13 +65,13 @@ public class mainViewController
         {
           e.printStackTrace();
         }
-        System.out.println("Sleeping");
       }
     }).start();
   }
 
   public void onSetButton(ActionEvent actionEvent)
   {
+    vm.addBudget(vh.getUsername());
   }
 
   public void onMoneyTransferButton(ActionEvent actionEvent)
@@ -86,6 +88,7 @@ public class mainViewController
   }
   public void onGoSendMoneyButton(MouseEvent actionEvent)
   {
+    running = false;
     vh.openSendMoneyView();
   }
   public void onGoChartsButton(MouseEvent actionEvent)
@@ -94,6 +97,7 @@ public class mainViewController
   }
   public void onGoSpendingsButton(MouseEvent actionEvent)
   {
+    running = false;
     vh.openAddSpendingsView();
   }
 }

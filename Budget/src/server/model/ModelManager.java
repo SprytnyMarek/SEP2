@@ -70,9 +70,8 @@ public class ModelManager implements Model
     return transactionPane.getBudget(username);
   }
 
-  /*
-  @Override public String addToBudget(String username, int amount)
+  @Override public String addToBudget(String username, double amount)
   {
     return transactionPane.addToBudget(username,amount);
-  }*/
+  }
 }

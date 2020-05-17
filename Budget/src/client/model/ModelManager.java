@@ -80,9 +80,8 @@ public class ModelManager implements Model
   }
 
   //TODO connect with gui , if return "OK" then clear the field for add money , if return "The amount is invalid" put it in label
-  /*@Override public String addToBudget(String username, int amount)
+  @Override public String addToBudget(String username, double amount)
   {
-    //return client.addToBudget(username, amount);
-    return "";
-  }*/
+    return client.addToBudget(username, amount);
+  }
 }
