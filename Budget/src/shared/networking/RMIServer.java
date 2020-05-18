@@ -4,6 +4,7 @@ import shared.datatransfer.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface RMIServer extends Remote
 {
@@ -13,4 +14,5 @@ public interface RMIServer extends Remote
   void unregisterClient(ClientCallBack client) throws RemoteException;
   double getBudget(String username) throws RemoteException;
   void addToBudget(String username, double amount) throws RemoteException;
+  ArrayList getStringUsernames() throws RemoteException;
 }

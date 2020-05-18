@@ -12,6 +12,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class RMIClient implements Client, ClientCallBack
 {
@@ -100,6 +101,19 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+  }
+
+  @Override public ArrayList getStringUsernames()
+  {
+    try
+    {
+      return server.getStringUsernames();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public String getUsername()

@@ -73,6 +73,18 @@ public class CreateDataBase
           e.printStackTrace();
       }
 
+    sql = "INSERT INTO \"SEP2\".users(username, email, password) VALUES('pawel', 'pawel@via.dk', '1234') ;";
+
+    try
+    {
+      Statement statement = connection.createStatement();
+      statement.execute(sql);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
 
       //I don't know what this one does
       String preparedSql =
@@ -139,6 +151,18 @@ public class CreateDataBase
 
     //populate account table
     sql = "INSERT INTO \"SEP2\".account(username, balance, fixedPayments, fixedIncome, totalPayments, totalIncome) VALUES('troels', 1337, 100, 101, 102, 103) ;";
+
+    try
+    {
+      Statement statement = connection.createStatement();
+      statement.execute(sql);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
+    sql = "INSERT INTO \"SEP2\".account(username, balance, fixedPayments, fixedIncome, totalPayments, totalIncome) VALUES('pawel', 5, 100, 101, 102, 103) ;";
 
     try
     {

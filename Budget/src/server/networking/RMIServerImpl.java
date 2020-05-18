@@ -69,6 +69,11 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
     model.addToBudget(username, amount);
   }
 
+  @Override public ArrayList getStringUsernames() throws RemoteException
+  {
+    return model.getStringUsername();
+  }
+
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
     if(propertyChangeEvent.getPropertyName().equals("AddBudget")){

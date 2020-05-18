@@ -6,6 +6,7 @@ import shared.datatransfer.User;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 public class ModelManager implements Model
 {
@@ -51,6 +52,17 @@ public class ModelManager implements Model
   @Override public void addToBudget(double amount)
   {
     client.addToBudget(username, amount);
+  }
+
+  @Override public ArrayList getStringUsernames()
+  {
+    ArrayList arrayList = client.getStringUsernames();
+    for(int i = 0; i<arrayList.size(); i++){
+      if(arrayList.get(i).equals(username)){
+        arrayList.remove(i);
+      }
+    }
+    return arrayList;
   }
 
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)

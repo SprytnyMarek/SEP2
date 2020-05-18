@@ -6,6 +6,7 @@ import shared.datatransfer.User;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 public class ModelManager implements Model
 {
@@ -75,5 +76,10 @@ public class ModelManager implements Model
   {
     support.firePropertyChange("AddBudget", username, amount);
     transactionPane.addToBudget(username,amount);
+  }
+
+  @Override public ArrayList getStringUsername()
+  {
+    return transactionPane.getStringUsername();
   }
 }
