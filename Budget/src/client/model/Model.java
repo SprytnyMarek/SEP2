@@ -3,6 +3,7 @@ package client.model;
 import shared.util.PropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 public interface Model extends PropertyChangeSubject, PropertyChangeListener
 {
@@ -11,4 +12,6 @@ public interface Model extends PropertyChangeSubject, PropertyChangeListener
   void unregisterUser();
   double getBudget();
   void addToBudget(double amount);
+  ArrayList getStringUsernames();
+  String moneyTransfer(String userToSend, double money, String text);
 }

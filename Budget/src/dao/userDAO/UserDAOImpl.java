@@ -4,6 +4,7 @@ import shared.datatransfer.Password;
 import shared.datatransfer.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UserDAOImpl implements UserDAO
 {
@@ -50,7 +51,6 @@ public class UserDAOImpl implements UserDAO
 
   //get user that has the same username with the argument we provided
   @Override
-  //TODO maybe find a better name
   public User readByUsername(String searchUsername) throws SQLException
   {
     try (Connection connection = getConnection())
@@ -72,6 +72,42 @@ public class UserDAOImpl implements UserDAO
       {
         return null;
       }
+    }
+  }
+
+  @Override
+  public int getUsernameCount() throws SQLException
+  {
+    try (Connection connection = getConnection())
+    {
+      Statement statement = connection.createStatement();
+      ResultSet resultSet = statement.executeQuery("SELECT COUNT(username) FROM users");
+      if (resultSet.next())
+      {
+        int count = resultSet.getInt(1);
+        return count;
+      }
+      else
+      {
+        return 0;
+      }
+    }
+  }
+
+  @Override
+  public ArrayList<String> getStringUsernames() throws SQLException
+  {
+    ArrayList<String> usernames = new ArrayList<>();
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT username FROM users");
+      ResultSet resultSet = statement.executeQuery();
+      while(resultSet.next())
+      {
+        String username = resultSet.getString("username");
+        usernames.add(username);
+      }
+      return usernames;
     }
   }
 

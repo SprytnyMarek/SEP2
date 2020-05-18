@@ -6,6 +6,7 @@ import shared.datatransfer.User;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 public class ModelManager implements Model
 {
@@ -14,6 +15,7 @@ public class ModelManager implements Model
   private User registeredUser;
   private PropertyChangeSupport support;
   private String username;
+  private double balance;
 
   public ModelManager(Client client)
   {
@@ -45,12 +47,37 @@ public class ModelManager implements Model
 
   @Override public double getBudget()
   {
-    return client.getBudget(username);
+    double budget = client.getBudget(username);
+    balance = budget;
+    return budget;
   }
 
   @Override public void addToBudget(double amount)
   {
     client.addToBudget(username, amount);
+  }
+
+  @Override public ArrayList getStringUsernames()
+  {
+    ArrayList arrayList = client.getStringUsernames();
+    for(int i = 0; i<arrayList.size(); i++){
+      if(arrayList.get(i).equals(username)){
+        arrayList.remove(i);
+      }
+    }
+    return arrayList;
+  }
+
+  @Override public String moneyTransfer(String userToSend, double money,
+      String text)
+  {
+    if(balance<money){
+      return "Not enough money";
+    }
+    else {
+      client.moneyTransfer(username, userToSend, money, text);
+      return "Success";
+    }
   }
 
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)

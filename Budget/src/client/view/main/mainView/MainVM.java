@@ -1,4 +1,4 @@
-package client.view.main;
+package client.view.main.mainView;
 
 import client.model.Model;
 import javafx.application.Platform;

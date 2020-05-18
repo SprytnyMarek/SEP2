@@ -2,16 +2,16 @@ package client.core;
 
 
 import client.view.login.LoginController;
-import client.view.main.mainViewController;
+import client.view.main.AddSpendings.AddSpendingsController;
+import client.view.main.mainView.MainViewController;
+import client.view.main.sendMoney.SendMoneyController;
 import client.view.register.RegisterController;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -82,11 +82,11 @@ public class ViewHandler
   public void openMainView()
   {
     FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../view/main/mainView.fxml"));
+    loader.setLocation(getClass().getResource("../view/main/mainView/mainView.fxml"));
     try
     {
       Parent root = loader.load();
-      mainViewController ctrl = loader.getController();
+      MainViewController ctrl = loader.getController();
       ctrl.init(vmf.getMainVm(), this);
       stage.setTitle("Corona");
       Scene mainScene = new Scene(root);
@@ -102,12 +102,12 @@ public class ViewHandler
   public void openSendMoneyView()
   {
     FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../view/main/sendMoney.fxml"));
+    loader.setLocation(getClass().getResource("../view/main/sendMoney/sendMoney.fxml"));
     try
     {
       Parent root = loader.load();
-      mainViewController ctrl = loader.getController();
-      ctrl.init(vmf.getMainVm(), this);
+      SendMoneyController ctrl = loader.getController();
+      ctrl.init(vmf.getSendMoneyVM(), this);
       stage.setTitle("Corona");
       Scene mainScene = new Scene(root);
       stage.setScene(mainScene);
@@ -122,12 +122,12 @@ public class ViewHandler
   public void openAddSpendingsView()
   {
     FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("../view/main/addSpendings.fxml"));
+    loader.setLocation(getClass().getResource("../view/main/AddSpendings/addSpendings.fxml"));
     try
     {
       Parent root = loader.load();
-      mainViewController ctrl = loader.getController();
-      ctrl.init(vmf.getMainVm(), this);
+      AddSpendingsController ctrl = loader.getController();
+      ctrl.init(vmf.getAddSpendingsVM(), this);
       stage.setTitle("Corona");
       Scene mainScene = new Scene(root);
       stage.setScene(mainScene);
