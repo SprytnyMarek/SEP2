@@ -57,4 +57,31 @@ public class InDatabaseTransaction implements TransactionPane
 
     return null;
   }
+
+  @Override public void moneyTransfer(String username, String userToSend, double money,
+      String text)
+  {
+    try
+    {
+      AccountDAO dao = AccountDAOImpl.getInstance();
+      Account account = dao.readByUsernameID(username);
+      account.setBalance(account.getBalance()-money);
+      dao.update(account);
+    }
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
+    try
+    {
+      AccountDAO dao = AccountDAOImpl.getInstance();
+      Account account = dao.readByUsernameID(userToSend);
+      account.setBalance(account.getBalance()+money);
+      dao.update(account);
+    }
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
+  }
 }

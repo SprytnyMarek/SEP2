@@ -60,5 +60,7 @@ public class SendMoneyController
 
   public void moneyTransferButton(ActionEvent actionEvent)
   {
+    String userToSend = chooseUserList.getSelectionModel().getSelectedItem().toString();
+    vm.moneyTransfer(userToSend);
   }
 }

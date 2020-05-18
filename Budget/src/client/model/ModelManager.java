@@ -15,6 +15,7 @@ public class ModelManager implements Model
   private User registeredUser;
   private PropertyChangeSupport support;
   private String username;
+  private double balance;
 
   public ModelManager(Client client)
   {
@@ -46,7 +47,9 @@ public class ModelManager implements Model
 
   @Override public double getBudget()
   {
-    return client.getBudget(username);
+    double budget = client.getBudget(username);
+    balance = budget;
+    return budget;
   }
 
   @Override public void addToBudget(double amount)
@@ -63,6 +66,18 @@ public class ModelManager implements Model
       }
     }
     return arrayList;
+  }
+
+  @Override public String moneyTransfer(String userToSend, double money,
+      String text)
+  {
+    if(balance<money){
+      return "Not enough money";
+    }
+    else {
+      client.moneyTransfer(username, userToSend, money, text);
+      return "Success";
+    }
   }
 
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)

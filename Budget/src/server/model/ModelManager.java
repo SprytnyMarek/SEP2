@@ -82,4 +82,11 @@ public class ModelManager implements Model
   {
     return transactionPane.getStringUsername();
   }
+
+  @Override public void moneyTransfer(String username, String userToSend, double money,
+      String text)
+  {
+    transactionPane.moneyTransfer(username, userToSend, money, text);
+  }
+
 }

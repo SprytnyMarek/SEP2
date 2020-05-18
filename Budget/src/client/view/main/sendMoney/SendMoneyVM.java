@@ -32,4 +32,26 @@ public class SendMoneyVM
   {
     return model.getStringUsernames();
   }
+
+  public void moneyTransfer(String userToSend)
+  {
+    boolean isNumeric;
+    double money = 0;
+    String text = "";
+    try {
+      money = Double.parseDouble(amount.get());
+      isNumeric = true;
+    } catch (NumberFormatException nfe) {
+      isNumeric = false;
+    }
+    if(isNumeric && money>0){
+      if(description==null ||description.equals("")){
+        text = "No description";
+      }
+      else {
+        text = description.get();
+      }
+      model.moneyTransfer(userToSend, money, text);
+    }
+  }
 }

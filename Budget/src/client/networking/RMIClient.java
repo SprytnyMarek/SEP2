@@ -116,6 +116,19 @@ public class RMIClient implements Client, ClientCallBack
     return null;
   }
 
+  @Override public void moneyTransfer(String username, String userToSend, double money,
+      String text)
+  {
+    try
+    {
+      server.moneyTransfer(username, userToSend, money, text);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
   @Override public String getUsername()
   {
     return username;

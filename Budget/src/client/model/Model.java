@@ -13,4 +13,5 @@ public interface Model extends PropertyChangeSubject, PropertyChangeListener
   double getBudget();
   void addToBudget(double amount);
   ArrayList getStringUsernames();
+  String moneyTransfer(String userToSend, double money, String text);
 }
