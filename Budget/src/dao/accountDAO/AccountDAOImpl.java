@@ -32,8 +32,8 @@ public class AccountDAOImpl implements AccountDAO
   private Connection getConnection() throws SQLException
   {
     return DriverManager.getConnection(
-        "jdbc:postgresql://localhost:5432/postgres?currentSchema=\"SEP2\"",
-        "postgres", Password.getPassword());
+            "jdbc:postgresql://localhost:5432/postgres?currentSchema=\"SEP2\"",
+            "postgres", Password.getPassword());
   }
 
   @Override public Account create(String username, double balance,
