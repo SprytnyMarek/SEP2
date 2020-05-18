@@ -1,19 +1,14 @@
-package client.view.main;
+package client.view.main.mainView;
 
 import client.core.ViewHandler;
-import com.gluonhq.charm.glisten.control.ProgressIndicator;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
-public class mainViewController
+public class MainViewController
 {
-  //mainView.fxml
   @FXML
   private JFXTextField budgetField;
   @FXML
@@ -21,25 +16,6 @@ public class mainViewController
   @FXML
   private Label amountLabel;
 
-  //sendMoney.fxml
-  @FXML
-  private ComboBox chooseUserComboBox;
-  @FXML
-  private TextField moneyTransferDescription;
-  @FXML
-  private TextField moneyTransferAmount;
-  @FXML
-  private Button moneyTransferButton;
-
-  //addSpendings.fxml
-  @FXML
-  private ComboBox spendingsCategory;
-  @FXML
-  private TextField spendingsAmount;
-  @FXML
-  private JFXListView spendingsListView;
-  @FXML
-  private JFXButton spendingsAddButton;
 
 
   private ViewHandler vh;

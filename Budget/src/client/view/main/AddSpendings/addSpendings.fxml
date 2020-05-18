@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.ProgressIndicator?>
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
@@ -10,11 +11,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../login/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.main.mainViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../../login/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.main.AddSpendings.AddSpendingsController">
    <children>
       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="80.0" styleClass="sidebarMain">
          <children>
@@ -22,7 +22,7 @@
                <children>
                   <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="@../login/corona.png" />
+                        <Image url="@../../login/corona.png" />
                      </image>
                   </ImageView>
                </children>
@@ -30,7 +30,8 @@
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
                   <FontAwesomeIcon iconName="MONEY" onMouseClicked="#onGoSendMoneyButton" size="1.5em" styleClass="buttons" />
-               </children></HBox>
+               </children>
+            </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="90.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
                   <FontAwesomeIcon iconName="BELL" size="1.5em" styleClass="buttons" />
@@ -63,37 +64,33 @@
       </VBox>
       <AnchorPane layoutX="80.0" prefHeight="600.0" prefWidth="720.0">
          <children>
-            <Pane layoutX="276.0" layoutY="94.0">
-               <children>
-                  <ProgressIndicator fx:id="progressIndicator" progress="1.0" radius="80.0" styleClass="circle1" />
-                  
-                  <Label fx:id="amountLabel" layoutX="51.0" layoutY="62.0" text="1337" textFill="#545454">
-                     <font>
-                        <Font name="Impact" size="36.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Label fx:id="budgetLabel" layoutX="199.0" layoutY="25.0" text="Your current balance:" textFill="#545454">
-               <font>
-                  <Font name="Impact" size="36.0" />
-               </font>
-            </Label>
-            <Label fx:id="newBudgetLabel" layoutX="282.0" layoutY="398.0" text="Set new budget:" textFill="#545454">
+            <JFXComboBox fx:id="spendingsCategory" focusColor="#6747cd" layoutX="53.0" layoutY="161.0" prefWidth="200.0" />
+            <Label layoutX="49.0" layoutY="108.0" text="Choose the category:" textFill="#545454">
                <font>
                   <Font name="Impact" size="24.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="budgetField" alignment="CENTER" focusColor="#6647cc" layoutX="288.0" layoutY="455.0" unFocusColor="#545454">
+            <Label layoutX="247.0" layoutY="25.0" text="Add spendings:" textFill="#545454">
+               <font>
+                  <Font name="Impact" size="36.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="spendingsAmount" alignment="CENTER" focusColor="#6747cd" layoutX="486.0" layoutY="158.0" prefWidth="75.0" unFocusColor="#545454">
                <font>
                   <Font name="Impact" size="16.0" />
                </font>
             </JFXTextField>
-            <JFXButton fx:id="setButton" buttonType="RAISED" layoutX="310.0" layoutY="516.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onSetButton" prefHeight="50.0" prefWidth="100.0" ripplerFill="#373e48" styleClass="loginBtn" text="Set">
+            <Label layoutX="413.0" layoutY="108.0" text="How much did you pay:" textFill="#545454">
+               <font>
+                  <Font name="Impact" size="24.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="spendingsAddButton" buttonType="RAISED" layoutX="310.0" layoutY="515.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" ripplerFill="#373e48" styleClass="loginBtn" text="Add!">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
+            <JFXListView fx:id="spendingsListView" layoutX="60.0" layoutY="237.0" prefHeight="236.0" prefWidth="600.0" />
          </children>
       </AnchorPane>
    </children>

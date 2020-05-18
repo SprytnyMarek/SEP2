@@ -1,7 +1,9 @@
 package client.core;
 
 import client.view.login.LoginVM;
-import client.view.main.MainVM;
+import client.view.main.AddSpendings.AddSpendingsVM;
+import client.view.main.mainView.MainVM;
+import client.view.main.sendMoney.SendMoneyVM;
 import client.view.register.RegisterVM;
 
 public class ViewModelFactory
@@ -10,6 +12,8 @@ public class ViewModelFactory
   private LoginVM loginVm;
   private RegisterVM registerVm;
   private MainVM mainVm;
+  private SendMoneyVM sendMoneyVM;
+  private AddSpendingsVM addSpendingsVM;
 
   public ViewModelFactory(ModelFactory mf){
     this.mf = mf;
@@ -34,6 +38,20 @@ public class ViewModelFactory
       mainVm = new MainVM(mf.getModel());
     }
     return mainVm;
+  }
+
+  public SendMoneyVM getSendMoneyVM(){
+    if(sendMoneyVM == null){
+      sendMoneyVM = new SendMoneyVM(mf.getModel());
+    }
+    return sendMoneyVM;
+  }
+
+  public AddSpendingsVM getAddSpendingsVM(){
+    if(addSpendingsVM == null){
+      addSpendingsVM = new AddSpendingsVM(mf.getModel());
+    }
+    return addSpendingsVM;
   }
 
   public void unregisterUser()
