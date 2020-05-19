@@ -38,11 +38,16 @@ public class SendMoneyVM
     boolean isNumeric;
     double money = 0;
     String text = "";
-    try {
-      money = Double.parseDouble(amount.get());
-      isNumeric = true;
-    } catch (NumberFormatException nfe) {
+    if(amount.get() == null || amount.get().equals("")){
       isNumeric = false;
+    }
+    else {
+      try {
+        money = Double.parseDouble(amount.get());
+        isNumeric = true;
+      } catch (NumberFormatException nfe) {
+        isNumeric = false;
+      }
     }
     if(isNumeric && money>0){
       if(description==null ||description.equals("")){
@@ -53,5 +58,10 @@ public class SendMoneyVM
       }
       model.moneyTransfer(userToSend, money, text);
     }
+  }
+
+  public void clear(){
+    description.set("");
+    amount.set("");
   }
 }

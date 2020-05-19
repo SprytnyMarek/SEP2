@@ -37,6 +37,7 @@ public class SendMoneyController
     moneyTransferAmount.textProperty().bindBidirectional(vm.getAmountProperty());
     observableList = FXCollections.observableArrayList(vm.getStringUsernames());
     chooseUserList.setItems(observableList);
+    chooseUserList.getSelectionModel().selectFirst();
   }
 
 
@@ -62,5 +63,6 @@ public class SendMoneyController
   {
     String userToSend = chooseUserList.getSelectionModel().getSelectedItem().toString();
     vm.moneyTransfer(userToSend);
+    vm.clear();
   }
 }
