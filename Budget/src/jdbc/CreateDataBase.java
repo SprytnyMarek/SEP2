@@ -157,5 +157,25 @@ public class CreateDataBase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+
+        sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".transactionCategories("
+            + " categoryCode varchar(10) NOT NULL PRIMARY KEY, "
+            + " category_description varchar(10) NOT NULL , "
+            + " parent_category varchar(10) NOT NULL);";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        sql = "INSERT INTO \"SEP2\".transactionCategories( categoryCode, category_description, parent_category) VALUES ( '1','pullover','Cloth');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
