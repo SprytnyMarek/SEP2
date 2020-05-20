@@ -1,5 +1,7 @@
 package server.dataaccess;
 
+import dao.accountDAO.AccountDAO;
+import dao.accountDAO.AccountDAOImpl;
 import dao.userDAO.UserDAO;
 import dao.userDAO.UserDAOImpl;
 import shared.datatransfer.User;
@@ -82,6 +84,12 @@ public class InDatabaseUsers implements UserHome {
                 try {
                     UserDAO dao = UserDAOImpl.getInstance();
                     dao.create(user.getUsername(), user.getEmail(), user.getPassword(), user.getRepeatPassword());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    AccountDAO dao = AccountDAOImpl.getInstance();
+                    dao.create(user.getUsername(), 0, 0, 0, 0, 0);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

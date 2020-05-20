@@ -85,6 +85,12 @@ public class ModelManager implements Model
     if(propertyChangeEvent.getPropertyName().equals("AddBudget")){
       support.firePropertyChange("AddBudget", null, propertyChangeEvent.getNewValue());
     }
+    if(propertyChangeEvent.getPropertyName().equals("TransferSent")){
+      support.firePropertyChange("TransferSent", null, propertyChangeEvent.getNewValue());
+    }
+    if(propertyChangeEvent.getPropertyName().equals("TransferReceived")){
+      support.firePropertyChange("TransferReceived", null, propertyChangeEvent.getNewValue());
+    }
   }
 
   @Override public void addPropertyChangeListener(String name,
