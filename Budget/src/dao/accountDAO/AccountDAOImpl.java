@@ -43,7 +43,7 @@ public class AccountDAOImpl implements AccountDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO users(username, balance, fixedPayments, fixedIncome, totalPayments, totalIncome) VALUES(?, ?, ?, ? ,? ,?) ;");
+          "INSERT INTO account(username, balance, fixedPayments, fixedIncome, totalPayments, totalIncome) VALUES(?, ?, ?, ? ,? ,?) ;");
       statement.setString(1, username);
       statement.setDouble(2, balance);
       statement.setDouble(3, fixedPayments);

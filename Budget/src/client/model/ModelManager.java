@@ -15,7 +15,6 @@ public class ModelManager implements Model
   private User registeredUser;
   private PropertyChangeSupport support;
   private String username;
-  private double balance;
 
   public ModelManager(Client client)
   {
@@ -48,7 +47,6 @@ public class ModelManager implements Model
   @Override public double getBudget()
   {
     double budget = client.getBudget(username);
-    balance = budget;
     return budget;
   }
 
@@ -71,7 +69,7 @@ public class ModelManager implements Model
   @Override public String moneyTransfer(String userToSend, double money,
       String text)
   {
-    if(balance<money){
+    if(getBudget()<money){
       return "Not enough money";
     }
     else {

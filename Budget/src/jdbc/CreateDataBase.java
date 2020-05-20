@@ -47,19 +47,6 @@ public class CreateDataBase {
         }
 
 
-        //I don't know what this one does
-        String preparedSql =
-                "INSERT INTO \"SEP2\".users (username, email, password) "
-                        + "SELECT * FROM (SELECT ?, ?, ?) AS tmp "
-                        + "WHERE NOT EXISTS (SELECT username FROM \"SEP2\".users "
-                        + "WHERE username = ?) LIMIT 1;";
-
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = connection.prepareStatement(preparedSql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         //create admin table
         sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".admin ("
                 + "  adminid varchar(15) NOT NULL PRIMARY KEY,"
