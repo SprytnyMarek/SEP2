@@ -8,4 +8,5 @@ public interface TransactionPane
   void addToBudget(String username, double amount);
   ArrayList getStringUsername();
   void moneyTransfer(String username, String userToSend, double money, String text);
+  ArrayList getStringCategories();
 }

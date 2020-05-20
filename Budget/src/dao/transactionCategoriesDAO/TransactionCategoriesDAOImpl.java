@@ -6,6 +6,7 @@ import shared.datatransfer.Transaction;
 import shared.datatransfer.TransactionCategories;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class TransactionCategoriesDAOImpl implements TransactionCategoriesDAO
 {
@@ -29,16 +30,15 @@ public class TransactionCategoriesDAOImpl implements TransactionCategoriesDAO
         "postgres", Password.getPassword());
   }
 
-  @Override public TransactionCategories create(String category_code, String category_description, String parent_category) throws SQLException
+  @Override public TransactionCategories create(int id, String title) throws SQLException
   {
     try (Connection connection = getConnection()) {
       PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO transaction (String category_code, String category_description, String parent_category) VALUES(?, ?, ?, ?) ;");
-      statement.setString(1, category_code);
-      statement.setString(2, category_description);
-      statement.setString(3, parent_category);
+          "INSERT INTO transaction (int id, String title) VALUES(?, ?) ;");
+      statement.setInt(1, id);
+      statement.setString(2, title);
       statement.executeUpdate();
-      return new TransactionCategories(category_code, category_description, parent_category);
+      return new TransactionCategories(id, title);
     }
   }
 
@@ -48,10 +48,9 @@ public class TransactionCategoriesDAOImpl implements TransactionCategoriesDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE transaction SET category_code=?, category_description=?, parent_category =?");
-      statement.setString(1, transactionCategories.getCategory_code());
-      statement.setString(2, transactionCategories.getCategory_description());
-      statement.setString(3, transactionCategories.getParent_category());
+          "UPDATE transaction SET id=?, title=?");
+      statement.setInt(1, transactionCategories.getId());
+      statement.setString(2, transactionCategories.getTitle());
       statement.executeUpdate();
     }
   }
@@ -62,8 +61,8 @@ public class TransactionCategoriesDAOImpl implements TransactionCategoriesDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection
-          .prepareStatement("DELETE FROM transaction WHERE category_code = ?");
-      statement.setString(1, transactionCategories.getCategory_code());
+          .prepareStatement("DELETE FROM transaction WHERE id = ?");
+      statement.setInt(1, transactionCategories.getId());
       statement.executeUpdate();
     }
   }
@@ -74,21 +73,36 @@ public class TransactionCategoriesDAOImpl implements TransactionCategoriesDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection
-          .prepareStatement("SELECT * FROM transaction WHERE amountOfMoney = ? ");
+          .prepareStatement("SELECT * FROM transaction WHERE id = ? ");
       statement.setString(1, searchString);
       ResultSet resultSet = statement.executeQuery();
       if (resultSet.next())
       {
-        String category_code = resultSet.getString("category_code");
-        String category_description = resultSet.getString("category_description");
-        String parent_category = resultSet.getString("parent_category");
-        TransactionCategories transactionCategories = new TransactionCategories(category_code, category_description, parent_category);
+        int id = resultSet.getInt("id");
+        String title = resultSet.getString("title");
+        TransactionCategories transactionCategories = new TransactionCategories(id, title);
         return transactionCategories;
       }
       else
       {
         return null;
       }
+    }
+  }
+
+  @Override public ArrayList getStringCategories() throws SQLException
+  {
+    ArrayList<String> categories = new ArrayList<>();
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT title FROM transactioncategories");
+      ResultSet resultSet = statement.executeQuery();
+      while(resultSet.next())
+      {
+        String title = resultSet.getString("title");
+        categories.add(title);
+      }
+      return categories;
     }
   }
 }

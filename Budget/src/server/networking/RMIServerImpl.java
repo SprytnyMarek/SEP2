@@ -74,6 +74,11 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
     return model.getStringUsername();
   }
 
+  @Override public ArrayList getStringCategories()
+  {
+    return model.getStringCategories();
+  }
+
   @Override public void moneyTransfer(String username, String userToSend, double money,
       String text)
   {

@@ -15,6 +15,7 @@ public class ModelManager implements Model
   private User registeredUser;
   private PropertyChangeSupport support;
   private String username;
+  private String categories;
   private double balance;
 
   public ModelManager(Client client)
@@ -62,6 +63,17 @@ public class ModelManager implements Model
     ArrayList arrayList = client.getStringUsernames();
     for(int i = 0; i<arrayList.size(); i++){
       if(arrayList.get(i).equals(username)){
+        arrayList.remove(i);
+      }
+    }
+    return arrayList;
+  }
+
+  @Override public ArrayList getStringCategories()
+  {
+    ArrayList arrayList = client.getStringCategories();
+    for(int i = 0; i<arrayList.size(); i++){
+      if(arrayList.get(i).equals(categories)){
         arrayList.remove(i);
       }
     }

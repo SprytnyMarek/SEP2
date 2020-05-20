@@ -2,6 +2,8 @@ package server.dataaccess;
 
 import dao.accountDAO.AccountDAO;
 import dao.accountDAO.AccountDAOImpl;
+import dao.transactionCategoriesDAO.TransactionCategoriesDAO;
+import dao.transactionCategoriesDAO.TransactionCategoriesDAOImpl;
 import dao.userDAO.UserDAO;
 import dao.userDAO.UserDAOImpl;
 import shared.datatransfer.Account;
@@ -83,5 +85,21 @@ public class InDatabaseTransaction implements TransactionPane
     {
       throwables.printStackTrace();
     }
+  }
+
+  @Override public ArrayList getStringCategories()
+  {
+    try
+    {
+      TransactionCategoriesDAO dao = TransactionCategoriesDAOImpl.getInstance();
+      ArrayList categories = dao.getStringCategories();
+      return categories;
+    }
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
+
+    return null;
   }
 }

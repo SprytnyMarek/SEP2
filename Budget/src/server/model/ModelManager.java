@@ -83,6 +83,11 @@ public class ModelManager implements Model
     return transactionPane.getStringUsername();
   }
 
+  @Override public ArrayList getStringCategories()
+  {
+    return transactionPane.getStringCategories();
+  }
+
   @Override public void moneyTransfer(String username, String userToSend, double money,
       String text)
   {

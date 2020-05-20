@@ -12,6 +12,7 @@ public interface Model extends PropertyChangeSubject
   double getBudget(String username);
   void addToBudget(String username, double amount);
   ArrayList getStringUsername();
+  ArrayList getStringCategories();
   void moneyTransfer(String username, String userToSend, double money,
       String text);
 }

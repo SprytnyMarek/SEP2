@@ -13,5 +13,6 @@ public interface Client extends PropertyChangeSubject
   double getBudget(String username);
   void addToBudget(String username, double amount);
   ArrayList getStringUsernames();
+  ArrayList getStringCategories();
   void moneyTransfer(String username, String userToSend, double money, String text);
 }

@@ -4,6 +4,8 @@ import client.core.ViewHandler;
 import client.view.main.sendMoney.SendMoneyVM;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -22,12 +24,17 @@ public class AddSpendingsController
 
   private ViewHandler vh;
   private AddSpendingsVM vm;
+  private ObservableList observableList;
 
 
   public void init(AddSpendingsVM addSpendingsVM, ViewHandler viewHandler)
   {
     this.vm = addSpendingsVM;
     this.vh = viewHandler;
+    //spendingsAmount.textProperty().bindBidirectional();
+    observableList = FXCollections.observableArrayList(vm.getStringCategories());
+    spendingsCategory.setItems(observableList);
+    spendingsCategory.getSelectionModel().selectFirst();
   }
 
 

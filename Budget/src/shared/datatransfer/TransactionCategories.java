@@ -2,44 +2,32 @@ package shared.datatransfer;
 
 public class TransactionCategories
 {
-  private String category_code;
-  private String category_description;
-  private String parent_category;
+  private int id;
+  private String title;
 
-  public TransactionCategories(String category_code, String category_description, String parent_category)
+  public TransactionCategories(int id, String title)
   {
-    this.category_code = category_code;
-    this.category_description = category_description;
-    this.parent_category = parent_category;
+    this.id = id;
+    this.title = title;
   }
 
-  public String getCategory_code()
+  public int getId()
   {
-    return category_code;
+    return id;
   }
 
-  public void setCategory_code(String category_code)
+  public void setId(int id)
   {
-    this.category_code = category_code;
+    this.id = id;
   }
 
-  public String getCategory_description()
+  public String getTitle()
   {
-    return category_description;
+    return title;
   }
 
-  public void setCategory_description(String category_description)
+  public void setTitle(String title)
   {
-    this.category_description = category_description;
-  }
-
-  public String getParent_category()
-  {
-    return parent_category;
-  }
-
-  public void setParent_category(String parent_category)
-  {
-    this.parent_category = parent_category;
+    this.title = title;
   }
 }
