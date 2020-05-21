@@ -153,16 +153,14 @@ public class RMIClient implements Client, ClientCallBack
     support.firePropertyChange("AddBudget", null, amount);
   }
 
-  @Override public void updateBudgetOnSending(
-      TransactionInformation transaction_sending) throws RemoteException
-  {
-
+  @Override
+  public void updateBudgetOnSending(TransactionInformation transaction_sending) throws RemoteException {
+    support.firePropertyChange("TransferSent", null, transaction_sending);
   }
 
-  @Override public void updateBudgetOnReceiving(
-      TransactionInformation transaction_receiving) throws RemoteException
-  {
-
+  @Override
+  public void updateBudgetOnReceiving(TransactionInformation transaction_receiving) throws RemoteException {
+    support.firePropertyChange("TransferReceived", null, transaction_receiving);
   }
 
   @Override public void addPropertyChangeListener(String name,

@@ -16,7 +16,6 @@ public class ModelManager implements Model
   private PropertyChangeSupport support;
   private String username;
   private String categories;
-  private double balance;
 
   public ModelManager(Client client)
   {
@@ -49,7 +48,6 @@ public class ModelManager implements Model
   @Override public double getBudget()
   {
     double budget = client.getBudget(username);
-    balance = budget;
     return budget;
   }
 
@@ -83,7 +81,7 @@ public class ModelManager implements Model
   @Override public String moneyTransfer(String userToSend, double money,
       String text)
   {
-    if(balance<money){
+    if(getBudget()<money){
       return "Not enough money";
     }
     else {
@@ -96,6 +94,12 @@ public class ModelManager implements Model
   {
     if(propertyChangeEvent.getPropertyName().equals("AddBudget")){
       support.firePropertyChange("AddBudget", null, propertyChangeEvent.getNewValue());
+    }
+    if(propertyChangeEvent.getPropertyName().equals("TransferSent")){
+      support.firePropertyChange("TransferSent", null, propertyChangeEvent.getNewValue());
+    }
+    if(propertyChangeEvent.getPropertyName().equals("TransferReceived")){
+      support.firePropertyChange("TransferReceived", null, propertyChangeEvent.getNewValue());
     }
   }
 

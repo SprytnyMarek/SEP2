@@ -2,6 +2,7 @@ package server.model;
 
 import server.dataaccess.TransactionPane;
 import server.dataaccess.UserHome;
+import shared.datatransfer.TransactionInformation;
 import shared.datatransfer.User;
 
 import java.beans.PropertyChangeListener;
@@ -88,9 +89,12 @@ public class ModelManager implements Model
     return transactionPane.getStringCategories();
   }
 
-  @Override public void moneyTransfer(String username, String userToSend, double money,
-      String text)
-  {
+  @Override
+  public void moneyTransfer(String username, String userToSend, double money,
+      String text) {
+    TransactionInformation transactionInformation = new TransactionInformation(text, money);
+    support.firePropertyChange("TransferSent", username, transactionInformation);
+    support.firePropertyChange("TransferReceived", userToSend, transactionInformation);
     transactionPane.moneyTransfer(username, userToSend, money, text);
   }
 

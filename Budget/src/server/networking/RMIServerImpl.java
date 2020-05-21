@@ -1,6 +1,7 @@
 package server.networking;
 
 import server.model.Model;
+import shared.datatransfer.TransactionInformation;
 import shared.datatransfer.User;
 import shared.networking.ClientCallBack;
 import shared.networking.RMIServer;
@@ -87,6 +88,28 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
 
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
+    if (propertyChangeEvent.getPropertyName().equals("TransferSent")) {
+      for (ClientCallBack client : clientCallbacks) {
+        try {
+          if (client.getUsername().equals((String) propertyChangeEvent.getOldValue())) {
+            client.updateBudgetOnSending((TransactionInformation) propertyChangeEvent.getNewValue());
+          }
+        } catch (RemoteException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+    if (propertyChangeEvent.getPropertyName().equals("TransferReceived")) {
+      for (ClientCallBack client : clientCallbacks) {
+        try {
+          if (client.getUsername().equals((String) propertyChangeEvent.getOldValue())) {
+            client.updateBudgetOnReceiving((TransactionInformation) propertyChangeEvent.getNewValue());
+          }
+        } catch (RemoteException e) {
+          e.printStackTrace();
+        }
+      }
+    }
     if(propertyChangeEvent.getPropertyName().equals("AddBudget")){
       for(ClientCallBack client: clientCallbacks){
         try
