@@ -60,6 +60,8 @@ public class SendMoneyVM
     }
   }
 
+
+
   public void clear(){
     description.set("");
     amount.set("");

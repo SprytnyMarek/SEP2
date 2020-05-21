@@ -4,6 +4,8 @@ import client.model.Model;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import shared.datatransfer.Transaction;
+import shared.datatransfer.TransactionInformation;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -60,6 +62,16 @@ public class MainVM implements PropertyChangeListener
   {
     if(propertyChangeEvent.getPropertyName().equals("AddBudget")){
       double budget = Double.parseDouble(amountLabel.get()) + (double)propertyChangeEvent.getNewValue();
+      Platform.runLater(()->this.amountLabel.setValue(Double.toString(budget)));
+    }
+    if(propertyChangeEvent.getPropertyName().equals("TransferSent")){
+      TransactionInformation transactionInformation =(TransactionInformation)propertyChangeEvent.getNewValue();
+      double budget = Double.parseDouble(amountLabel.get()) - transactionInformation.getMoney();
+      Platform.runLater(()->this.amountLabel.setValue(Double.toString(budget)));
+    }
+    if(propertyChangeEvent.getPropertyName().equals("TransferReceived")){
+      TransactionInformation transactionInformation = (TransactionInformation) propertyChangeEvent.getNewValue();
+      double budget = Double.parseDouble(amountLabel.get()) + transactionInformation.getMoney();
       Platform.runLater(()->this.amountLabel.setValue(Double.toString(budget)));
     }
   }
