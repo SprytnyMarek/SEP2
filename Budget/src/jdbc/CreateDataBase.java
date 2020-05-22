@@ -104,10 +104,10 @@ public class CreateDataBase {
         sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".account ("
                 + "  username varchar(15) NOT NULL PRIMARY KEY,"
                 + "  balance numeric NOT NULL,"
-                + "  fixedPayments numeric NOT NULL,"
-                + "  fixedIncome numeric NOT NULL,"
-                + "  totalPayments numeric NOT NULL,"
-                + "  totalIncome numeric NOT NULL);";
+                + "  fixedpayments numeric NOT NULL,"
+                + "  fixedincome numeric NOT NULL,"
+                + "  totalpayments numeric NOT NULL,"
+                + "  totalincome numeric NOT NULL);";
         //+ "  timePeriod timestamp default current_timestamp);";
 
         try {
@@ -118,7 +118,7 @@ public class CreateDataBase {
         }
 
         //populate account table
-        sql = "INSERT INTO \"SEP2\".account(username, balance, fixedPayments, fixedIncome, totalPayments, totalIncome) VALUES('troels', 1337, 100, 101, 102, 103) ;";
+        sql = "INSERT INTO \"SEP2\".account(username, balance, fixedpayments, fixedincome, totalpayments, totalincome) VALUES('troels', 1337, 100, 101, 102, 103) ;";
 
         try {
             Statement statement = connection.createStatement();
@@ -127,7 +127,7 @@ public class CreateDataBase {
             e.printStackTrace();
         }
 
-        sql = "INSERT INTO \"SEP2\".account(username, balance, fixedPayments, fixedIncome, totalPayments, totalIncome) VALUES('pawel', 5, 100, 101, 102, 103) ;";
+        sql = "INSERT INTO \"SEP2\".account(username, balance, fixedpayments, fixedincome, totalpayments, totalincome) VALUES('pawel', 5, 100, 101, 102, 103) ;";
 
         try {
             Statement statement = connection.createStatement();
@@ -137,20 +137,17 @@ public class CreateDataBase {
         }
         //make them FK
         sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".transaction("
-                + " adminLogIn varchar(15) NOT NULL , "
                 + " username varchar(15) NOT NULL , "
-                + " category_code varchar(10) NOT NULL ,"
-                + " amountOfMoney numeric NOT NULL PRIMARY KEY, "
+                + " categorycode varchar(10) NOT NULL ,"
+                + " amountofmoney numeric NOT NULL PRIMARY KEY); ";
                 //   + " date_of_transaction timestamp NOT NULL, "
-                + " payments numeric(10) NOT NULL, "
-                + " description char(10) );";
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        sql = "INSERT INTO \"SEP2\".transaction( adminLogIn, username, category_code, amountOfMoney, payments, description) VALUES ( 'troels0','troels1','Cloth',100, 101,'red');";
+        sql = "INSERT INTO \"SEP2\".transaction( username, categorycode, amountofmoney) VALUES ( 'troels','Clothing',100);";
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);

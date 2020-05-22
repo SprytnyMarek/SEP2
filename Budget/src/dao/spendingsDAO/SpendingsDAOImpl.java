@@ -42,10 +42,10 @@ public class SpendingsDAOImpl implements SpendingsDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO transaction(username, category, money) VALUES(?, ?, ?) ;");
-      statement.setString(2, username);
-      statement.setString(3, category);
-      statement.setDouble(4, money);
+          "INSERT INTO transaction(username, categorycode, amountofmoney) VALUES(?, ?, ?) ;");
+      statement.setString(1, username);
+      statement.setString(2, category);
+      statement.setDouble(3, money);
       statement.executeUpdate();
       return new SpendingsInfo(username, category, money);
     }
@@ -56,10 +56,10 @@ public class SpendingsDAOImpl implements SpendingsDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE transaction SET username=?, category =?, amount=? WHERE username =?");
-      statement.setString(2, spendingsInfo.getUsername());
-      statement.setString(3, spendingsInfo.getCategory());
-      statement.setDouble(4, spendingsInfo.getAmount());
+          "UPDATE transaction SET username=?, categorycode =?, amountofmoney=? WHERE username =?");
+      statement.setString(1, spendingsInfo.getUsername());
+      statement.setString(2, spendingsInfo.getCategory());
+      statement.setDouble(3, spendingsInfo.getAmount());
       statement.executeUpdate();
     }
   }
@@ -70,7 +70,7 @@ public class SpendingsDAOImpl implements SpendingsDAO
     {
       PreparedStatement statement = connection
           .prepareStatement("DELETE FROM transaction WHERE username = ?");
-      statement.setString(2, spendingsInfo.getUsername());
+      statement.setString(1, spendingsInfo.getUsername());
       statement.executeUpdate();
     }
   }
@@ -82,13 +82,13 @@ public class SpendingsDAOImpl implements SpendingsDAO
     {
       PreparedStatement statement = connection
           .prepareStatement("SELECT * FROM transaction WHERE username = ? ");
-      statement.setString(2, searchString);
+      statement.setString(1, searchString);
       ResultSet resultSet = statement.executeQuery();
       if (resultSet.next())
       {
         String username = resultSet.getString("username");
-        String category = resultSet.getString("category");
-        double money = resultSet.getDouble("money");
+        String category = resultSet.getString("categorycode");
+        double money = resultSet.getDouble("amountofmoney");
         SpendingsInfo spendingsInfo = new SpendingsInfo(username, category, money);
         return spendingsInfo;
       }

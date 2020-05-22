@@ -2,6 +2,8 @@ package server.dataaccess;
 
 import dao.accountDAO.AccountDAO;
 import dao.accountDAO.AccountDAOImpl;
+import dao.spendingsDAO.SpendingsDAO;
+import dao.spendingsDAO.SpendingsDAOImpl;
 import dao.transactionCategoriesDAO.TransactionCategoriesDAO;
 import dao.transactionCategoriesDAO.TransactionCategoriesDAOImpl;
 import dao.transactionDAO.TransactionDAO;
@@ -108,6 +110,26 @@ public class InDatabaseTransaction implements TransactionPane
 
   @Override public void categoryTransfer(String username, String categoryToSend, double money)
   {
+    try
+    {
+      AccountDAO dao = AccountDAOImpl.getInstance();
+      Account account = dao.readByUsernameID(username);
+      account.setBalance(account.getBalance()-money);
+      dao.update(account);
+    }
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
+    try
+    {
+      SpendingsDAO dao = SpendingsDAOImpl.getInstance();
+      dao.create(username, categoryToSend, money);
+    }
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
 
   }
 }
