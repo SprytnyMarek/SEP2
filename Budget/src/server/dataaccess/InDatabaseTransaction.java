@@ -11,6 +11,7 @@ import dao.transactionDAO.TransactionDAOImpl;
 import dao.userDAO.UserDAO;
 import dao.userDAO.UserDAOImpl;
 import shared.datatransfer.Account;
+import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.Transaction;
 import shared.datatransfer.User;
 
@@ -108,7 +109,7 @@ public class InDatabaseTransaction implements TransactionPane
     return null;
   }
 
-  @Override public void categoryTransfer(String username, String categoryToSend, double money)
+  @Override public ArrayList<SpendingsInfo> categoryTransfer(String username, String categoryToSend, double money)
   {
     try
     {
@@ -130,6 +131,17 @@ public class InDatabaseTransaction implements TransactionPane
     {
       throwables.printStackTrace();
     }
+    try
+    {
+      SpendingsDAO dao = SpendingsDAOImpl.getInstance();
+      ArrayList<SpendingsInfo> spendingsInfos = dao.readByUsernameID(username);
+      return spendingsInfos;
+    }
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
+    return null;
 
   }
 }

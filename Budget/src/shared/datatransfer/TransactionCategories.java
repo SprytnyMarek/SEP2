@@ -1,6 +1,8 @@
 package shared.datatransfer;
 
-public class TransactionCategories
+import java.io.Serializable;
+
+public class TransactionCategories implements Serializable
 {
   private int id;
   private String title;

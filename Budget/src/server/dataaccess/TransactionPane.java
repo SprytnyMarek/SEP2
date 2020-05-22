@@ -1,5 +1,7 @@
 package server.dataaccess;
 
+import shared.datatransfer.SpendingsInfo;
+
 import java.util.ArrayList;
 
 public interface TransactionPane
@@ -9,6 +11,6 @@ public interface TransactionPane
   ArrayList getStringUsername();
   void moneyTransfer(String username, String userToSend, double money, String text);
   ArrayList getStringCategories();
-  void categoryTransfer(String username, String categoryToSend, double money);
+  ArrayList<SpendingsInfo> categoryTransfer(String username, String categoryToSend, double money);
 }
 

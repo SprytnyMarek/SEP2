@@ -1,6 +1,7 @@
 package client.networking;
 
 
+import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.TransactionInformation;
 import shared.datatransfer.User;
 import shared.networking.ClientCallBack;
@@ -174,6 +175,13 @@ public class RMIClient implements Client, ClientCallBack
   @Override
   public void updateBudgetOnReceiving(TransactionInformation transaction_receiving) throws RemoteException {
     support.firePropertyChange("TransferReceived", null, transaction_receiving);
+  }
+
+  @Override public void populateListView(ArrayList<SpendingsInfo> spendingsInfos)
+      throws RemoteException
+  {
+    support.firePropertyChange("PopulateCategoryList", null, spendingsInfos);
+
   }
 
   @Override public void addPropertyChangeListener(String name,

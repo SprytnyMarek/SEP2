@@ -1,6 +1,9 @@
 package shared.datatransfer;
 
-public class Transaction {
+import java.io.Serializable;
+
+public class Transaction implements Serializable
+{
     private String adminLogIn;
     private String username;
     private String category_code;

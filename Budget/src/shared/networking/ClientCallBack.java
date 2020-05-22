@@ -1,9 +1,11 @@
 package shared.networking;
 
+import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.TransactionInformation;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface ClientCallBack extends Remote {
     String getUsername() throws RemoteException;
@@ -14,4 +16,5 @@ public interface ClientCallBack extends Remote {
 
     void updateBudgetOnReceiving(TransactionInformation transaction_receiving) throws RemoteException;
 
+  void populateListView(ArrayList<SpendingsInfo> spendingsInfos) throws RemoteException;
 }

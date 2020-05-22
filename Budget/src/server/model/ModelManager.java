@@ -106,7 +106,8 @@ public class ModelManager implements Model
     SpendingsInfo spendingsInfo = new SpendingsInfo(username, categoryToSend, money);
     support.firePropertyChange("CategorySent", username, spendingsInfo);
     support.firePropertyChange("CategoryReceived", categoryToSend, spendingsInfo);
-    transactionPane.categoryTransfer(username, categoryToSend, money);
+    ArrayList<SpendingsInfo> spendingsInfos = transactionPane.categoryTransfer(username, categoryToSend, money);
+    support.firePropertyChange("PopulateCategoryList", username, spendingsInfo);
   }
 
 }

@@ -107,6 +107,9 @@ public class ModelManager implements Model
     if(propertyChangeEvent.getPropertyName().equals("TransferReceived")){
       support.firePropertyChange("TransferReceived", null, propertyChangeEvent.getNewValue());
     }
+    if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
+      support.firePropertyChange("PopulateCategoryList", null, propertyChangeEvent.getNewValue());
+    }
   }
 
   @Override public void addPropertyChangeListener(String name,

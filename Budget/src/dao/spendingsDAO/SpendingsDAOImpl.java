@@ -6,6 +6,7 @@ import shared.datatransfer.Password;
 import shared.datatransfer.SpendingsInfo;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class SpendingsDAOImpl implements SpendingsDAO
 {
@@ -75,27 +76,25 @@ public class SpendingsDAOImpl implements SpendingsDAO
     }
   }
 
-  @Override public SpendingsInfo readByUsernameID(String searchString)
+  @Override public ArrayList<SpendingsInfo> readByUsernameID(String searchString)
       throws SQLException
   {
+    ArrayList<SpendingsInfo> arrayList = new ArrayList<>();
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection
           .prepareStatement("SELECT * FROM transaction WHERE username = ? ");
       statement.setString(1, searchString);
       ResultSet resultSet = statement.executeQuery();
-      if (resultSet.next())
+      while (resultSet.next())
       {
         String username = resultSet.getString("username");
         String category = resultSet.getString("categorycode");
         double money = resultSet.getDouble("amountofmoney");
         SpendingsInfo spendingsInfo = new SpendingsInfo(username, category, money);
-        return spendingsInfo;
+        arrayList.add(spendingsInfo);
       }
-      else
-      {
-        return null;
-      }
+      return arrayList;
     }
   }
 }

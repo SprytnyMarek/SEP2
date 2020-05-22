@@ -4,22 +4,29 @@ import client.core.ViewHandler;
 import client.view.main.sendMoney.SendMoneyVM;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import shared.datatransfer.SpendingsInfo;
 
-public class AddSpendingsController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+
+public class AddSpendingsController implements PropertyChangeListener
 {
   @FXML
   private ComboBox spendingsCategory;
   @FXML
   private TextField spendingsAmount;
   @FXML
-  private JFXListView spendingsListView;
+  private ListView spendingsListView;
   @FXML
   private JFXButton spendingsAddButton;
 
@@ -36,6 +43,7 @@ public class AddSpendingsController
     observableList = FXCollections.observableArrayList(vm.getStringCategories());
     spendingsCategory.setItems(observableList);
     spendingsCategory.getSelectionModel().selectFirst();
+    spendingsListView.getItems().addAll();
   }
 
 
@@ -61,5 +69,19 @@ public class AddSpendingsController
     String categoryToSend = spendingsCategory.getSelectionModel().getSelectedItem().toString();
     vm.spendingsTransfer(categoryToSend);
     vm.clear();
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
+  {
+    if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
+      ArrayList<SpendingsInfo> spendingsInfos = (ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue();
+      spendingsListView.getItems().clear();
+      if(spendingsInfos.size()>0){
+        for(int i=0; i<spendingsInfos.size();i++){
+          spendingsListView.getItems().add(spendingsInfos.get(i));
+        }
+      }
+    }
+
   }
 }

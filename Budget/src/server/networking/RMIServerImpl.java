@@ -1,6 +1,7 @@
 package server.networking;
 
 import server.model.Model;
+import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.TransactionInformation;
 import shared.datatransfer.User;
 import shared.networking.ClientCallBack;
@@ -121,6 +122,20 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
         {
           if(client.getUsername().equals((String)propertyChangeEvent.getOldValue())){
             client.updateBudget((double)propertyChangeEvent.getNewValue());
+          }
+        }
+        catch (RemoteException e)
+        {
+          e.printStackTrace();
+        }
+      }
+    }
+    if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
+      for(ClientCallBack client: clientCallbacks){
+        try
+        {
+          if(client.getUsername().equals((String)propertyChangeEvent.getOldValue())){
+            client.populateListView((ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue());
           }
         }
         catch (RemoteException e)
