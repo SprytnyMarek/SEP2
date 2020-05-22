@@ -1,11 +1,13 @@
 package server.model;
 
+import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.User;
 import shared.util.PropertyChangeSubject;
 
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public interface Model extends PropertyChangeSubject
+public interface Model extends PropertyChangeSubject, PropertyChangeListener
 {
   String loginResult(User user);
   String registerUser(User user);
@@ -15,4 +17,5 @@ public interface Model extends PropertyChangeSubject
   ArrayList getStringCategories();
   void moneyTransfer(String username, String userToSend, double money, String text);
   void categoryTransfer(String username, String categoryToSend, double money);
+  ArrayList<SpendingsInfo> getSpendingsInfo(String username);
 }

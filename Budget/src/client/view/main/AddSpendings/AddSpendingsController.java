@@ -44,6 +44,16 @@ public class AddSpendingsController implements PropertyChangeListener
     spendingsCategory.setItems(observableList);
     spendingsCategory.getSelectionModel().selectFirst();
     spendingsListView.getItems().addAll();
+    new Thread(()->{
+      System.out.println("Start thread");
+      ArrayList<SpendingsInfo> spendingsInfos = vm.getSpendingsInfos();
+      spendingsListView.getItems().clear();
+      if(spendingsInfos.size()>0){
+        for(int i=0; i<spendingsInfos.size();i++){
+          spendingsListView.getItems().add(spendingsInfos.get(i).getCategory());
+        }
+      }
+    }).start();
   }
 
 
@@ -74,11 +84,12 @@ public class AddSpendingsController implements PropertyChangeListener
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
     if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
+      System.out.println("8");
       ArrayList<SpendingsInfo> spendingsInfos = (ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue();
       spendingsListView.getItems().clear();
       if(spendingsInfos.size()>0){
         for(int i=0; i<spendingsInfos.size();i++){
-          spendingsListView.getItems().add(spendingsInfos.get(i));
+          spendingsListView.getItems().add(spendingsInfos.get(i).getCategory());
         }
       }
     }

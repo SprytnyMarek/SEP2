@@ -1,6 +1,7 @@
 package client.model;
 
 import client.networking.Client;
+import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.User;
 
 import java.beans.PropertyChangeEvent;
@@ -96,6 +97,11 @@ public class ModelManager implements Model
     return "Success";
   }
 
+  @Override public ArrayList<SpendingsInfo> getSpendingsInfos()
+  {
+    return client.getSpendingsInfo(username);
+  }
+
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
     if(propertyChangeEvent.getPropertyName().equals("AddBudget")){
@@ -108,6 +114,7 @@ public class ModelManager implements Model
       support.firePropertyChange("TransferReceived", null, propertyChangeEvent.getNewValue());
     }
     if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
+      System.out.println("6");
       support.firePropertyChange("PopulateCategoryList", null, propertyChangeEvent.getNewValue());
     }
   }

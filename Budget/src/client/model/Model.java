@@ -1,5 +1,6 @@
 package client.model;
 
+import shared.datatransfer.SpendingsInfo;
 import shared.util.PropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
@@ -16,4 +17,5 @@ public interface Model extends PropertyChangeSubject, PropertyChangeListener
   ArrayList getStringCategories();
   String moneyTransfer(String userToSend, double money, String text);
   String spendingsTransfer(String category, double amount);
+  ArrayList<SpendingsInfo> getSpendingsInfos();
 }

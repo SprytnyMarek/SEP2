@@ -15,11 +15,19 @@ import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.Transaction;
 import shared.datatransfer.User;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class InDatabaseTransaction implements TransactionPane
 {
+  private PropertyChangeSupport support;
+
+  public InDatabaseTransaction(){
+    support = new PropertyChangeSupport(this);
+  }
+
   @Override public double getBudget(String username)
   {
     try
@@ -109,7 +117,7 @@ public class InDatabaseTransaction implements TransactionPane
     return null;
   }
 
-  @Override public ArrayList<SpendingsInfo> categoryTransfer(String username, String categoryToSend, double money)
+  @Override public void categoryTransfer(String username, String categoryToSend, double money)
   {
     try
     {
@@ -135,6 +143,21 @@ public class InDatabaseTransaction implements TransactionPane
     {
       SpendingsDAO dao = SpendingsDAOImpl.getInstance();
       ArrayList<SpendingsInfo> spendingsInfos = dao.readByUsernameID(username);
+      support.firePropertyChange("PopulateCategoryList", username, spendingsInfos);
+    }
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
+
+  }
+
+  @Override public ArrayList<SpendingsInfo> getSpendingsInfo(String username)
+  {
+    try
+    {
+      SpendingsDAO dao = SpendingsDAOImpl.getInstance();
+      ArrayList<SpendingsInfo> spendingsInfos = dao.readByUsernameID(username);
       return spendingsInfos;
     }
     catch (SQLException throwables)
@@ -142,6 +165,39 @@ public class InDatabaseTransaction implements TransactionPane
       throwables.printStackTrace();
     }
     return null;
+  }
 
+  @Override public void addPropertyChangeListener(String name,
+      PropertyChangeListener listener)
+  {
+    if(null == name){
+      addPropertyChangeListener(listener);
+    }
+    else {
+      support.addPropertyChangeListener(name, listener);
+    }
+  }
+
+  @Override public void addPropertyChangeListener(
+      PropertyChangeListener listener)
+  {
+    support.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removePropertyChangeListener(String name,
+      PropertyChangeListener listener)
+  {
+    if(null == name){
+      removePropertyChangeListener(listener);
+    }
+    else {
+      support.removePropertyChangeListener(name, listener);
+    }
+  }
+
+  @Override public void removePropertyChangeListener(
+      PropertyChangeListener listener)
+  {
+    support.removePropertyChangeListener(listener);
   }
 }

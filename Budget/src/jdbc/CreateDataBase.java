@@ -137,9 +137,10 @@ public class CreateDataBase {
         }
         //make them FK
         sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".transaction("
+                + " id serial NOT NULL PRIMARY KEY,"
                 + " username varchar(15) NOT NULL , "
-                + " categorycode varchar(10) NOT NULL ,"
-                + " amountofmoney numeric NOT NULL PRIMARY KEY); ";
+                + " categorycode varchar(30) NOT NULL ,"
+                + " amountofmoney numeric NOT NULL); ";
                 //   + " date_of_transaction timestamp NOT NULL, "
         try {
             Statement statement = connection.createStatement();

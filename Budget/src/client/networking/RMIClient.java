@@ -157,6 +157,19 @@ public class RMIClient implements Client, ClientCallBack
     }
   }
 
+  @Override public ArrayList<SpendingsInfo> getSpendingsInfo(String username)
+  {
+    try
+    {
+      return server.getSpendingsInfo(username);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
   @Override public String getUsername()
   {
     return username;
@@ -180,6 +193,7 @@ public class RMIClient implements Client, ClientCallBack
   @Override public void populateListView(ArrayList<SpendingsInfo> spendingsInfos)
       throws RemoteException
   {
+    System.out.println("5");
     support.firePropertyChange("PopulateCategoryList", null, spendingsInfos);
 
   }

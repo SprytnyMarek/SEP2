@@ -7,6 +7,7 @@ import shared.datatransfer.TransactionCategories;
 import shared.datatransfer.TransactionInformation;
 import shared.datatransfer.User;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class ModelManager implements Model
     this.userHome = userHome;
     this.transactionPane = transactionPane;
     support = new PropertyChangeSupport(this);
-
+    this.transactionPane.addPropertyChangeListener(this::propertyChange);
   }
 
   //returns login result
@@ -106,8 +107,21 @@ public class ModelManager implements Model
     SpendingsInfo spendingsInfo = new SpendingsInfo(username, categoryToSend, money);
     support.firePropertyChange("CategorySent", username, spendingsInfo);
     support.firePropertyChange("CategoryReceived", categoryToSend, spendingsInfo);
-    ArrayList<SpendingsInfo> spendingsInfos = transactionPane.categoryTransfer(username, categoryToSend, money);
-    support.firePropertyChange("PopulateCategoryList", username, spendingsInfo);
+    transactionPane.categoryTransfer(username, categoryToSend, money);
+  }
+
+  @Override public ArrayList<SpendingsInfo> getSpendingsInfo(String username)
+  {
+    return transactionPane.getSpendingsInfo(username);
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
+  {
+    System.out.println("2");
+    if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
+      System.out.println("3");
+      support.firePropertyChange("PopulateCategoryList", propertyChangeEvent.getOldValue(), propertyChangeEvent.getNewValue());
+    }
   }
 
 }

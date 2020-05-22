@@ -1,5 +1,6 @@
 package shared.networking;
 
+import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.User;
 
 import java.rmi.Remote;
@@ -18,4 +19,5 @@ public interface RMIServer extends Remote
   ArrayList getStringCategories() throws RemoteException;
   void moneyTransfer(String username, String userToSend, double money, String text) throws RemoteException;
   void spendingsTransfer(String username, String categoryToSend, double amount) throws RemoteException;
+  ArrayList<SpendingsInfo> getSpendingsInfo(String username) throws RemoteException;
 }

@@ -92,6 +92,12 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
     model.categoryTransfer(username, categoryToSend, amount);
   }
 
+  @Override public ArrayList<SpendingsInfo> getSpendingsInfo(String username)
+      throws RemoteException
+  {
+    return model.getSpendingsInfo(username);
+  }
+
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
     if (propertyChangeEvent.getPropertyName().equals("TransferSent")) {
@@ -131,11 +137,15 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
       }
     }
     if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
+      System.out.println("4");
       for(ClientCallBack client: clientCallbacks){
+        System.out.println("4.1");
         try
         {
+          System.out.println("4.2");
           if(client.getUsername().equals((String)propertyChangeEvent.getOldValue())){
-            client.populateListView((ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue());
+            System.out.println("4.5");
+              client.populateListView((ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue());
           }
         }
         catch (RemoteException e)

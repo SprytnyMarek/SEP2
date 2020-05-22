@@ -1,5 +1,6 @@
 package client.networking;
 
+import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.User;
 import shared.util.PropertyChangeSubject;
 
@@ -16,4 +17,5 @@ public interface Client extends PropertyChangeSubject
   ArrayList getStringCategories();
   void moneyTransfer(String username, String userToSend, double money, String text);
   void spendingsTransfer(String username, String category, double amount);
+  ArrayList<SpendingsInfo> getSpendingsInfo(String username);
 }

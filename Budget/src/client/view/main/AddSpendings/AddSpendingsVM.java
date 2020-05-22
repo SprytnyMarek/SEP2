@@ -1,6 +1,7 @@
 package client.view.main.AddSpendings;
 
 import client.model.Model;
+import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -16,6 +17,7 @@ public class AddSpendingsVM implements PropertyChangeListener
   private Model model;
   private StringProperty amount;
   private PropertyChangeSupport support;
+  private ArrayList<SpendingsInfo> spendingsInfos;
 
 
   public AddSpendingsVM(Model model)
@@ -24,6 +26,12 @@ public class AddSpendingsVM implements PropertyChangeListener
     amount = new SimpleStringProperty();
     support = new PropertyChangeSupport(this);
     this.model.addPropertyChangeListener(this);
+    spendingsInfos = new ArrayList<>();
+  }
+
+  public ArrayList<SpendingsInfo> getSpendingsInfos(){
+    spendingsInfos = model.getSpendingsInfos();
+    return spendingsInfos;
   }
 
 
@@ -66,8 +74,12 @@ public class AddSpendingsVM implements PropertyChangeListener
 
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
-    if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
-      support.firePropertyChange("PopulateCategoryList", null, propertyChangeEvent.getNewValue());
+    if (propertyChangeEvent.getPropertyName().equals("PopulateCategoryList"))
+    {
+      spendingsInfos = (ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue();
+      support.firePropertyChange("PopulateCategoryList", null,
+          propertyChangeEvent.getNewValue());
     }
   }
+
 }
