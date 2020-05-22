@@ -2,6 +2,8 @@ package server.model;
 
 import server.dataaccess.TransactionPane;
 import server.dataaccess.UserHome;
+import shared.datatransfer.SpendingsInfo;
+import shared.datatransfer.TransactionCategories;
 import shared.datatransfer.TransactionInformation;
 import shared.datatransfer.User;
 
@@ -96,6 +98,15 @@ public class ModelManager implements Model
     support.firePropertyChange("TransferSent", username, transactionInformation);
     support.firePropertyChange("TransferReceived", userToSend, transactionInformation);
     transactionPane.moneyTransfer(username, userToSend, money, text);
+  }
+
+  @Override public void categoryTransfer(String username, String categoryToSend,
+      double money)
+  {
+    SpendingsInfo spendingsInfo = new SpendingsInfo(username, categoryToSend, money);
+    support.firePropertyChange("CategorySent", username, spendingsInfo);
+    support.firePropertyChange("CategoryReceived", categoryToSend, spendingsInfo);
+    transactionPane.categoryTransfer(username, categoryToSend, money);
   }
 
 }

@@ -13,6 +13,6 @@ public interface Model extends PropertyChangeSubject
   void addToBudget(String username, double amount);
   ArrayList getStringUsername();
   ArrayList getStringCategories();
-  void moneyTransfer(String username, String userToSend, double money,
-      String text);
+  void moneyTransfer(String username, String userToSend, double money, String text);
+  void categoryTransfer(String username, String categoryToSend, double money);
 }

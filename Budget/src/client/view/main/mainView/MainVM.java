@@ -4,7 +4,6 @@ import client.model.Model;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import shared.datatransfer.Transaction;
 import shared.datatransfer.TransactionInformation;
 
 import java.beans.PropertyChangeEvent;

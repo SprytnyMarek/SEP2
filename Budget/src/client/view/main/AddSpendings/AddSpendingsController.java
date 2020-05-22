@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -31,7 +32,7 @@ public class AddSpendingsController
   {
     this.vm = addSpendingsVM;
     this.vh = viewHandler;
-    //spendingsAmount.textProperty().bindBidirectional();
+    spendingsAmount.textProperty().bindBidirectional(vm.getAmountProperty());
     observableList = FXCollections.observableArrayList(vm.getStringCategories());
     spendingsCategory.setItems(observableList);
     spendingsCategory.getSelectionModel().selectFirst();
@@ -53,5 +54,12 @@ public class AddSpendingsController
   public void onGoSpendingsButton(MouseEvent actionEvent)
   {
     vh.openAddSpendingsView();
+  }
+
+  public void spendingsTransferButton(ActionEvent actionEvent)
+  {
+    String categoryToSend = spendingsCategory.getSelectionModel().getSelectedItem().toString();
+    vm.spendingsTransfer(categoryToSend);
+    vm.clear();
   }
 }

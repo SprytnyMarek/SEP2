@@ -4,9 +4,12 @@ import dao.accountDAO.AccountDAO;
 import dao.accountDAO.AccountDAOImpl;
 import dao.transactionCategoriesDAO.TransactionCategoriesDAO;
 import dao.transactionCategoriesDAO.TransactionCategoriesDAOImpl;
+import dao.transactionDAO.TransactionDAO;
+import dao.transactionDAO.TransactionDAOImpl;
 import dao.userDAO.UserDAO;
 import dao.userDAO.UserDAOImpl;
 import shared.datatransfer.Account;
+import shared.datatransfer.Transaction;
 import shared.datatransfer.User;
 
 import java.sql.SQLException;
@@ -101,5 +104,10 @@ public class InDatabaseTransaction implements TransactionPane
     }
 
     return null;
+  }
+
+  @Override public void categoryTransfer(String username, String categoryToSend, double money)
+  {
+
   }
 }

@@ -17,4 +17,5 @@ public interface RMIServer extends Remote
   ArrayList getStringUsernames() throws RemoteException;
   ArrayList getStringCategories() throws RemoteException;
   void moneyTransfer(String username, String userToSend, double money, String text) throws RemoteException;
+  void spendingsTransfer(String username, String categoryToSend, double amount) throws RemoteException;
 }

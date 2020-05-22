@@ -86,6 +86,11 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
     model.moneyTransfer(username, userToSend, money, text);
   }
 
+  @Override public void spendingsTransfer(String username, String categoryToSend, double amount) throws RemoteException
+  {
+    model.categoryTransfer(username, categoryToSend, amount);
+  }
+
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
     if (propertyChangeEvent.getPropertyName().equals("TransferSent")) {

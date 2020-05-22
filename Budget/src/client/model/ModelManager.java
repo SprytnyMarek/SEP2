@@ -90,6 +90,12 @@ public class ModelManager implements Model
     }
   }
 
+  @Override public String spendingsTransfer(String category, double amount)
+  {
+    client.spendingsTransfer(username, category, amount);
+    return "Success";
+  }
+
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
     if(propertyChangeEvent.getPropertyName().equals("AddBudget")){

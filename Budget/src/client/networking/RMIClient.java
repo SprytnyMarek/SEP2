@@ -143,6 +143,19 @@ public class RMIClient implements Client, ClientCallBack
     }
   }
 
+  @Override public void spendingsTransfer(String username, String category,
+      double amount)
+  {
+    try
+    {
+      server.spendingsTransfer(username, category, amount);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
   @Override public String getUsername()
   {
     return username;
