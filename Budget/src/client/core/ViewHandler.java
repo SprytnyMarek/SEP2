@@ -4,6 +4,7 @@ package client.core;
 import client.view.login.LoginController;
 import client.view.main.AddSpendings.AddSpendingsController;
 import client.view.main.mainView.MainViewController;
+import client.view.main.notification.NotificationController;
 import client.view.main.sendMoney.SendMoneyController;
 import client.view.register.RegisterController;
 import javafx.application.Platform;
@@ -128,6 +129,26 @@ public class ViewHandler
       Parent root = loader.load();
       AddSpendingsController ctrl = loader.getController();
       ctrl.init(vmf.getAddSpendingsVM(), this);
+      stage.setTitle("Corona");
+      Scene mainScene = new Scene(root);
+      stage.setScene(mainScene);
+      stage.getIcons().add(new Image("file:../view/login/corona.png"));
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  public void openNotificationView()
+  {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("../view/main/notification/notification.fxml"));
+    try
+    {
+      Parent root = loader.load();
+      NotificationController ctrl = loader.getController();
+      ctrl.init(vmf.getNotificationVM(), this);
       stage.setTitle("Corona");
       Scene mainScene = new Scene(root);
       stage.setScene(mainScene);

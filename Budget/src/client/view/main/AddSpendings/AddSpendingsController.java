@@ -60,9 +60,9 @@ public class AddSpendingsController implements PropertyChangeListener
 
 
   public void onGoHomeButton(MouseEvent actionEvent)
-  {
-    vh.openMainView();
-  }
+{
+  vh.openMainView();
+}
   public void onGoSendMoneyButton(MouseEvent actionEvent)
   {
     vh.openSendMoneyView();
@@ -74,6 +74,10 @@ public class AddSpendingsController implements PropertyChangeListener
   public void onGoSpendingsButton(MouseEvent actionEvent)
   {
     vh.openAddSpendingsView();
+  }
+  public void onGoNotificationsButton(MouseEvent actionEvent)
+  {
+    vh.openNotificationView();
   }
 
   public void spendingsTransferButton(ActionEvent actionEvent)
