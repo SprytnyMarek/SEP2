@@ -5,6 +5,8 @@ import client.view.main.sendMoney.SendMoneyVM;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,14 +45,14 @@ public class AddSpendingsController implements PropertyChangeListener
     observableList = FXCollections.observableArrayList(vm.getStringCategories());
     spendingsCategory.setItems(observableList);
     spendingsCategory.getSelectionModel().selectFirst();
-    spendingsListView.getItems().addAll();
+    this.vm.addPropertyChangeListener(this::propertyChange);
     new Thread(()->{
       System.out.println("Start thread");
       ArrayList<SpendingsInfo> spendingsInfos = vm.getSpendingsInfos();
       spendingsListView.getItems().clear();
       if(spendingsInfos.size()>0){
         for(int i=0; i<spendingsInfos.size();i++){
-          spendingsListView.getItems().add(spendingsInfos.get(i).getCategory());
+          spendingsListView.getItems().add(spendingsInfos.get(i).getCategory() + " : " + spendingsInfos.get(i).getAmount());
         }
       }
     }).start();
@@ -84,15 +86,13 @@ public class AddSpendingsController implements PropertyChangeListener
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
     if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
-      System.out.println("8");
       ArrayList<SpendingsInfo> spendingsInfos = (ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue();
-      spendingsListView.getItems().clear();
-      if(spendingsInfos.size()>0){
-        for(int i=0; i<spendingsInfos.size();i++){
-          spendingsListView.getItems().add(spendingsInfos.get(i).getCategory());
-        }
-      }
+      Platform.runLater(()->{spendingsListView.getItems().clear();
+        if(spendingsInfos.size()>0){
+          for(int i=0; i<spendingsInfos.size();i++){
+            spendingsListView.getItems().add(spendingsInfos.get(i).getCategory() + " : " + spendingsInfos.get(i).getAmount());
+          }
+        }});
     }
-
   }
 }

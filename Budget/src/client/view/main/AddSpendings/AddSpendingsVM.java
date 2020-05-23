@@ -6,13 +6,15 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import shared.datatransfer.SpendingsInfo;
+import shared.util.PropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-public class AddSpendingsVM implements PropertyChangeListener
+public class AddSpendingsVM implements PropertyChangeListener,
+    PropertyChangeSubject
 {
   private Model model;
   private StringProperty amount;
@@ -44,6 +46,7 @@ public class AddSpendingsVM implements PropertyChangeListener
   {
     return model.getStringCategories();
   }
+
 
 
   public void spendingsTransfer(String categoryToSend)
@@ -80,6 +83,40 @@ public class AddSpendingsVM implements PropertyChangeListener
       support.firePropertyChange("PopulateCategoryList", null,
           propertyChangeEvent.getNewValue());
     }
+  }
+
+  @Override public void addPropertyChangeListener(String name,
+      PropertyChangeListener listener)
+  {
+    if(null == name){
+      addPropertyChangeListener(listener);
+    }
+    else {
+      support.addPropertyChangeListener(name, listener);
+    }
+  }
+
+  @Override public void addPropertyChangeListener(
+      PropertyChangeListener listener)
+  {
+    support.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removePropertyChangeListener(String name,
+      PropertyChangeListener listener)
+  {
+    if(null == name){
+      removePropertyChangeListener(listener);
+    }
+    else {
+      support.removePropertyChangeListener(name, listener);
+    }
+  }
+
+  @Override public void removePropertyChangeListener(
+      PropertyChangeListener listener)
+  {
+    support.removePropertyChangeListener(listener);
   }
 
 }
