@@ -99,6 +99,27 @@ public class InDatabaseTransaction implements TransactionPane
     {
       throwables.printStackTrace();
     }
+
+
+    try
+    {
+      SpendingsDAO dao = SpendingsDAOImpl.getInstance();
+      dao.create(username, "Money transfer to "+userToSend, money);
+    }
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
+    try
+    {
+      SpendingsDAO dao = SpendingsDAOImpl.getInstance();
+      ArrayList<SpendingsInfo> spendingsInfos = dao.readByUsernameID(username);
+      support.firePropertyChange("PopulateCategoryList", username, spendingsInfos);
+    }
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
   }
 
   @Override public ArrayList getStringCategories()
