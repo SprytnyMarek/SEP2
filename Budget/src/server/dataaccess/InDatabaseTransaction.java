@@ -99,8 +99,6 @@ public class InDatabaseTransaction implements TransactionPane
     {
       throwables.printStackTrace();
     }
-
-
     try
     {
       SpendingsDAO dao = SpendingsDAOImpl.getInstance();

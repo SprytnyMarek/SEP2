@@ -35,6 +35,17 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
     registry.bind("Budget", this);
   }
 
+
+  @Override public void acquireWriteAccess()
+  {
+
+  }
+
+  @Override public void releaseWriteAccess()
+  {
+
+  }
+
   //returns login result
   @Override public String loginResult(User user)
   {

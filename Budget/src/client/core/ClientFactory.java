@@ -2,6 +2,7 @@ package client.core;
 
 import client.networking.Client;
 import client.networking.RMIClient;
+import shared.networking.RMIServer;
 
 public class ClientFactory
 {

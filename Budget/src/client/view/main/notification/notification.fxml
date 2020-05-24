@@ -85,7 +85,7 @@
                   <Font name="Impact" size="24.0" />
                </font>
             </Label>
-            <JFXButton buttonType="RAISED" layoutX="310.0" layoutY="515.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onGoNotificationsButton" prefHeight="50.0" prefWidth="100.0" ripplerFill="#373e48" styleClass="loginBtn" text="Add!">
+            <JFXButton buttonType="RAISED" layoutX="310.0" layoutY="515.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" ripplerFill="#373e48" styleClass="loginBtn" text="Add!">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

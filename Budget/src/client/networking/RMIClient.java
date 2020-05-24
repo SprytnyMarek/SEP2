@@ -36,9 +36,32 @@ public class RMIClient implements Client, ClientCallBack
     }
   }
 
+  public void access(){
+    try
+    {
+      server.acquireWriteAccess();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  public void release(){
+    try
+    {
+      server.releaseWriteAccess();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
   //gets login result and if login is successful it registers user to listen to changes that happen in the server
   @Override public String loginResult(User user)
   {
+    access();
     try
     {
       if(server.loginResult(user).equals("OK")){
@@ -51,12 +74,14 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+    release();
     return "";
   }
 
   //gets register result
   @Override public String registerUser(User user)
   {
+    access();
     try
     {
       return server.registerUser(user);
@@ -65,11 +90,13 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+    release();
     return "";
   }
 
   @Override public void unregisterUser()
   {
+    access();
     try
     {
       server.unregisterClient(this);
@@ -78,10 +105,12 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+    release();
   }
 
   @Override public double getBudget(String username)
   {
+    access();
     try
     {
       return server.getBudget(username);
@@ -90,11 +119,13 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+    release();
     return 0;
   }
 
   @Override public void addToBudget(String username, double amount)
   {
+    access();
     try
     {
       server.addToBudget(username, amount);
@@ -103,10 +134,12 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+    release();
   }
 
   @Override public ArrayList getStringUsernames()
   {
+    access();
     try
     {
       return server.getStringUsernames();
@@ -115,11 +148,13 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+    release();
     return null;
   }
 
   @Override public ArrayList getStringCategories()
   {
+    access();
     try
     {
       return server.getStringCategories();
@@ -128,12 +163,14 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+    release();
     return null;
   }
 
   @Override public void moneyTransfer(String username, String userToSend, double money,
       String text)
   {
+    access();
     try
     {
       server.moneyTransfer(username, userToSend, money, text);
@@ -142,11 +179,13 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+    release();
   }
 
   @Override public void spendingsTransfer(String username, String category,
       double amount)
   {
+    access();
     try
     {
       server.spendingsTransfer(username, category, amount);
@@ -155,10 +194,12 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+    release();
   }
 
   @Override public ArrayList<SpendingsInfo> getSpendingsInfo(String username)
   {
+    access();
     try
     {
       return server.getSpendingsInfo(username);
@@ -167,6 +208,7 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
+    release();
     return null;
   }
 
@@ -193,7 +235,6 @@ public class RMIClient implements Client, ClientCallBack
   @Override public void populateListView(ArrayList<SpendingsInfo> spendingsInfos)
       throws RemoteException
   {
-    System.out.println("5");
     support.firePropertyChange("PopulateCategoryList", null, spendingsInfos);
 
   }
