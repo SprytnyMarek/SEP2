@@ -42,7 +42,7 @@ class UserHomeTest
   //validate an admin
   @Test
   public void validateAdmin(){
-    User user = new User("SuperTroels","1234");
+    User user = new User("supertroels","1234");
     String result = userHome.loginResult(user);
     assertEquals("Open Admin View", result);
   }
@@ -50,7 +50,7 @@ class UserHomeTest
   //validate an admin that exists in database but you haven't inserted correct password
   @Test
   public void validateAdminInvalidPassword(){
-    User user = new User("SuperTroels","123456");
+    User user = new User("supertroels","123456");
     String result = userHome.loginResult(user);
     assertEquals("Admin password incorrect", result);
   }
@@ -58,7 +58,7 @@ class UserHomeTest
   //register a valid user
   @Test
   public void registerValidUser(){
-    User user = new User("Chair", "chair", "1234", "1234");
+    User user = new User("Table", "table", "1234", "1234");
     String result = userHome.registerUser(user);
     assertEquals("OK", result);
   }
@@ -66,7 +66,7 @@ class UserHomeTest
   //register user that already exists in database
   @Test
   public void registerUserThatExists(){
-    User user = new User("Troels", "chair", "1234", "1234");
+    User user = new User("troels", "chair", "1234", "1234");
     String result = userHome.registerUser(user);
     assertEquals("There is already a user with this name", result);
   }
@@ -74,7 +74,7 @@ class UserHomeTest
   //register user that the username is that of an admin
   @Test
   public void registerUsernameAdmin(){
-    User user = new User("SuperTroels", "chair", "1234", "1234");
+    User user = new User("supertroels", "chair", "1234", "1234");
     String result = userHome.registerUser(user);
     assertEquals("This is an admin ID", result);
   }

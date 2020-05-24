@@ -93,8 +93,13 @@ public class ModelManager implements Model
 
   @Override public String spendingsTransfer(String category, double amount)
   {
-    client.spendingsTransfer(username, category, amount);
-    return "Success";
+    if(getBudget()<amount){
+      return "Not enough money";
+    }
+    else {
+      client.spendingsTransfer(username, category, amount);
+      return "Success";
+    }
   }
 
   @Override public ArrayList<SpendingsInfo> getSpendingsInfos()
