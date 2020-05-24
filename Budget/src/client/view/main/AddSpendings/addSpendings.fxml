@@ -34,7 +34,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="90.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
-                  <FontAwesomeIcon iconName="BELL" size="1.5em" styleClass="buttons" />
+                  <FontAwesomeIcon iconName="BELL" onMouseClicked="#onGoNotificationsButton" size="1.5em" styleClass="buttons" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="160.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">

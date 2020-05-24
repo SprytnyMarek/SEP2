@@ -63,4 +63,8 @@ public class MainViewController
   {
     vh.openAddSpendingsView();
   }
+  public void onGoNotificationsButton(MouseEvent actionEvent)
+  {
+    vh.openNotificationView();
+  }
 }

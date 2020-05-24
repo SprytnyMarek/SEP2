@@ -58,6 +58,10 @@ public class SendMoneyController
   {
     vh.openAddSpendingsView();
   }
+  public void onGoNotificationsButton(MouseEvent actionEvent)
+  {
+    vh.openNotificationView();
+  }
 
   public void moneyTransferButton(ActionEvent actionEvent)
   {
