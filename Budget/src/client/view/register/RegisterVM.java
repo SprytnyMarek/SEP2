@@ -2,6 +2,7 @@ package client.view.register;
 
 import client.model.Model;
 
+import client.model.RegisterModel;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -9,9 +10,9 @@ import javafx.beans.property.StringProperty;
 public class RegisterVM
 {
   private StringProperty username, email, password, repeatPassword, registerLabel;
-  private Model model;
+  private RegisterModel model;
 
-  public RegisterVM(Model model){
+  public RegisterVM(RegisterModel model){
     this.model = model;
     username = new SimpleStringProperty();
     email = new SimpleStringProperty();

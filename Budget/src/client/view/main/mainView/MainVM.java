@@ -1,5 +1,6 @@
 package client.view.main.mainView;
 
+import client.model.MainViewModel;
 import client.model.Model;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,11 +12,11 @@ import java.beans.PropertyChangeListener;
 
 public class MainVM implements PropertyChangeListener
 {
-  private Model model;
+  private MainViewModel model;
   private StringProperty amountLabel;
   private StringProperty budgetField;
 
-  public MainVM(Model model)
+  public MainVM(MainViewModel model)
   {
     this.model = model;
     amountLabel = new SimpleStringProperty();

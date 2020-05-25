@@ -6,16 +6,8 @@ import shared.util.PropertyChangeSubject;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public interface Model extends PropertyChangeSubject, PropertyChangeListener
+public interface Model extends  LoginModel, RegisterModel, MainViewModel
 {
-  String loginResult(String username, String password);
-  String registerUser(String username, String email, String password, String repeatPassword);
-  void unregisterUser();
-  double getBudget();
-  void addToBudget(double amount);
-  ArrayList getStringUsernames();
-  ArrayList getStringCategories();
-  String moneyTransfer(String userToSend, double money, String text);
-  String spendingsTransfer(String category, double amount);
-  ArrayList<SpendingsInfo> getSpendingsInfos();
+ void unregisterUser();
+
 }

@@ -1,5 +1,6 @@
 package client.view.login;
 
+import client.model.LoginModel;
 import client.model.Model;
 
 import javafx.application.Platform;
@@ -9,9 +10,9 @@ import javafx.beans.property.StringProperty;
 public class LoginVM
 {
   private StringProperty username, password, loginLabel;
-  private Model model;
+  private LoginModel model;
 
-  public LoginVM(Model model)
+  public LoginVM(LoginModel model)
   {
     this.model = model;
     username = new SimpleStringProperty();

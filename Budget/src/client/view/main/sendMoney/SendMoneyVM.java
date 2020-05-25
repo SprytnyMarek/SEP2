@@ -1,22 +1,19 @@
 package client.view.main.sendMoney;
 
-import client.model.Model;
+import client.model.MainViewModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SendMoneyVM
 {
-  private Model model;
+  private MainViewModel model;
   private StringProperty description;
   private StringProperty amount;
   private ObservableList<String> listOfUsernames;
 
-  public SendMoneyVM(Model model)
+  public SendMoneyVM(MainViewModel model)
   {
     this.model = model;
     description = new SimpleStringProperty();

@@ -1,29 +1,26 @@
 package client.view.main.AddSpendings;
 
-import client.model.Model;
-import com.jfoenix.controls.JFXListView;
+import client.model.MainViewModel;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shared.datatransfer.SpendingsInfo;
-import shared.util.PropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class AddSpendingsVM implements PropertyChangeListener
 {
-  private Model model;
+  private MainViewModel model;
   private StringProperty amount;
   private ObservableList<String> categories;
   private ObservableList<SpendingsInfo> spendingsInfo;
 
 
-  public AddSpendingsVM(Model model)
+  public AddSpendingsVM(MainViewModel model)
   {
     this.model = model;
     amount = new SimpleStringProperty();

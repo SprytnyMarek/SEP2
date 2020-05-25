@@ -1,20 +1,18 @@
 package client.view.main.notification;
 
-import client.model.Model;
+import client.model.MainViewModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
 public class NotificationVM
 {
-  private Model model;
+  private MainViewModel model;
   private StringProperty notificationAmount;
   private ObservableList<String> listOfUsernames;
 
-  public NotificationVM(Model model)
+  public NotificationVM(MainViewModel model)
   {
     this.model = model;
     notificationAmount = new SimpleStringProperty();
