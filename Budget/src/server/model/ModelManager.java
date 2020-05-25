@@ -1,11 +1,9 @@
 package server.model;
 
+import server.dataaccess.Notifications;
 import server.dataaccess.TransactionPane;
 import server.dataaccess.UserHome;
-import shared.datatransfer.SpendingsInfo;
-import shared.datatransfer.TransactionCategories;
-import shared.datatransfer.TransactionInformation;
-import shared.datatransfer.User;
+import shared.datatransfer.*;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -16,11 +14,13 @@ public class ModelManager implements Model
 {
   private UserHome userHome;
   private TransactionPane transactionPane;
+  private Notifications notifications;
   private PropertyChangeSupport support;
 
-  public ModelManager(UserHome userHome, TransactionPane transactionPane){
+  public ModelManager(UserHome userHome, TransactionPane transactionPane, Notifications notifications){
     this.userHome = userHome;
     this.transactionPane = transactionPane;
+    this.notifications = notifications;
     support = new PropertyChangeSupport(this);
     this.transactionPane.addPropertyChangeListener(this::propertyChange);
   }
@@ -113,6 +113,18 @@ public class ModelManager implements Model
   @Override public ArrayList<SpendingsInfo> getSpendingsInfo(String username)
   {
     return transactionPane.getSpendingsInfo(username);
+  }
+
+  @Override public void addNotification(String usernameAsking,
+      String usernameOwing, double amount)
+  {
+    notifications.addNotification(usernameAsking, usernameOwing, amount);
+  }
+
+  @Override public ArrayList<Notification> getNotificationList(String username)
+  {
+    //TODO getnotification and fire event
+    return null;
   }
 
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)

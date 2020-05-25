@@ -271,5 +271,17 @@ public class CreateDataBase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".notifications("
+            + " id serial NOT NULL PRIMARY KEY, "
+            + " usernameasking varchar(15) NOT NULL, "
+            + " usernameowing varchar(15) NOT NULL, "
+            + " amountofmoney numeric NOT NULL);";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

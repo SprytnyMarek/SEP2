@@ -9,5 +9,4 @@ import java.util.ArrayList;
 public interface Model extends  LoginModel, RegisterModel, MainViewModel
 {
  void unregisterUser();
-
 }

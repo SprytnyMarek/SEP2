@@ -1,9 +1,6 @@
 package server;
 
-import server.dataaccess.InDatabaseTransaction;
-import server.dataaccess.InDatabaseUsers;
-import server.dataaccess.TransactionPane;
-import server.dataaccess.UserHome;
+import server.dataaccess.*;
 import server.model.Model;
 import server.model.ModelManager;
 import server.networking.RMIServerImpl;
@@ -19,7 +16,8 @@ public class RunServer
   {
     UserHome userHome = new InDatabaseUsers();
     TransactionPane transactionPane = new InDatabaseTransaction();
-    Model model = new ModelManager(userHome, transactionPane);
+    Notifications notifications = new InDatabaseNotifications();
+    Model model = new ModelManager(userHome, transactionPane, notifications);
     RMIServerImpl sv = new RMIServerImpl(model);
     ThreadSafeServer tss = new ThreadSafeServer(sv);
     try

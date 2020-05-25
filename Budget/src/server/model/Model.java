@@ -1,5 +1,6 @@
 package server.model;
 
+import shared.datatransfer.Notification;
 import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.User;
 import shared.util.PropertyChangeSubject;
@@ -18,4 +19,6 @@ public interface Model extends PropertyChangeSubject, PropertyChangeListener
   void moneyTransfer(String username, String userToSend, double money, String text);
   void categoryTransfer(String username, String categoryToSend, double money);
   ArrayList<SpendingsInfo> getSpendingsInfo(String username);
+  void addNotification(String usernameAsking, String usernameOwing, double amount);
+  ArrayList<Notification> getNotificationList(String username);
 }
