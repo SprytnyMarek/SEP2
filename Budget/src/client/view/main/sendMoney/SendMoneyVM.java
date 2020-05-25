@@ -3,6 +3,8 @@ package client.view.main.sendMoney;
 import client.model.Model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +14,14 @@ public class SendMoneyVM
   private Model model;
   private StringProperty description;
   private StringProperty amount;
+  private ObservableList<String> listOfUsernames;
 
   public SendMoneyVM(Model model)
   {
     this.model = model;
     description = new SimpleStringProperty();
     amount = new SimpleStringProperty();
+    listOfUsernames = FXCollections.observableArrayList(model.getStringCategories());
   }
 
   public StringProperty getDescriptionProperty(){
@@ -28,9 +32,9 @@ public class SendMoneyVM
     return amount;
   }
 
-  public ArrayList getStringUsernames()
+  public ObservableList<String> getStringUsernames()
   {
-    return model.getStringUsernames();
+    return listOfUsernames;
   }
 
   public void moneyTransfer(String userToSend)

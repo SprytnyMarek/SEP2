@@ -28,17 +28,7 @@ public class MainViewController
     this.vh = viewHandler;
     amountLabel.textProperty().bindBidirectional(vm.amountProperty());
     budgetField.textProperty().bindBidirectional(vm.budgetProperty());
-    new Thread(()->{
-        vm.showAmount();
-        try
-        {
-          Thread.sleep(2000);
-        }
-        catch (InterruptedException e)
-        {
-          e.printStackTrace();
-        }
-    }).start();
+    vm.showAmount();
   }
 
   public void onSetButton(ActionEvent actionEvent)

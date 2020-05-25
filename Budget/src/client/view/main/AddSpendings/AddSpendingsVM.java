@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import shared.datatransfer.SpendingsInfo;
 import shared.util.PropertyChangeSubject;
 
@@ -13,27 +15,25 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-public class AddSpendingsVM implements PropertyChangeListener,
-    PropertyChangeSubject
+public class AddSpendingsVM implements PropertyChangeListener
 {
   private Model model;
   private StringProperty amount;
-  private PropertyChangeSupport support;
-  private ArrayList<SpendingsInfo> spendingsInfos;
+  private ObservableList<String> categories;
+  private ObservableList<SpendingsInfo> spendingsInfo;
 
 
   public AddSpendingsVM(Model model)
   {
     this.model = model;
     amount = new SimpleStringProperty();
-    support = new PropertyChangeSupport(this);
     this.model.addPropertyChangeListener(this);
-    spendingsInfos = new ArrayList<>();
+    categories = FXCollections.observableArrayList(model.getStringCategories());
+    spendingsInfo = FXCollections.observableArrayList(model.getSpendingsInfos());
   }
 
-  public ArrayList<SpendingsInfo> getSpendingsInfos(){
-    spendingsInfos = model.getSpendingsInfos();
-    return spendingsInfos;
+  public ObservableList<SpendingsInfo> getSpendingsInfos(){
+    return spendingsInfo;
   }
 
 
@@ -42,9 +42,9 @@ public class AddSpendingsVM implements PropertyChangeListener,
     return amount;
   }
 
-  public ArrayList getStringCategories()
+  public ObservableList<String> getStringCategories()
   {
-    return model.getStringCategories();
+    return categories;
   }
 
 
@@ -79,44 +79,10 @@ public class AddSpendingsVM implements PropertyChangeListener,
   {
     if (propertyChangeEvent.getPropertyName().equals("PopulateCategoryList"))
     {
-      spendingsInfos = (ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue();
-      support.firePropertyChange("PopulateCategoryList", null,
-          propertyChangeEvent.getNewValue());
-    }
+      ArrayList arrayList = (ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue();
+      Platform.runLater(()->spendingsInfo.add((SpendingsInfo) arrayList.get(arrayList.size()-1))
+    );}
   }
 
-  @Override public void addPropertyChangeListener(String name,
-      PropertyChangeListener listener)
-  {
-    if(null == name){
-      addPropertyChangeListener(listener);
-    }
-    else {
-      support.addPropertyChangeListener(name, listener);
-    }
-  }
-
-  @Override public void addPropertyChangeListener(
-      PropertyChangeListener listener)
-  {
-    support.addPropertyChangeListener(listener);
-  }
-
-  @Override public void removePropertyChangeListener(String name,
-      PropertyChangeListener listener)
-  {
-    if(null == name){
-      removePropertyChangeListener(listener);
-    }
-    else {
-      support.removePropertyChangeListener(name, listener);
-    }
-  }
-
-  @Override public void removePropertyChangeListener(
-      PropertyChangeListener listener)
-  {
-    support.removePropertyChangeListener(listener);
-  }
 
 }

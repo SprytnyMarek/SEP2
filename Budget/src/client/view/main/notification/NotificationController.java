@@ -23,7 +23,6 @@ public class NotificationController
 
   private ViewHandler vh;
   private NotificationVM vm;
-  private ObservableList observableList;
 
 
   public void init(NotificationVM notificationVM, ViewHandler viewHandler)
@@ -31,8 +30,7 @@ public class NotificationController
     this.vm = notificationVM;
     this.vh = viewHandler;
     notificationAmount.textProperty().bindBidirectional(vm.getNotificationAmountProperty());
-    observableList = FXCollections.observableArrayList(vm.getStringUsernames());
-    notificationUser.setItems(observableList);
+    notificationUser.setItems(vm.getStringUsernames());
     notificationUser.getSelectionModel().selectFirst();
   }
 

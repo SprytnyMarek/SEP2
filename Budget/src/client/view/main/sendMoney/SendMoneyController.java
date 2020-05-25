@@ -22,7 +22,6 @@ public class SendMoneyController
   private TextField moneyTransferAmount;
   @FXML
   private Button moneyTransferButton;
-  private ObservableList observableList;
 
 
   private ViewHandler vh;
@@ -35,8 +34,7 @@ public class SendMoneyController
     this.vh = viewHandler;
     moneyTransferDescription.textProperty().bindBidirectional(vm.getDescriptionProperty());
     moneyTransferAmount.textProperty().bindBidirectional(vm.getAmountProperty());
-    observableList = FXCollections.observableArrayList(vm.getStringUsernames());
-    chooseUserList.setItems(observableList);
+    chooseUserList.setItems(vm.getStringUsernames());
     chooseUserList.getSelectionModel().selectFirst();
   }
 

@@ -74,7 +74,10 @@ public class RMIClient implements Client, ClientCallBack
     {
       e.printStackTrace();
     }
-    release();
+    finally
+    {
+      release();
+    }
     return "";
   }
 

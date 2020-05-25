@@ -21,7 +21,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public class AddSpendingsController implements PropertyChangeListener
+public class AddSpendingsController
 {
   @FXML
   private ComboBox spendingsCategory;
@@ -34,7 +34,6 @@ public class AddSpendingsController implements PropertyChangeListener
 
   private ViewHandler vh;
   private AddSpendingsVM vm;
-  private ObservableList observableList;
 
 
   public void init(AddSpendingsVM addSpendingsVM, ViewHandler viewHandler)
@@ -42,20 +41,9 @@ public class AddSpendingsController implements PropertyChangeListener
     this.vm = addSpendingsVM;
     this.vh = viewHandler;
     spendingsAmount.textProperty().bindBidirectional(vm.getAmountProperty());
-    observableList = FXCollections.observableArrayList(vm.getStringCategories());
-    spendingsCategory.setItems(observableList);
+    spendingsCategory.setItems(vm.getStringCategories());
     spendingsCategory.getSelectionModel().selectFirst();
-    this.vm.addPropertyChangeListener(this::propertyChange);
-    new Thread(()->{
-      System.out.println("Start thread");
-      ArrayList<SpendingsInfo> spendingsInfos = vm.getSpendingsInfos();
-      spendingsListView.getItems().clear();
-      if(spendingsInfos.size()>0){
-        for(int i=0; i<spendingsInfos.size();i++){
-          spendingsListView.getItems().add(spendingsInfos.get(i).getCategory() + " : " + spendingsInfos.get(i).getAmount());
-        }
-      }
-    }).start();
+    spendingsListView.setItems(vm.getSpendingsInfos());
   }
 
 
@@ -85,18 +73,5 @@ public class AddSpendingsController implements PropertyChangeListener
     String categoryToSend = spendingsCategory.getSelectionModel().getSelectedItem().toString();
     vm.spendingsTransfer(categoryToSend);
     vm.clear();
-  }
-
-  @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
-  {
-    if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
-      ArrayList<SpendingsInfo> spendingsInfos = (ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue();
-      Platform.runLater(()->{spendingsListView.getItems().clear();
-        if(spendingsInfos.size()>0){
-          for(int i=0; i<spendingsInfos.size();i++){
-            spendingsListView.getItems().add(spendingsInfos.get(i).getCategory() + " : " + spendingsInfos.get(i).getAmount());
-          }
-        }});
-    }
   }
 }

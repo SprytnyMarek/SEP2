@@ -44,4 +44,8 @@ public class SpendingsInfo implements Serializable
   {
     this.username = username;
   }
+
+  public String toString(){
+    return category + " : " + amount;
+  }
 }
