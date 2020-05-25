@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 public interface RMIServer extends Remote
 {
-  void acquireWriteAccess() throws RemoteException;
-  void releaseWriteAccess() throws RemoteException;
   String loginResult(User user) throws RemoteException;
   String registerUser(User user) throws RemoteException;
   void registerClient(ClientCallBack client) throws RemoteException;

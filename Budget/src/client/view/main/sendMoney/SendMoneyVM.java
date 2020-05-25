@@ -21,7 +21,7 @@ public class SendMoneyVM
     this.model = model;
     description = new SimpleStringProperty();
     amount = new SimpleStringProperty();
-    listOfUsernames = FXCollections.observableArrayList(model.getStringCategories());
+    listOfUsernames = FXCollections.observableArrayList(model.getStringUsernames());
   }
 
   public StringProperty getDescriptionProperty(){

@@ -29,22 +29,6 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
     this.model.addPropertyChangeListener(this);
   }
 
-  public void startServer() throws RemoteException, AlreadyBoundException
-  {
-    Registry registry = LocateRegistry.createRegistry(1099);
-    registry.bind("Budget", this);
-  }
-
-
-  @Override public void acquireWriteAccess()
-  {
-
-  }
-
-  @Override public void releaseWriteAccess()
-  {
-
-  }
 
   //returns login result
   @Override public String loginResult(User user)

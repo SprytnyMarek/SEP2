@@ -5,21 +5,32 @@ import shared.datatransfer.User;
 import shared.networking.ClientCallBack;
 import shared.networking.RMIServer;
 
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class ThreadSafeServer implements RMIServer
+public class ThreadSafeServer implements ServerAccess
 {
   private boolean activeWriter;
   private int waitingWriters;
   private int activeReaders;
+  private RMIServer serverImpl;
 
-  private RMIServer rmiServer;
-  public ThreadSafeServer(RMIServer rmiServer){
-    this.rmiServer = rmiServer;
+  public ThreadSafeServer(RMIServer serverImpl) throws RemoteException{
+    UnicastRemoteObject.exportObject(this, 0);
+    this.serverImpl = serverImpl;
   }
 
-  @Override public synchronized void acquireWriteAccess()
+  public void startServer() throws RemoteException, AlreadyBoundException
+  {
+    Registry registry = LocateRegistry.createRegistry(1099);
+    registry.bind("Budget", this);
+  }
+
+  public synchronized RMIServer acquireWriteAccess()
   {
     waitingWriters++;
     while (activeWriter ){
@@ -32,73 +43,15 @@ public class ThreadSafeServer implements RMIServer
     }
     waitingWriters--;
     activeWriter = true;
+    return serverImpl;
   }
 
 
-  @Override public synchronized void releaseWriteAccess()
+  public synchronized void releaseWriteAccess()
   {
     activeWriter = false;
     notifyAll();
   }
 
-  @Override public String loginResult(User user) throws RemoteException
-  {
-    return rmiServer.loginResult(user);
-  }
 
-  @Override public String registerUser(User user) throws RemoteException
-  {
-    return rmiServer.registerUser(user);
-  }
-
-  @Override public void registerClient(ClientCallBack client)
-      throws RemoteException
-  {
-    rmiServer.registerClient(client);
-  }
-
-  @Override public void unregisterClient(ClientCallBack client)
-      throws RemoteException
-  {
-    rmiServer.unregisterClient(client);
-  }
-
-  @Override public double getBudget(String username) throws RemoteException
-  {
-    return rmiServer.getBudget(username);
-  }
-
-  @Override public void addToBudget(String username, double amount)
-      throws RemoteException
-  {
-    rmiServer.addToBudget(username, amount);
-  }
-
-  @Override public ArrayList getStringUsernames() throws RemoteException
-  {
-    return rmiServer.getStringUsernames();
-  }
-
-  @Override public ArrayList getStringCategories() throws RemoteException
-  {
-    return rmiServer.getStringCategories();
-  }
-
-  @Override public void moneyTransfer(String username, String userToSend,
-      double money, String text) throws RemoteException
-  {
-    rmiServer.moneyTransfer(username, userToSend, money, text);
-  }
-
-  @Override public void spendingsTransfer(String username,
-      String categoryToSend, double amount) throws RemoteException
-  {
-    rmiServer.spendingsTransfer(username, categoryToSend, amount);
-  }
-
-  @Override public ArrayList<SpendingsInfo> getSpendingsInfo(String username)
-      throws RemoteException
-  {
-    return rmiServer.getSpendingsInfo(username);
-  }
 }

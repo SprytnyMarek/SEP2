@@ -7,6 +7,7 @@ import server.dataaccess.UserHome;
 import server.model.Model;
 import server.model.ModelManager;
 import server.networking.RMIServerImpl;
+import server.networking.ThreadSafeServer;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
@@ -20,9 +21,10 @@ public class RunServer
     TransactionPane transactionPane = new InDatabaseTransaction();
     Model model = new ModelManager(userHome, transactionPane);
     RMIServerImpl sv = new RMIServerImpl(model);
+    ThreadSafeServer tss = new ThreadSafeServer(sv);
     try
     {
-      sv.startServer();
+      tss.startServer();
     }
     catch (IOException | AlreadyBoundException e)
     {

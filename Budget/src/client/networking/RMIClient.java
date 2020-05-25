@@ -1,6 +1,8 @@
 package client.networking;
 
 
+import server.networking.ServerAccess;
+import server.networking.ThreadSafeServer;
 import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.TransactionInformation;
 import shared.datatransfer.User;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 
 public class RMIClient implements Client, ClientCallBack
 {
-  private RMIServer server;
+  private ServerAccess server;
   private PropertyChangeSupport support;
   private String username;
 
@@ -28,7 +30,7 @@ public class RMIClient implements Client, ClientCallBack
     {
       UnicastRemoteObject.exportObject(this, 0);
       Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-      server = (RMIServer)registry.lookup("Budget");
+      server = (ServerAccess)registry.lookup("Budget");
     }
     catch (RemoteException | NotBoundException e)
     {
@@ -36,15 +38,17 @@ public class RMIClient implements Client, ClientCallBack
     }
   }
 
-  public void access(){
+  public RMIServer access(){
     try
     {
-      server.acquireWriteAccess();
+      RMIServer serverImlp = server.acquireWriteAccess();
+      return serverImlp;
     }
     catch (RemoteException e)
     {
       e.printStackTrace();
     }
+    return null;
   }
 
   public void release(){
@@ -61,14 +65,14 @@ public class RMIClient implements Client, ClientCallBack
   //gets login result and if login is successful it registers user to listen to changes that happen in the server
   @Override public String loginResult(User user)
   {
-    access();
+    RMIServer serverImlp = access();
     try
     {
-      if(server.loginResult(user).equals("OK")){
-        server.registerClient(this);
+      if(serverImlp.loginResult(user).equals("OK")){
+        serverImlp.registerClient(this);
         username = user.getUsername();
       }
-      return server.loginResult(user);
+      return serverImlp.loginResult(user);
     }
     catch (RemoteException e)
     {
@@ -84,134 +88,170 @@ public class RMIClient implements Client, ClientCallBack
   //gets register result
   @Override public String registerUser(User user)
   {
-    access();
+    RMIServer serverImlp = access();
     try
     {
-      return server.registerUser(user);
+      return serverImlp.registerUser(user);
     }
     catch (RemoteException e)
     {
       e.printStackTrace();
     }
-    release();
+    finally
+    {
+      release();
+    }
+
     return "";
   }
 
   @Override public void unregisterUser()
   {
-    access();
+    RMIServer serverImlp = access();
     try
     {
-      server.unregisterClient(this);
+      serverImlp.unregisterClient(this);
     }
     catch (RemoteException e)
     {
       e.printStackTrace();
     }
-    release();
+    finally
+    {
+      release();
+    }
+
   }
 
   @Override public double getBudget(String username)
   {
-    access();
+    RMIServer serverImlp = access();
     try
     {
-      return server.getBudget(username);
+      return serverImlp.getBudget(username);
     }
     catch (Exception e)
     {
       e.printStackTrace();
     }
-    release();
+    finally
+    {
+      release();
+    }
+
     return 0;
   }
 
   @Override public void addToBudget(String username, double amount)
   {
-    access();
+    RMIServer serverImlp = access();
     try
     {
-      server.addToBudget(username, amount);
+      serverImlp.addToBudget(username, amount);
     }
     catch (Exception e)
     {
       e.printStackTrace();
     }
-    release();
+    finally
+    {
+      release();
+    }
+
   }
 
   @Override public ArrayList getStringUsernames()
   {
-    access();
+    RMIServer serverImlp = access();
     try
     {
-      return server.getStringUsernames();
+      return serverImlp.getStringUsernames();
     }
     catch (RemoteException e)
     {
       e.printStackTrace();
     }
-    release();
+    finally
+    {
+      release();
+    }
+
     return null;
   }
 
   @Override public ArrayList getStringCategories()
   {
-    access();
+    RMIServer serverImlp = access();
     try
     {
-      return server.getStringCategories();
+      return serverImlp.getStringCategories();
     }
     catch (RemoteException e)
     {
       e.printStackTrace();
     }
-    release();
+    finally
+    {
+      release();
+    }
+
     return null;
   }
 
   @Override public void moneyTransfer(String username, String userToSend, double money,
       String text)
   {
-    access();
+    RMIServer serverImlp = access();
     try
     {
-      server.moneyTransfer(username, userToSend, money, text);
+      serverImlp.moneyTransfer(username, userToSend, money, text);
     }
     catch (RemoteException e)
     {
       e.printStackTrace();
     }
-    release();
+    finally
+    {
+      release();
+    }
+
   }
 
   @Override public void spendingsTransfer(String username, String category,
       double amount)
   {
-    access();
+    RMIServer serverImlp = access();
     try
     {
-      server.spendingsTransfer(username, category, amount);
+      serverImlp.spendingsTransfer(username, category, amount);
     }
     catch (RemoteException e)
     {
       e.printStackTrace();
     }
-    release();
+    finally
+    {
+      release();
+    }
+
   }
 
   @Override public ArrayList<SpendingsInfo> getSpendingsInfo(String username)
   {
-    access();
+    RMIServer serverImlp = access();
     try
     {
-      return server.getSpendingsInfo(username);
+      return serverImlp.getSpendingsInfo(username);
     }
     catch (RemoteException e)
     {
       e.printStackTrace();
     }
-    release();
+    finally
+    {
+      release();
+    }
+
     return null;
   }
 
@@ -239,7 +279,6 @@ public class RMIClient implements Client, ClientCallBack
       throws RemoteException
   {
     support.firePropertyChange("PopulateCategoryList", null, spendingsInfos);
-
   }
 
   @Override public void addPropertyChangeListener(String name,
