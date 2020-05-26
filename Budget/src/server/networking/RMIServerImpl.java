@@ -89,6 +89,7 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
     model.categoryTransfer(username, categoryToSend, amount);
   }
 
+
   @Override public ArrayList<SpendingsInfo> getSpendingsInfo(String username)
       throws RemoteException
   {

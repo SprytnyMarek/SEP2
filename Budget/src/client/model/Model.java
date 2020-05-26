@@ -6,7 +6,7 @@ import shared.util.PropertyChangeSubject;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public interface Model extends  LoginModel, RegisterModel, MainViewModel
+public interface Model extends  LoginModel, RegisterModel, MainViewModel, AdminModel
 {
  void unregisterUser();
 }

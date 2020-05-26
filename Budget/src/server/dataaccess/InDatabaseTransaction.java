@@ -6,8 +6,6 @@ import dao.spendingsDAO.SpendingsDAO;
 import dao.spendingsDAO.SpendingsDAOImpl;
 import dao.transactionCategoriesDAO.TransactionCategoriesDAO;
 import dao.transactionCategoriesDAO.TransactionCategoriesDAOImpl;
-import dao.transactionDAO.TransactionDAO;
-import dao.transactionDAO.TransactionDAOImpl;
 import dao.userDAO.UserDAO;
 import dao.userDAO.UserDAOImpl;
 import shared.datatransfer.Account;

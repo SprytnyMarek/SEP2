@@ -59,6 +59,12 @@ public class ModelManager implements Model
     client.addToBudget(username, amount);
   }
 
+  @Override public ArrayList getAllUsernamesForAdmin(){
+    ArrayList arrayList = client.getStringUsernames();
+    return arrayList;
+  }
+
+
   @Override public ArrayList getStringUsernames()
   {
     ArrayList arrayList = client.getStringUsernames();
@@ -102,6 +108,10 @@ public class ModelManager implements Model
       client.spendingsTransfer(username, category, amount);
       return "Success";
     }
+  }
+
+  @Override public  ArrayList<SpendingsInfo> getInfoForAdmin(){
+    return client.getSpendingsInfo(username);
   }
 
   @Override public ArrayList<SpendingsInfo> getSpendingsInfos()
