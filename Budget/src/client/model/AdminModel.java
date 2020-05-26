@@ -6,6 +6,6 @@ import java.util.ArrayList;
 
 public interface AdminModel
 {
-  ArrayList<SpendingsInfo> getInfoForAdmin();
+  ArrayList<SpendingsInfo> getInfoForAdmin(String userToGet);
   ArrayList getAllUsernamesForAdmin();
 }

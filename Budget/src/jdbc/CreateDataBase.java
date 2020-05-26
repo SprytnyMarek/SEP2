@@ -35,9 +35,9 @@ public class CreateDataBase {
 
         //create users table
         sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".users ("
-                + "  username varchar(15) NOT NULL PRIMARY KEY,"
-                + "  email varchar(50) NOT NULL, "
-                + "  password varchar(50) NOT NULL );";
+                + "  username varchar NOT NULL PRIMARY KEY,"
+                + "  email varchar NOT NULL, "
+                + "  password varchar NOT NULL );";
 
         try {
             Statement statement = connection.createStatement();
@@ -81,8 +81,8 @@ public class CreateDataBase {
         }
         //create admin table
         sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".admin ("
-                + "  adminid varchar(15) NOT NULL PRIMARY KEY,"
-                + "  password varchar(50) NOT NULL );";
+                + "  adminid varchar NOT NULL PRIMARY KEY,"
+                + "  password varchar NOT NULL );";
 
         try {
             Statement statement = connection.createStatement();
@@ -102,13 +102,8 @@ public class CreateDataBase {
         }
         //create account table
         sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".account ("
-                + "  username varchar(15) NOT NULL PRIMARY KEY,"
-                + "  balance numeric NOT NULL,"
-                + "  fixedpayments numeric NOT NULL,"
-                + "  fixedincome numeric NOT NULL,"
-                + "  totalpayments numeric NOT NULL,"
-                + "  totalincome numeric NOT NULL);";
-        //+ "  timePeriod timestamp default current_timestamp);";
+                + "  username varchar NOT NULL REFERENCES \"SEP2\".users(username) PRIMARY KEY,"
+                + "  balance numeric NOT NULL);";
 
         try {
             Statement statement = connection.createStatement();
@@ -118,7 +113,7 @@ public class CreateDataBase {
         }
 
         //populate account table
-        sql = "INSERT INTO \"SEP2\".account(username, balance, fixedpayments, fixedincome, totalpayments, totalincome) VALUES('troels', 1337, 100, 101, 102, 103) ;";
+        sql = "INSERT INTO \"SEP2\".account(username, balance) VALUES('troels', 1337) ;";
 
         try {
             Statement statement = connection.createStatement();
@@ -127,7 +122,7 @@ public class CreateDataBase {
             e.printStackTrace();
         }
 
-        sql = "INSERT INTO \"SEP2\".account(username, balance, fixedpayments, fixedincome, totalpayments, totalincome) VALUES('pawel', 5, 100, 101, 102, 103) ;";
+        sql = "INSERT INTO \"SEP2\".account(username, balance) VALUES('pawel', 5) ;";
 
         try {
             Statement statement = connection.createStatement();
@@ -135,47 +130,136 @@ public class CreateDataBase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //make them FK
+
+
+
+        sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".transactioncategories("
+            + " title varchar NOT NULL PRIMARY KEY);";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        sql = "INSERT INTO \"SEP2\".transactioncategories(title) VALUES ( 'Groceries');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories( title) VALUES ( 'Clothing');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories( title) VALUES ( 'Entertainment');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories(  title) VALUES ( 'Electronics');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories(  title) VALUES ( 'Traveling');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories(  title) VALUES ( 'Furniture');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories(  title) VALUES ( 'Drugs/medicine');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories(  title) VALUES ( 'Bills');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories( title) VALUES ( 'Restaurants');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories( title) VALUES ( 'Transport');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories(  title) VALUES ( 'Utilities');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories(  title) VALUES ( 'Health');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "INSERT INTO \"SEP2\".transactioncategories( title) VALUES ( 'Services');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".transaction("
                 + " id serial NOT NULL PRIMARY KEY,"
-                + " username varchar(15) NOT NULL , "
-                + " categorycode varchar(30) NOT NULL ,"
+                + " username varchar NOT NULL REFERENCES \"SEP2\".users(username) , "
+                + " title varchar NOT NULL ,"
                 + " amountofmoney numeric NOT NULL); ";
-                //   + " date_of_transaction timestamp NOT NULL, "
+
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        sql = "INSERT INTO \"SEP2\".transaction( username, categorycode, amountofmoney) VALUES ( 'troels','Clothing',100);";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-
-        sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".transactionCategories("
-            + " id numeric NOT NULL PRIMARY KEY, "
-            + " title varchar(20) NOT NULL);";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '1','Groceries');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '2','Clothing');";
+        sql = "INSERT INTO \"SEP2\".transaction( username, title, amountofmoney) VALUES ( 'troels','Clothing',100);";
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
@@ -184,98 +268,11 @@ public class CreateDataBase {
         }
 
 
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '3','Entertainment');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '4','Electronics');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '5','Traveling');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '6','Furniture');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '7','Drugs/medicine');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '8','Bills');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '9','Restaurants');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '10','Transport');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '11','Utilities');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '12','Health');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "INSERT INTO \"SEP2\".transactionCategories( id, title) VALUES ( '13','Services');";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         sql = "CREATE TABLE IF NOT EXISTS \"SEP2\".notifications("
             + " id serial NOT NULL PRIMARY KEY, "
-            + " usernameasking varchar(15) NOT NULL, "
-            + " usernameowing varchar(15) NOT NULL, "
+            + " usernameasking varchar NOT NULL REFERENCES \"SEP2\".users(username), "
+            + " usernameowing varchar NOT NULL REFERENCES \"SEP2\".users(username), "
             + " amountofmoney numeric NOT NULL);";
         try {
             Statement statement = connection.createStatement();

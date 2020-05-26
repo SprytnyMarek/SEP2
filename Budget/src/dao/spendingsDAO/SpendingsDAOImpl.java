@@ -43,7 +43,7 @@ public class SpendingsDAOImpl implements SpendingsDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO transaction(username, categorycode, amountofmoney) VALUES(?, ?, ?) ;");
+          "INSERT INTO transaction(username, title, amountofmoney) VALUES(?, ?, ?) ;");
       statement.setString(1, username);
       statement.setString(2, category);
       statement.setDouble(3, money);
@@ -57,7 +57,7 @@ public class SpendingsDAOImpl implements SpendingsDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE transaction SET username=?, categorycode =?, amountofmoney=? WHERE username =?");
+          "UPDATE transaction SET username=?, title =?, amountofmoney=? WHERE username =?");
       statement.setString(1, spendingsInfo.getUsername());
       statement.setString(2, spendingsInfo.getCategory());
       statement.setDouble(3, spendingsInfo.getAmount());
@@ -89,7 +89,7 @@ public class SpendingsDAOImpl implements SpendingsDAO
       while (resultSet.next())
       {
         String username = resultSet.getString("username");
-        String category = resultSet.getString("categorycode");
+        String category = resultSet.getString("title");
         double money = resultSet.getDouble("amountofmoney");
         SpendingsInfo spendingsInfo = new SpendingsInfo(username, category, money);
         arrayList.add(spendingsInfo);

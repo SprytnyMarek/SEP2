@@ -110,8 +110,8 @@ public class ModelManager implements Model
     }
   }
 
-  @Override public  ArrayList<SpendingsInfo> getInfoForAdmin(){
-    return client.getSpendingsInfo(username);
+  @Override public  ArrayList<SpendingsInfo> getInfoForAdmin(String userToGet){
+    return client.getSpendingsInfo(userToGet);
   }
 
   @Override public ArrayList<SpendingsInfo> getSpendingsInfos()

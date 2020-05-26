@@ -37,16 +37,16 @@ public class MainVM implements PropertyChangeListener
 
   public void addBudget()
   {
-    boolean isNumeric;
+    boolean isNumeric = true;
     double budget = 0;
-    if (budgetField.get() == null) {
-      isNumeric = false;
-    }
-    try {
-      budget = Double.parseDouble(budgetField.get());
-      isNumeric = true;
-    } catch (NumberFormatException nfe) {
-      isNumeric = false;
+
+    if(isNumeric = true){
+      try {
+        budget = Double.parseDouble(budgetField.get());
+        isNumeric = true;
+      } catch (NullPointerException |NumberFormatException nfe) {
+        isNumeric = false;
+      }
     }
     if(budget>0 && isNumeric){
       model.addToBudget(budget);

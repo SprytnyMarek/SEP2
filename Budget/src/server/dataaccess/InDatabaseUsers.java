@@ -89,7 +89,7 @@ public class InDatabaseUsers implements UserHome {
                 }
                 try {
                     AccountDAO dao = AccountDAOImpl.getInstance();
-                    dao.create(user.getUsername(), 0, 0, 0, 0, 0);
+                    dao.create(user.getUsername(), 0);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

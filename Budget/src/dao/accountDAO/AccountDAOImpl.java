@@ -36,22 +36,16 @@ public class AccountDAOImpl implements AccountDAO
             "postgres", Password.getPassword());
   }
 
-  @Override public Account create(String username, double balance,
-      double fixedPayments, double fixedIncome, double totalPayments,
-      double totalIncome) throws SQLException
+  @Override public Account create(String username, double balance) throws SQLException
   {
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO account(username, balance, fixedPayments, fixedIncome, totalPayments, totalIncome) VALUES(?, ?, ?, ? ,? ,?) ;");
+          "INSERT INTO account(username, balance) VALUES(?, ?) ;");
       statement.setString(1, username);
       statement.setDouble(2, balance);
-      statement.setDouble(3, fixedPayments);
-      statement.setDouble(4, fixedIncome);
-      statement.setDouble(5, totalPayments);
-      statement.setDouble(6, totalIncome);
       statement.executeUpdate();
-      return new Account(username, balance, fixedPayments, fixedIncome, totalPayments, totalIncome);
+      return new Account(username, balance);
     }
   }
 
@@ -60,14 +54,10 @@ public class AccountDAOImpl implements AccountDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE account SET username=?, balance =?, fixedPayments=?, fixedIncome=?, totalPayments=?, totalIncome=? WHERE username =?");
+          "UPDATE account SET username=?, balance =? WHERE username =?");
       statement.setString(1, account.getUsername());
       statement.setDouble(2, account.getBalance());
-      statement.setDouble(3, account.getFixedPayments());
-      statement.setDouble(4, account.getFixedIncome());
-      statement.setDouble(5, account.getTotalPayments());
-      statement.setDouble(6, account.getTotalIncome());
-      statement.setString(7, account.getUsername());
+      statement.setString(3, account.getUsername());
       statement.executeUpdate();
     }
   }
@@ -96,11 +86,7 @@ public class AccountDAOImpl implements AccountDAO
       {
         String username = resultSet.getString("username");
         double balance = resultSet.getDouble("balance");
-        double fixedPayments = resultSet.getDouble("fixedPayments");
-        double fixedIncome = resultSet.getDouble("fixedIncome");
-        double totalPayments = resultSet.getDouble("totalPayments");
-        double totalIncome = resultSet.getDouble("totalIncome");
-        Account account = new Account(username, balance, fixedPayments, fixedIncome, totalPayments, totalIncome);
+        Account account = new Account(username, balance);
         return account;
       }
       else
