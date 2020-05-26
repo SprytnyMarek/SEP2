@@ -26,6 +26,7 @@ public class NotificationVM implements PropertyChangeListener
     notificationAmount = new SimpleStringProperty();
     listOfUsernames = FXCollections.observableArrayList(model.getStringUsernames());
     notificationList = FXCollections.observableArrayList(model.getNotificationList());
+    this.model.addPropertyChangeListener(this);
   }
 
 
