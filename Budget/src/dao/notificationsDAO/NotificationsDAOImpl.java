@@ -67,9 +67,9 @@ public class NotificationsDAOImpl implements NotificationsDAO
       ResultSet resultSet2 = statement2.executeQuery();
       while (resultSet2.next())
       {
-        String usernameAsking = resultSet.getString("usernameasking");
-        String usernameOwing = resultSet.getString("usernameowing");
-        double money = resultSet.getDouble("amountofmoney");
+        String usernameAsking = resultSet2.getString("usernameasking");
+        String usernameOwing = resultSet2.getString("usernameowing");
+        double money = resultSet2.getDouble("amountofmoney");
         Notification notification = new Notification(usernameAsking, usernameOwing, money);
         arrayList.add(notification);
       }
