@@ -3,6 +3,7 @@ package client.core;
 
 import client.view.login.LoginController;
 import client.view.main.AddSpendings.AddSpendingsController;
+import client.view.main.adminView.AdminController;
 import client.view.main.mainView.MainViewController;
 import client.view.main.notification.NotificationController;
 import client.view.main.sendMoney.SendMoneyController;
@@ -89,6 +90,26 @@ public class ViewHandler
       Parent root = loader.load();
       MainViewController ctrl = loader.getController();
       ctrl.init(vmf.getMainVm(), this);
+      stage.setTitle("Corona");
+      Scene mainScene = new Scene(root);
+      stage.setScene(mainScene);
+      stage.getIcons().add(new Image("file:../view/login/corona.png"));
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  public void openAdminView()
+  {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("../view/main/adminView/AdminView.fxml"));
+    try
+    {
+      Parent root = loader.load();
+      AdminController ctrl = loader.getController();
+      ctrl.init(vmf.getAdminVm(), this);
       stage.setTitle("Corona");
       Scene mainScene = new Scene(root);
       stage.setScene(mainScene);

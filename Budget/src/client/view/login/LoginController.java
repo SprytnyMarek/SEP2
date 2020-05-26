@@ -52,7 +52,7 @@ public class LoginController
     if ("Open Admin View".equals(loginResult))
     {
       vm.clear();
-      //TODO open admin view
+      vh.openAdminView();
     }
   }
 }

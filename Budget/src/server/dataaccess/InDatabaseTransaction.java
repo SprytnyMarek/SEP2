@@ -5,13 +5,10 @@ import dao.accountDAO.AccountDAOImpl;
 import dao.spendingsDAO.SpendingsDAO;
 import dao.spendingsDAO.SpendingsDAOImpl;
 import dao.transactionCategoriesDAO.TransactionCategoriesDAO;
-import dao.transactionCategoriesDAO.TransactionCategoriesDAOImpl;
 import dao.userDAO.UserDAO;
 import dao.userDAO.UserDAOImpl;
 import shared.datatransfer.Account;
 import shared.datatransfer.SpendingsInfo;
-import shared.datatransfer.Transaction;
-import shared.datatransfer.User;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

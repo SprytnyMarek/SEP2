@@ -2,6 +2,7 @@ package client.core;
 
 import client.view.login.LoginVM;
 import client.view.main.AddSpendings.AddSpendingsVM;
+import client.view.main.adminView.AdminVM;
 import client.view.main.mainView.MainVM;
 import client.view.main.notification.NotificationVM;
 import client.view.main.sendMoney.SendMoneyVM;
@@ -16,6 +17,7 @@ public class ViewModelFactory
   private SendMoneyVM sendMoneyVM;
   private AddSpendingsVM addSpendingsVM;
   private NotificationVM notificationVM;
+  private AdminVM adminVM;
 
   public ViewModelFactory(ModelFactory mf){
     this.mf = mf;
@@ -40,6 +42,13 @@ public class ViewModelFactory
       mainVm = new MainVM(mf.getModel());
     }
     return mainVm;
+  }
+
+  public AdminVM getAdminVm(){
+    if(adminVM == null){
+      adminVM = new AdminVM(mf.getModel());
+    }
+    return adminVM;
   }
 
   public SendMoneyVM getSendMoneyVM(){
