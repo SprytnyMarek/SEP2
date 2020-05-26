@@ -37,39 +37,7 @@ public class ModelManager implements Model
     return userHome.registerUser(user);
   }
 
-  @Override public void addPropertyChangeListener(String name,
-      PropertyChangeListener listener)
-  {
-    if(null == name){
-      addPropertyChangeListener(listener);
-    }
-    else {
-      support.addPropertyChangeListener(name, listener);
-    }
-  }
 
-  @Override public void addPropertyChangeListener(
-      PropertyChangeListener listener)
-  {
-    support.addPropertyChangeListener(listener);
-  }
-
-  @Override public void removePropertyChangeListener(String name,
-      PropertyChangeListener listener)
-  {
-    if(null == name){
-      removePropertyChangeListener(listener);
-    }
-    else {
-      support.removePropertyChangeListener(name, listener);
-    }
-  }
-
-  @Override public void removePropertyChangeListener(
-      PropertyChangeListener listener)
-  {
-    support.removePropertyChangeListener(listener);
-  }
 
   @Override public double getBudget(String username)
   {
@@ -104,9 +72,6 @@ public class ModelManager implements Model
   @Override public void categoryTransfer(String username, String categoryToSend,
       double money)
   {
-    SpendingsInfo spendingsInfo = new SpendingsInfo(username, categoryToSend, money);
-    support.firePropertyChange("CategorySent", username, spendingsInfo);
-    support.firePropertyChange("CategoryReceived", categoryToSend, spendingsInfo);
     transactionPane.categoryTransfer(username, categoryToSend, money);
   }
 
@@ -118,22 +83,56 @@ public class ModelManager implements Model
   @Override public void addNotification(String usernameAsking,
       String usernameOwing, double amount)
   {
+    Notification notification = new Notification(usernameAsking, usernameOwing, amount);
+    support.firePropertyChange("UserAsking", usernameAsking, notification);
+    support.firePropertyChange("UserOwing", usernameOwing, notification);
     notifications.addNotification(usernameAsking, usernameOwing, amount);
   }
 
   @Override public ArrayList<Notification> getNotificationList(String username)
   {
-    //TODO getnotification and fire event
-    return null;
+    return notifications.getNotificationList(username);
   }
 
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
-    System.out.println("2");
     if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
-      System.out.println("3");
       support.firePropertyChange("PopulateCategoryList", propertyChangeEvent.getOldValue(), propertyChangeEvent.getNewValue());
     }
+  }
+
+  @Override public void addPropertyChangeListener(String name,
+      PropertyChangeListener listener)
+  {
+    if(null == name){
+      addPropertyChangeListener(listener);
+    }
+    else {
+      support.addPropertyChangeListener(name, listener);
+    }
+  }
+
+  @Override public void addPropertyChangeListener(
+      PropertyChangeListener listener)
+  {
+    support.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removePropertyChangeListener(String name,
+      PropertyChangeListener listener)
+  {
+    if(null == name){
+      removePropertyChangeListener(listener);
+    }
+    else {
+      support.removePropertyChangeListener(name, listener);
+    }
+  }
+
+  @Override public void removePropertyChangeListener(
+      PropertyChangeListener listener)
+  {
+    support.removePropertyChangeListener(listener);
   }
 
 }

@@ -3,6 +3,7 @@ package client.view.main.notification;
 import client.core.ViewHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -32,6 +33,7 @@ public class NotificationController
     notificationAmount.textProperty().bindBidirectional(vm.getNotificationAmountProperty());
     notificationUser.setItems(vm.getStringUsernames());
     notificationUser.getSelectionModel().selectFirst();
+    notificationListView.setItems(vm.getNotificationList());
   }
 
   public void onGoHomeButton(MouseEvent actionEvent)
@@ -53,5 +55,12 @@ public class NotificationController
   public void onGoNotificationsButton(MouseEvent actionEvent)
   {
     vh.openNotificationView();
+  }
+
+  public void onAddNotification(ActionEvent actionEvent)
+  {
+    String userToSend = notificationUser.getSelectionModel().getSelectedItem().toString();
+    vm.addNotification(userToSend);
+    vm.clear();
   }
 }

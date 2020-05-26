@@ -1,5 +1,6 @@
 package shared.networking;
 
+import shared.datatransfer.Notification;
 import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.TransactionInformation;
 
@@ -17,4 +18,5 @@ public interface ClientCallBack extends Remote {
     void updateBudgetOnReceiving(TransactionInformation transaction_receiving) throws RemoteException;
 
   void populateListView(ArrayList<SpendingsInfo> spendingsInfos) throws RemoteException;
+  void addInNotificationView(Notification notification) throws RemoteException;
 }

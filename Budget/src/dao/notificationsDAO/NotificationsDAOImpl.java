@@ -48,6 +48,7 @@ public class NotificationsDAOImpl implements NotificationsDAO
   @Override public ArrayList<Notification> readByUsernameID(
       String searchString) throws SQLException
   {
+    System.out.println("2");
     ArrayList<Notification> arrayList = new ArrayList<>();
     try (Connection connection = getConnection())
     {

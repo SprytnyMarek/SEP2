@@ -1,6 +1,8 @@
 package client.model;
 
 import client.networking.Client;
+import javafx.beans.property.StringProperty;
+import shared.datatransfer.Notification;
 import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.User;
 
@@ -107,6 +109,17 @@ public class ModelManager implements Model
     return client.getSpendingsInfo(username);
   }
 
+  @Override public ArrayList<Notification> getNotificationList()
+  {
+    return client.getNotificationList();
+  }
+
+  @Override public void addNotification(String userToSend,
+      double notificationAmount)
+  {
+    client.addNotification(username, userToSend, notificationAmount);
+  }
+
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
     if(propertyChangeEvent.getPropertyName().equals("AddBudget")){
@@ -119,8 +132,10 @@ public class ModelManager implements Model
       support.firePropertyChange("TransferReceived", null, propertyChangeEvent.getNewValue());
     }
     if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
-      System.out.println("6");
       support.firePropertyChange("PopulateCategoryList", null, propertyChangeEvent.getNewValue());
+    }
+    if(propertyChangeEvent.getPropertyName().equals("AddInNotificationList")){
+      support.firePropertyChange("AddInNotificationList", null, propertyChangeEvent.getNewValue());
     }
   }
 

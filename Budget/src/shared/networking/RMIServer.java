@@ -1,5 +1,7 @@
 package shared.networking;
 
+import javafx.beans.property.StringProperty;
+import shared.datatransfer.Notification;
 import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.User;
 
@@ -20,4 +22,6 @@ public interface RMIServer extends Remote
   void moneyTransfer(String username, String userToSend, double money, String text) throws RemoteException;
   void spendingsTransfer(String username, String categoryToSend, double amount) throws RemoteException;
   ArrayList<SpendingsInfo> getSpendingsInfo(String username) throws RemoteException;
+  void addNotification(String username, String userToSend, double notificationAmount) throws RemoteException;
+  ArrayList<Notification> getNotificationList(String username) throws RemoteException;
 }

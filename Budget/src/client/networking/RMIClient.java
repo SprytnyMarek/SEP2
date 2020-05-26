@@ -1,8 +1,10 @@
 package client.networking;
 
 
+import javafx.beans.property.StringProperty;
 import server.networking.ServerAccess;
 import server.networking.ThreadSafeServer;
+import shared.datatransfer.Notification;
 import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.TransactionInformation;
 import shared.datatransfer.User;
@@ -255,6 +257,43 @@ public class RMIClient implements Client, ClientCallBack
     return null;
   }
 
+  @Override public void addNotification(String username, String userToSend,
+      double notificationAmount)
+  {
+    RMIServer serverImlp = access();
+    try
+    {
+      serverImlp.addNotification(username, userToSend, notificationAmount);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    finally
+    {
+      release();
+    }
+  }
+
+  @Override public ArrayList<Notification> getNotificationList()
+  {
+    RMIServer serverImlp = access();
+    try
+    {
+      return serverImlp.getNotificationList(username);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    finally
+    {
+      release();
+    }
+
+    return null;
+  }
+
   @Override public String getUsername()
   {
     return username;
@@ -279,6 +318,11 @@ public class RMIClient implements Client, ClientCallBack
       throws RemoteException
   {
     support.firePropertyChange("PopulateCategoryList", null, spendingsInfos);
+  }
+
+  @Override public void addInNotificationView(Notification notification)
+  {
+    support.firePropertyChange("AddInNotificationList", null, notification);
   }
 
   @Override public void addPropertyChangeListener(String name,

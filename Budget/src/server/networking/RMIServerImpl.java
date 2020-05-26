@@ -1,6 +1,8 @@
 package server.networking;
 
+import javafx.beans.property.StringProperty;
 import server.model.Model;
+import shared.datatransfer.Notification;
 import shared.datatransfer.SpendingsInfo;
 import shared.datatransfer.TransactionInformation;
 import shared.datatransfer.User;
@@ -93,6 +95,18 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
     return model.getSpendingsInfo(username);
   }
 
+  @Override public void addNotification(String username, String userToSend,
+      double notificationAmount) throws RemoteException
+  {
+    model.addNotification(username, userToSend, notificationAmount);
+  }
+
+  @Override public ArrayList<Notification> getNotificationList(String username)
+      throws RemoteException
+  {
+    return model.getNotificationList(username);
+  }
+
   @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
   {
     if (propertyChangeEvent.getPropertyName().equals("TransferSent")) {
@@ -132,15 +146,39 @@ public class RMIServerImpl implements RMIServer, PropertyChangeListener
       }
     }
     if(propertyChangeEvent.getPropertyName().equals("PopulateCategoryList")){
-      System.out.println("4");
       for(ClientCallBack client: clientCallbacks){
-        System.out.println("4.1");
         try
         {
-          System.out.println("4.2");
           if(client.getUsername().equals((String)propertyChangeEvent.getOldValue())){
-            System.out.println("4.5");
               client.populateListView((ArrayList<SpendingsInfo>) propertyChangeEvent.getNewValue());
+          }
+        }
+        catch (RemoteException e)
+        {
+          e.printStackTrace();
+        }
+      }
+    }
+    if(propertyChangeEvent.getPropertyName().equals("UserAsking")){
+      for(ClientCallBack client: clientCallbacks){
+        try
+        {
+          if(client.getUsername().equals((String)propertyChangeEvent.getOldValue())){
+            client.addInNotificationView((Notification) propertyChangeEvent.getNewValue());
+          }
+        }
+        catch (RemoteException e)
+        {
+          e.printStackTrace();
+        }
+      }
+    }
+    if(propertyChangeEvent.getPropertyName().equals("UserOwing")){
+      for(ClientCallBack client: clientCallbacks){
+        try
+        {
+          if(client.getUsername().equals((String)propertyChangeEvent.getOldValue())){
+            client.addInNotificationView((Notification) propertyChangeEvent.getNewValue());
           }
         }
         catch (RemoteException e)

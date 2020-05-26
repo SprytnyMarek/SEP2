@@ -1,5 +1,7 @@
 package client.model;
 
+import javafx.beans.property.StringProperty;
+import shared.datatransfer.Notification;
 import shared.datatransfer.SpendingsInfo;
 import shared.util.PropertyChangeSubject;
 
@@ -15,4 +17,6 @@ public interface MainViewModel extends PropertyChangeSubject, PropertyChangeList
   ArrayList getStringCategories();
   String moneyTransfer(String userToSend, double money, String text);
   ArrayList<SpendingsInfo> getSpendingsInfos();
+  ArrayList<Notification> getNotificationList();
+  void addNotification(String userToSend, double notificationAmount);
 }
