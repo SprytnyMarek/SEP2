@@ -40,6 +40,10 @@ public class RMIClient implements Client, ClientCallBack
     }
   }
 
+  /**
+   * if the user gains access to the server he will be able to access the methods in RMIServer
+   * @return the class RMIServer
+   */
   public RMIServer access(){
     try
     {
@@ -53,6 +57,9 @@ public class RMIClient implements Client, ClientCallBack
     return null;
   }
 
+  /**
+   * releases the server so another user can gain access
+   */
   public void release(){
     try
     {

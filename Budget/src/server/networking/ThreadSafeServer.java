@@ -30,6 +30,10 @@ public class ThreadSafeServer implements ServerAccess
     registry.bind("Budget", this);
   }
 
+  /**
+   * users gain access one at a time, checks if there is another user already in the database
+   * @return the class RMIServer
+   */
   public synchronized RMIServer acquireWriteAccess()
   {
     waitingWriters++;
@@ -46,7 +50,9 @@ public class ThreadSafeServer implements ServerAccess
     return serverImpl;
   }
 
-
+  /**
+   * releases the user so another user can gain access
+   */
   public synchronized void releaseWriteAccess()
   {
     activeWriter = false;

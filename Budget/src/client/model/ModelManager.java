@@ -87,6 +87,13 @@ public class ModelManager implements Model
     return arrayList;
   }
 
+  /**
+   * checks if the user has enough money in his balance to send money to the other user
+   * @param userToSend user which will receive the money
+   * @param money amount to be send
+   * @param text description given by the user
+   * @return a String that says if the transaction is successful or not
+   */
   @Override public String moneyTransfer(String userToSend, double money,
       String text)
   {

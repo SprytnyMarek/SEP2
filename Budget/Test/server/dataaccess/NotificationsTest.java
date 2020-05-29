@@ -2,24 +2,26 @@ package server.dataaccess;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import shared.datatransfer.Notification;
 import shared.datatransfer.SpendingsInfo;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TransactionPaneTest
+class NotificationsTest
 {
-  private TransactionPane transactionPane;
+  private Notifications notifications;
 
   @BeforeEach
   public void setup(){
-    transactionPane = new InDatabaseTransaction();
+    notifications = new InDatabaseNotifications();
   }
 
   @Test
   public void getEmptyList(){
-    ArrayList<SpendingsInfo> spendingInfo = transactionPane.getSpendingsInfo("pawel");
-    assertEquals(0, spendingInfo.size());
+    ArrayList<Notification> notificationList = notifications.getNotificationList("pawel");
+    assertEquals(0, notificationList.size());
   }
+
 }

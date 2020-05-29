@@ -34,6 +34,11 @@ public class SendMoneyVM
     return listOfUsernames;
   }
 
+  /**
+   * method that checks if the amount given by the user is numeric and bigger than 0 and
+   * if the description is empty it adds the description "No description"
+   * @param userToSend the user that the money will be sent to
+   */
   public void moneyTransfer(String userToSend)
   {
     boolean isNumeric;

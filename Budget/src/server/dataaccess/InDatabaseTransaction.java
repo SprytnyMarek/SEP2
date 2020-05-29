@@ -54,6 +54,10 @@ public class InDatabaseTransaction implements TransactionPane
     }
   }
 
+  /**
+   * get all users' username
+   * @return arraylist with all usernames
+   */
   @Override public ArrayList getStringUsername()
   {
     try
@@ -70,6 +74,14 @@ public class InDatabaseTransaction implements TransactionPane
     return null;
   }
 
+  /**
+   * subtracts from the user's balance sending, adds to the user's balance receiving,
+   * adds the transaction to the database, fires an event to update the view with all transactions
+   * @param username user who sends money
+   * @param userToSend user who receives money
+   * @param money amount of money
+   * @param text description given by the user
+   */
   @Override public void moneyTransfer(String username, String userToSend, double money,
       String text)
   {
@@ -116,6 +128,10 @@ public class InDatabaseTransaction implements TransactionPane
     }
   }
 
+  /**
+   * get list of all categories
+   * @return arraylist of all categories
+   */
   @Override public ArrayList getStringCategories()
   {
     try
@@ -132,6 +148,13 @@ public class InDatabaseTransaction implements TransactionPane
     return null;
   }
 
+  /**
+   * subtract from the user's balance, add category, amount of money and user transaction to the database
+   * fires an event to update the view with all transactions
+   * @param username of the user
+   * @param categoryToSend the category the user chose
+   * @param money amount of money
+   */
   @Override public void categoryTransfer(String username, String categoryToSend, double money)
   {
     try
@@ -167,6 +190,11 @@ public class InDatabaseTransaction implements TransactionPane
 
   }
 
+  /**
+   * get all spendings of a user
+   * @param username of user
+   * @return arraylist with all spendings
+   */
   @Override public ArrayList<SpendingsInfo> getSpendingsInfo(String username)
   {
     try
