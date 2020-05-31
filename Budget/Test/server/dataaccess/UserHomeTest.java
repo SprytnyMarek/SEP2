@@ -15,7 +15,9 @@ class UserHomeTest
     userHome = new InDatabaseUsers();
   }
 
-  //Validate a user that exists in database and insert correct password
+  /**
+   * Validate a user that exists in database and insert correct password
+   */
   @Test
   public void validateValidUser(){
     User user = new User("troels","1234");
@@ -23,7 +25,9 @@ class UserHomeTest
     assertEquals("OK", result);
   }
 
-  //validate a user that does not exist in database
+  /**
+   * validate a user that does not exist in database
+   */
   @Test
   public void validateInvalidUsername(){
     User user = new User("Troe","123");
@@ -31,7 +35,9 @@ class UserHomeTest
     assertEquals("User not found", result);
   }
 
-  //validate a user that exists in database but you haven't inserted correct password
+  /**
+   * validate a user that exists in database but you haven't inserted correct password
+   */
   @Test
   public void validateInvalidPassword(){
     User user = new User("troels","123456");
@@ -39,7 +45,9 @@ class UserHomeTest
     assertEquals("Password incorrect", result);
   }
 
-  //validate an admin
+  /**
+   * validate an admin
+   */
   @Test
   public void validateAdmin(){
     User user = new User("supertroels","1234");
@@ -47,7 +55,9 @@ class UserHomeTest
     assertEquals("Open Admin View", result);
   }
 
-  //validate an admin that exists in database but you haven't inserted correct password
+  /**
+   * validate an admin that exists in database but you haven't inserted correct password
+   */
   @Test
   public void validateAdminInvalidPassword(){
     User user = new User("supertroels","123456");
@@ -55,7 +65,9 @@ class UserHomeTest
     assertEquals("Admin password incorrect", result);
   }
 
-  //register a valid user
+  /**
+   * register a valid user
+   */
   @Test
   public void registerValidUser(){
     User user = new User("Table", "table", "1234", "1234");
@@ -63,7 +75,9 @@ class UserHomeTest
     assertEquals("OK", result);
   }
 
-  //register user that already exists in database
+  /**
+   * register user that already exists in database
+   */
   @Test
   public void registerUserThatExists(){
     User user = new User("troels", "chair", "1234", "1234");
@@ -71,7 +85,9 @@ class UserHomeTest
     assertEquals("There is already a user with this name", result);
   }
 
-  //register user that the username is that of an admin
+  /**
+   * register user that the username is that of an admin
+   */
   @Test
   public void registerUsernameAdmin(){
     User user = new User("supertroels", "chair", "1234", "1234");
@@ -79,7 +95,9 @@ class UserHomeTest
     assertEquals("This is an admin ID", result);
   }
 
-  //register user leaving username empty
+  /**
+   * register user leaving username empty
+   */
   @Test
   public void registerNullUsername(){
     User user = new User(null, "chair", "1234", "1234");
@@ -87,7 +105,9 @@ class UserHomeTest
     assertEquals("Invalid username", result);
   }
 
-  //register user leaving username empty
+  /**
+   * register user leaving username empty
+   */
   @Test
   public void registerEmptyUsername(){
     User user = new User(" ", "chair", "1234", "1234");
@@ -95,7 +115,9 @@ class UserHomeTest
     assertEquals("Invalid username", result);
   }
 
-  //register user with symbols in the username
+  /**
+   * register user with symbols in the username
+   */
   @Test
   public void registerUsernameWithSymbols(){
     User user = new User("Chair*", "chair", "1234", "1234");
@@ -103,7 +125,9 @@ class UserHomeTest
     assertEquals("Invalid username", result);
   }
 
-  //register user with username less than 3 characters
+  /**
+   * register user with username less than 3 characters
+   */
   @Test
   public void registerShortUsername(){
     User user = new User("Ch*", "chair", "1234", "1234");
@@ -111,7 +135,9 @@ class UserHomeTest
     assertEquals("Invalid username", result);
   }
 
-  //register user with username more than 12 characters
+  /**
+   * register user with username more than 12 characters
+   */
   @Test
   public void registerLongUsername(){
     User user = new User("ChairAndTableAndArmChair", "chair", "1234", "1234");
@@ -119,7 +145,9 @@ class UserHomeTest
     assertEquals("Invalid username", result);
   }
 
-  //register email that is empty
+  /**
+   *   register email that is empty
+   */
   @Test
   public void registerNullEmail(){
     User user = new User("Chair", null, "1234", "1234");
@@ -127,7 +155,9 @@ class UserHomeTest
     assertEquals("Invalid email", result);
   }
 
-  //register email that is empty
+  /**
+   * register email that is empty
+   */
   @Test
   public void registerEmptyEmail(){
     User user = new User("Chair", " ", "1234", "1234");
@@ -135,7 +165,9 @@ class UserHomeTest
     assertEquals("Invalid email", result);
   }
 
-  //register email that has less than 1 characters
+  /**
+   * register email that has less than 1 characters
+   */
   @Test
   public void registerShortEmail(){
     User user = new User("Chair", "", "1234", "1234");
@@ -143,7 +175,9 @@ class UserHomeTest
     assertEquals("Invalid email", result);
   }
 
-  //register email that has more than 13 characters
+  /**
+   * register email that has more than 13 characters
+   */
   @Test
   public void registerLongEmail(){
     User user = new User("Chair", "qwertyuioocagjvnxzuj", "1234", "1234");
@@ -151,7 +185,9 @@ class UserHomeTest
     assertEquals("Invalid email", result);
   }
 
-  //register email that has symbols
+  /**
+   * register email that has symbols
+   */
   @Test
   public void registerSymbolsEmail(){
     User user = new User("Chair", "*#chair", "1234", "1234");
@@ -159,7 +195,9 @@ class UserHomeTest
     assertEquals("Invalid email", result);
   }
 
-  //register email that starts with a number
+  /**
+   * register email that starts with a number
+   */
   @Test
   public void registerEmailFirstNumber(){
     User user = new User("Chair", "1chair", "1234", "1234");
@@ -167,7 +205,9 @@ class UserHomeTest
     assertEquals("Invalid email", result);
   }
 
-  //register password that is empty
+  /**
+   * register password that is empty
+   */
   @Test
   public void registerNullPassword(){
     User user = new User("Chair", "chair", null, "1234");
@@ -175,7 +215,9 @@ class UserHomeTest
     assertEquals("Invalid password", result);
   }
 
-  //register password that is empty
+  /**
+   * register password that is empty
+   */
   @Test
   public void registerEmptyPassword(){
     User user = new User("Chair", "chair", " ", "1234");
@@ -183,7 +225,9 @@ class UserHomeTest
     assertEquals("Invalid password", result);
   }
 
-  //register password that is less than 4 characters
+  /**
+   * register password that is less than 4 characters
+   */
   @Test
   public void registerShortPassword(){
     User user = new User("Chair", "chair", "123", "1234");
@@ -191,7 +235,9 @@ class UserHomeTest
     assertEquals("Invalid password", result);
   }
 
-  //register password more than 14 characters
+  /**
+   * register password more than 14 characters
+   */
   @Test
   public void registerLongPassword(){
     User user = new User("Chair", "chair", "1234567890123445678", "1234");
@@ -199,7 +245,9 @@ class UserHomeTest
     assertEquals("Invalid password", result);
   }
 
-  //register user with password that is different than repeat password
+  /**
+   * register user with password that is different than repeat password
+   */
   @Test
   public void registerUnmatchingPasswords(){
     User user = new User("Chair", "chair", "123456", "1234");

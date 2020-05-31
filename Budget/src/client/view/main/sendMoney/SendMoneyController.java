@@ -61,7 +61,7 @@ public class SendMoneyController
     vh.openNotificationView();
   }
 
-  public void moneyTransferButton(ActionEvent actionEvent)
+  public void moneyTransferButton()
   {
     String userToSend = chooseUserList.getSelectionModel().getSelectedItem().toString();
     vm.moneyTransfer(userToSend);
